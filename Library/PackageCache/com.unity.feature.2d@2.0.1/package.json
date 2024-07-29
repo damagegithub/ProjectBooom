@@ -4,7 +4,7 @@
   "version": "2.0.1",
   "type": "feature",
   "_upm": {
-    "quickstart": "https://docs.unity3d.com/2022.3/Documentation/Manual/2DFeature.html"
+    "quickstart": "https://docs.unity3d.com/2021.3/Documentation/Manual/2DFeature.html"
   },
   "description": "Import images including multi-layered Photoshop files as Sprites and configure them to create 2D games. Create freeform, tile-based and spline-based 2D game worlds. Create frame-by-frame and bone-based animated characters. Integrated with 2D physics to support simulations with colliders and joints. Supports the needs of a range of 2D art styles, including pixel art.",
   "dependencies": {

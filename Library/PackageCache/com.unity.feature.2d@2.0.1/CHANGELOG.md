@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.1] - 2024-05-17
+## [2.0.1] - 2024-05-20
 ### Fixed
 - Fixed quickstart link to its appropriate editor version
 
