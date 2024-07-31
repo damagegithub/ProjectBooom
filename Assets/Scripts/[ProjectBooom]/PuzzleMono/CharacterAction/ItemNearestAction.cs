@@ -4,15 +4,20 @@ using _ProjectBooom_.PuzzleMono.UI;
 using LYP_Utils;
 using UnityEngine;
 
-namespace _ProjectBooom_.PuzzleMono
+namespace _ProjectBooom_.PuzzleMono.CharacterAction
 {
     /// <summary>
-    ///     用于挂载到场景中碰撞体上，当玩家进入时触发 离开时取消触发
+    ///     接近后可触发物品信息
     /// </summary>
     public class ItemNearestAction : NearestAction
     {
         [Header("玩家接近时的提示图标")]
         public SpriteRenderer SR_NotifyIcon;
+
+        protected override void OnTriggerChanged()
+        {
+            SR_NotifyIcon.gameObject.SetActive(IsTriggered);
+        }
 
         [SerializeField]
         [Header("物品信息")]
@@ -38,12 +43,8 @@ namespace _ProjectBooom_.PuzzleMono
                 return;
             }
 
+            IsTriggered = false;
             InputWarp.OnActionKeyDown -= ShowItem;
-        }
-
-        protected override void OnTriggerChanged()
-        {
-            SR_NotifyIcon.gameObject.SetActive(IsTriggered);
         }
 
         public void ShowItem()

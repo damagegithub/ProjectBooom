@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace _ProjectBooom_.Input
 {
+    /// <summary>
+    ///     玩家输入封装
+    /// </summary>
     public class InputWarp : Singleton<InputWarp>
     {
         private void Update()

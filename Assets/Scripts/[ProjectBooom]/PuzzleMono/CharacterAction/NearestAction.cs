@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _ProjectBooom_.PuzzleMono
+namespace _ProjectBooom_.PuzzleMono.CharacterAction
 {
     /// <summary>
     ///     接近后用于接近后触发的行为
@@ -11,11 +11,14 @@ namespace _ProjectBooom_.PuzzleMono
         /// <summary>
         ///     触发过滤层
         /// </summary>
-        [SerializeField] protected LayerMask TriggerLayer;
+        [SerializeField]
+        [Header("可交互碰撞层")]
+        protected LayerMask TriggerLayer;
 
         /// <summary>
-        ///     当前是否已触发
+        ///     当前是否可触发
         /// </summary>
+        [Header("是否可交互")]
         public bool IsTriggered;
 
         /// <summary>

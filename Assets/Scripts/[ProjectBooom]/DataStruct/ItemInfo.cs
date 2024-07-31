@@ -9,8 +9,8 @@ namespace _ProjectBooom_.DataStruct
     [Serializable]
     public class ItemInfo
     {
-        [SerializeField] public int    ID;
         [SerializeField] public string Name;
+        [SerializeField] public int    ID;
         [SerializeField] public Sprite Icon;
         [SerializeField] public string Description;
     }
