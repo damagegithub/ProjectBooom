@@ -64,6 +64,11 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
 
         private void ChangeState()
         {
+            if (!IsTriggered)
+            {
+                return;
+            }
+
             SwitchState = !SwitchState;
             GlobalVariable.SetVarValue(SwitchName, SwitchState ? 1F : 0F);
         }

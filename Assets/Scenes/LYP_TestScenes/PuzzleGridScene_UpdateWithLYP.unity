@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 1674509668}
   - component: {fileID: 1674509669}
   m_Layer: 8
-  m_Name: PuzzleEventTrigger
+  m_Name: "PuzzleEventTrigger_\u89E6\u53D1\u53EF\u4EA4\u4E92\u4E8B\u4EF6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
