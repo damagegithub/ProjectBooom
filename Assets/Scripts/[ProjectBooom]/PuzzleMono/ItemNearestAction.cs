@@ -1,4 +1,5 @@
 using _ProjectBooom_.DataStruct;
+using _ProjectBooom_.Input;
 using _ProjectBooom_.PuzzleMono.UI;
 using LYP_Utils;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace _ProjectBooom_.PuzzleMono
 
             BTN_NotifyIcon.gameObject.SetActive(IsTriggered);
             BTN_NotifyIcon.onClick.AddListener(ShowItem);
+            InputWarp.OnActionKeyDown += ShowItem;
         }
 
         private void OnDisable()
@@ -39,15 +41,21 @@ namespace _ProjectBooom_.PuzzleMono
             }
 
             BTN_NotifyIcon.onClick.RemoveListener(ShowItem);
+            InputWarp.OnActionKeyDown -= ShowItem;
         }
 
-        protected override void OnTriggerChanged(bool isTriggered)
+        protected override void OnTriggerChanged()
         {
-            BTN_NotifyIcon.gameObject.SetActive(isTriggered);
+            BTN_NotifyIcon.gameObject.SetActive(IsTriggered);
         }
 
         public void ShowItem()
         {
+            if (!IsTriggered)
+            {
+                return;
+            }
+
             ItemPlane.Instance.SetItemInfo(ItemInfo);
         }
     }

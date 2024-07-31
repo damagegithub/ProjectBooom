@@ -26,7 +26,7 @@ namespace _ProjectBooom_.PuzzleMono
         /// <summary>
         ///     触发状态改变时
         /// </summary>
-        protected virtual void OnTriggerChanged(bool isTriggered) { }
+        protected virtual void OnTriggerChanged() { }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -40,7 +40,8 @@ namespace _ProjectBooom_.PuzzleMono
                 return;
             }
 
-            OnTriggerChanged(IsTriggered);
+            IsTriggered = true;
+            OnTriggerChanged();
             OnTriggerChangedAction?.Invoke(IsTriggered);
         }
 
@@ -56,7 +57,8 @@ namespace _ProjectBooom_.PuzzleMono
                 return;
             }
 
-            OnTriggerChanged(IsTriggered);
+            IsTriggered = false;
+            OnTriggerChanged();
             OnTriggerChangedAction?.Invoke(IsTriggered);
         }
     }
