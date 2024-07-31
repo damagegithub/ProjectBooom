@@ -1,6 +1,5 @@
 using _ProjectBooom_.DataStruct;
 using LYP_Utils;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,18 +8,28 @@ namespace _ProjectBooom_.PuzzleMono.UI
     /// <summary>
     ///     物品信息面板
     /// </summary>
-    public class ItemPlane : Singleton<ItemPlane>
+    public class ItemPanel : Singleton<ItemPanel>
     {
         [Header("物品信息名称")]
-        public TextMeshProUGUI TMP_Name;
+        public Text TMP_Name;
         [Header("物品信息图标")]
         public Image IMG_Icon;
         [Header("物品信息描述")]
-        public TextMeshProUGUI TMP_Description;
+        public Text TMP_Description;
         [Header("物品信息确认按钮")]
         public Button BTN_Ok;
         [Header("物品信息关闭按钮")]
         public Button BTN_Close;
+
+        private void OnEnable()
+        {
+            BTN_Close.onClick.AddListener(Close);
+        }
+
+        private void OnDisable()
+        {
+            BTN_Close.onClick.RemoveListener(Close);
+        }
 
         private bool Valid()
         {
@@ -64,6 +73,11 @@ namespace _ProjectBooom_.PuzzleMono.UI
             IMG_Icon.sprite = itemInfo.Icon;
             TMP_Description.text = itemInfo.Description;
             gameObject.SetActive(true);
+        }
+
+        public void Close()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

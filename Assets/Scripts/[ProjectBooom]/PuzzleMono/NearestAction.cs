@@ -28,7 +28,7 @@ namespace _ProjectBooom_.PuzzleMono
         /// </summary>
         protected virtual void OnTriggerChanged() { }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (IsTriggered)
             {
@@ -45,7 +45,7 @@ namespace _ProjectBooom_.PuzzleMono
             OnTriggerChangedAction?.Invoke(IsTriggered);
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (!IsTriggered)
             {

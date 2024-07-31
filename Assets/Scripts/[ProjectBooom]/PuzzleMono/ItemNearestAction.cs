@@ -3,7 +3,6 @@ using _ProjectBooom_.Input;
 using _ProjectBooom_.PuzzleMono.UI;
 using LYP_Utils;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _ProjectBooom_.PuzzleMono
 {
@@ -12,8 +11,8 @@ namespace _ProjectBooom_.PuzzleMono
     /// </summary>
     public class ItemNearestAction : NearestAction
     {
-        [Header("玩家接近时的提示按钮")]
-        public Button BTN_NotifyIcon;
+        [Header("玩家接近时的提示图标")]
+        public SpriteRenderer SR_NotifyIcon;
 
         [SerializeField]
         [Header("物品信息")]
@@ -21,32 +20,30 @@ namespace _ProjectBooom_.PuzzleMono
 
         private void OnEnable()
         {
-            if (!BTN_NotifyIcon)
+            if (!SR_NotifyIcon)
             {
-                DebugHelper.LogWarning($"{gameObject.name} 没有设置BTN_NotifyIcon");
+                DebugHelper.LogWarning($"{gameObject.name} 没有设置SR_NotifyIcon");
                 return;
             }
 
-            BTN_NotifyIcon.gameObject.SetActive(IsTriggered);
-            BTN_NotifyIcon.onClick.AddListener(ShowItem);
+            SR_NotifyIcon.gameObject.SetActive(IsTriggered);
             InputWarp.OnActionKeyDown += ShowItem;
         }
 
         private void OnDisable()
         {
-            if (!BTN_NotifyIcon)
+            if (!SR_NotifyIcon)
             {
-                DebugHelper.LogWarning($"{gameObject.name} 没有设置BTN_NotifyIcon");
+                DebugHelper.LogWarning($"{gameObject.name} 没有设置SR_NotifyIcon");
                 return;
             }
 
-            BTN_NotifyIcon.onClick.RemoveListener(ShowItem);
             InputWarp.OnActionKeyDown -= ShowItem;
         }
 
         protected override void OnTriggerChanged()
         {
-            BTN_NotifyIcon.gameObject.SetActive(IsTriggered);
+            SR_NotifyIcon.gameObject.SetActive(IsTriggered);
         }
 
         public void ShowItem()
@@ -56,7 +53,7 @@ namespace _ProjectBooom_.PuzzleMono
                 return;
             }
 
-            ItemPlane.Instance.SetItemInfo(ItemInfo);
+            ItemPanel.Instance.SetItemInfo(ItemInfo);
         }
     }
 }

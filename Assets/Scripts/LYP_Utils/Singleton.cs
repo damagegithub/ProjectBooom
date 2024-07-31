@@ -12,7 +12,7 @@ namespace LYP_Utils
             {
                 if (!_instance)
                 {
-                    _instance = FindObjectOfType<T>();
+                    _instance = FindObjectOfType<T>(true);
                 }
 
                 if (!_instance)
