@@ -55,7 +55,7 @@ namespace _ProjectBooom_.PuzzleMono.UI
 
         public void SetItemInfo(in ItemInfo itemInfo)
         {
-            if (Valid())
+            if (!Valid())
             {
                 return;
             }
