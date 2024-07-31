@@ -52,7 +52,7 @@ namespace _ProjectBooom_.PuzzleMono
                 return;
             }
 
-            if (0 == (TriggerLayer | (1 << other.gameObject.layer)))
+            if (0 == (TriggerLayer & (1 << other.gameObject.layer)))
             {
                 return;
             }
