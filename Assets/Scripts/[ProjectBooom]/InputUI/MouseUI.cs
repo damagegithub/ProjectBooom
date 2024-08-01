@@ -74,7 +74,13 @@ namespace _ProjectBooom_.InputUI
             {
                 _oldUseSystemCursor = UseSystemCursor;
                 Cursor.visible = UseSystemCursor;
-                _imageMouse.gameObject.SetActive(!UseSystemCursor);
+                _mouseCanvas.gameObject.SetActive(!UseSystemCursor);
+            }
+
+            // 如果是系统鼠标
+            if (UseSystemCursor)
+            {
+                return;
             }
 
             Vector2 mousePos = InputWarp.MousePosition();

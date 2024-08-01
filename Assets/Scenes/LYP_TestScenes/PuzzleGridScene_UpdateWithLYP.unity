@@ -919,9 +919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48610af6772845efafe53f7107b4be03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseCanvas: {fileID: 1453406254}
+  _mouseCanvas: {fileID: 1605818850}
   _imageMouse: {fileID: 7031948}
-  _colorMask: {r: 0, g: 0, b: 0, a: 0}
+  _colorMask: {r: 1, g: 1, b: 1, a: 1}
   _spriteMouseNormal: {fileID: 21300000, guid: d4dbf4aed07150543b770d4c69cf2880, type: 3}
   _spriteMouseDrag: {fileID: 21300000, guid: cbde463128ac51c47b9a13196b5ee1ea, type: 3}
   UseSystemCursor: 0
@@ -1397,7 +1397,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!224 &1605818851
 RectTransform:
