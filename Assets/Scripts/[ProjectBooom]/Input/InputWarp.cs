@@ -42,5 +42,14 @@ namespace _ProjectBooom_.Input
             throw new System.NotImplementedException();
             #endif
         }
+
+        public static Vector2 MousePosition()
+        {
+            #if ENABLE_LEGACY_INPUT_MANAGER
+            return UnityEngine.Input.mousePosition;
+            #elif ENABLE_INPUT_SYSTEM
+            throw new System.NotImplementedException();
+            #endif
+        }
     }
 }
