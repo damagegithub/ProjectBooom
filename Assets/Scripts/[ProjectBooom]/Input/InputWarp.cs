@@ -43,7 +43,7 @@ namespace _ProjectBooom_.Input
             #endif
         }
 
-        public static Vector2 MousePosition()
+        public static Vector3 MousePosition()
         {
             #if ENABLE_LEGACY_INPUT_MANAGER
             return UnityEngine.Input.mousePosition;

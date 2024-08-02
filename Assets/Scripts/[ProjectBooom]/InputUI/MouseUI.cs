@@ -1,4 +1,6 @@
 using _ProjectBooom_.Input;
+using _ProjectBooom_.ObservableData;
+using _ProjectBooom_.PuzzleMono.RealPlayerAction;
 using LYP_Utils;
 using LYP_Utils.Extensions;
 using UnityEngine;
@@ -101,6 +103,22 @@ namespace _ProjectBooom_.InputUI
 
             _imageMouseTrans.localPosition = localPoint;
             _imageMouse.color = _colorMask;
+
+            if (RuntimeUnimportantData.DraggingItem
+             || RuntimeUnimportantData.FocusedMouseAction is ItemMouseAction)
+            {
+                if (_imageMouse.sprite != _spriteMouseDrag)
+                {
+                    _imageMouse.sprite = _spriteMouseDrag;
+                }
+            }
+            else
+            {
+                if (_imageMouse.sprite != _spriteMouseNormal)
+                {
+                    _imageMouse.sprite = _spriteMouseNormal;
+                }
+            }
         }
 
         private void Start()
