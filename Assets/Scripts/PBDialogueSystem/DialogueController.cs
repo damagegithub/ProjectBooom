@@ -43,7 +43,7 @@ namespace PBDialogueSystem
 
         private void InitConversationData()
         {
-            List<DialogueData> dialogueJsonData = CSVToJsonUtil.GetJsonData<DialogueData>("Tables/Test");
+            List<DialogueData> dialogueJsonData = CSVToJsonUtil.GetJsonData<DialogueData>("Tables/Dialogue");
 
             foreach (var dialogueData in dialogueJsonData)
             {
