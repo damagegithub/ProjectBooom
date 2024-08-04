@@ -1,0 +1,9 @@
+ConversationID,DialogueID,SpeakerID,DialogueText,bShowAvatar,AvatarPosX,AvatarPosY,FullBodySlot1,FullBodySlot2,FullBodySlot3,FullBodySlot1_X,FullBodySlot1_Y,FullBodySlot2_X,FullBodySlot2_Y,FullBodySlot3_X,FullBodySlot3_Y
+1,1,1,helllllllllllllllllllllllllllllllllllllllo,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,2,1,Bro,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,3,2,What's you name,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,4,1,I'm PhD Annnnnnnnnnna,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,5,2,Sorry I don't know you,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,6,1,But i created you,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,7,2,Wtf!!!!!!!!!!!!!!!!!!!!!!!!!!,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
+1,8,2,R U Kidding me ???????????,TRUE,0,0,1,2,-1,-200,0,200,0,0,0
