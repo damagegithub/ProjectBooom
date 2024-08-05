@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LYP_TestScenes/PuzzleGridScene_UpdateWithLYP.unity
-    guid: c5a329b0efec7614c8d173a0d8fdce7d
+    path: "Assets/Scenes/Release/_0.MainScene_\u5F00\u59CB\u754C\u9762.unity"
+    guid: 4571699edfa26cb4b804c4e012adbaf4
   m_configObjects: {}
