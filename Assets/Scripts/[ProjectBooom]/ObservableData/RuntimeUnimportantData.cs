@@ -1,6 +1,5 @@
 using System;
 using _ProjectBooom_.PuzzleMono.RealPlayerAction;
-using _ProjectBooom_.PuzzleMono.UI;
 
 namespace _ProjectBooom_.ObservableData
 {
@@ -9,6 +8,32 @@ namespace _ProjectBooom_.ObservableData
     /// </summary>
     public static class RuntimeUnimportantData
     {
+        #region 场景中鼠标所在的物品捕获槽
+
+        public static Action<ItemMouseSlotAction> ItemMouseSlotActionChanged;
+
+        public static ItemMouseSlotAction ItemMouseSlotAction { get; private set; }
+
+        public static void EnterItemMouseSlotAction(ItemMouseSlotAction itemMouseSlot)
+        {
+            if (ItemMouseSlotAction != itemMouseSlot)
+            {
+                ItemMouseSlotAction = itemMouseSlot;
+                ItemMouseSlotActionChanged?.Invoke(ItemMouseSlotAction);
+            }
+        }
+
+        public static void ExitItemMouseSlotAction(ItemMouseSlotAction itemMouseSlot)
+        {
+            if (ItemMouseSlotAction == itemMouseSlot) 
+            {
+                ItemMouseSlotAction = null;
+                ItemMouseSlotActionChanged?.Invoke(ItemMouseSlotAction);
+            }
+        }
+
+        #endregion
+
         #region 场景中鼠标位置有焦点的对象
 
         public static Action<MouseAction> FocusedMouseActionChanged;
@@ -56,38 +81,6 @@ namespace _ProjectBooom_.ObservableData
             {
                 DraggingItem = null;
                 DraggingItemChanged?.Invoke(DraggingItem);
-            }
-        }
-
-        #endregion
-
-        #region 选择的物品
-
-        public static Action<ItemContainerUI> SelectedItemContainerUIChanged;
-
-        public static ItemContainerUI SelectedItemContainerUI { get; private set; }
-
-        /// <summary>
-        ///     选中物品
-        /// </summary>
-        public static void SelectItem(ItemContainerUI itemContainerUI)
-        {
-            if (SelectedItemContainerUI != itemContainerUI)
-            {
-                SelectedItemContainerUI = itemContainerUI;
-                SelectedItemContainerUIChanged?.Invoke(SelectedItemContainerUI);
-            }
-        }
-
-        /// <summary>
-        ///     取消选中物品
-        /// </summary>
-        public static void UnselectItem(ItemContainerUI itemContainerUI)
-        {
-            if (SelectedItemContainerUI == itemContainerUI)
-            {
-                SelectedItemContainerUI = null;
-                SelectedItemContainerUIChanged?.Invoke(SelectedItemContainerUI);
             }
         }
 
