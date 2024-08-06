@@ -19,6 +19,9 @@ namespace _ProjectBooom_.InputUI
 
         private Texture2D _oldCursor;
 
+        /// <summary>
+        ///     验证资源是否确实
+        /// </summary>
         private bool Valid()
         {
             bool result = true;
@@ -38,6 +41,9 @@ namespace _ProjectBooom_.InputUI
             return result;
         }
 
+        /// <summary>
+        ///     更新鼠标当前UI状态
+        /// </summary>
         public void UpdateMouseState()
         {
             if (!Valid())
@@ -48,24 +54,25 @@ namespace _ProjectBooom_.InputUI
             // 如果是系统鼠标
             if (UseSystemCursor)
             {
-                DebugHelper.Log($"set system cursor");
                 SetCursorIcon(null);
             }
             else
             {
+                // 如果正在拖动物体或者鼠标正在可拖动物体的上面
                 if (RuntimeUnimportantData.DraggingItem || RuntimeUnimportantData.FocusedMouseAction is ItemMouseAction)
                 {
-                    DebugHelper.Log($"set drag cursor");
                     SetCursorIcon(_mouseDrag);
                 }
                 else
                 {
-                    DebugHelper.Log($"set normal cursor");
                     SetCursorIcon(_mouseNormal);
                 }
             }
         }
 
+        /// <summary>
+        ///     设置鼠标图标
+        /// </summary>
         private void SetCursorIcon(Texture2D newCursor)
         {
             if (_oldCursor != newCursor)
