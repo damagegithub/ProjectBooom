@@ -9,10 +9,14 @@ namespace PBDialogueSystem
         private Dictionary<int, DialogueActor> _dialogueActors = new Dictionary<int, DialogueActor>();
         private ConversationData _currentConversationData = null;
         private Conversation _currentConversation = null;
-        public DialogueStandardUI DialogueUI;
+
+        public GameObject DialogueUIGO;
+        private DialogueStandardUI DialogueUI;
 
         void Start()
         {
+            GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
+            DialogueUI = instance.GetComponent<DialogueStandardUI>();
             InitConversationData();
             StartConversation(1);
         }
