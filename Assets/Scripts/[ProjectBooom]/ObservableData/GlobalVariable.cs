@@ -102,10 +102,19 @@ namespace _ProjectBooom_.ObservableData
         /// </summary>
         private static Dictionary<string, Variable> _varDict = new(StringComparer.InvariantCultureIgnoreCase);
 
+        /// <summary>
+        ///     获取存在的全部变量名
+        /// </summary>
         public static IEnumerable<string> VarNames => _varDict.Keys;
 
+        /// <summary>
+        ///     测试某变量是否存在
+        /// </summary>
         public static bool ExistVar(in string varName) => _varDict.ContainsKey(varName);
 
+        /// <summary>
+        ///     获取变量对象
+        /// </summary>
         public static Variable GetVar(in string varName)
         {
             if (_varDict.TryGetValue(varName, out Variable varObj))
@@ -116,6 +125,9 @@ namespace _ProjectBooom_.ObservableData
             return null;
         }
 
+        /// <summary>
+        ///     设置变量值
+        /// </summary>
         public static void SetVarValue(in string varName, in float value)
         {
             if (!_varDict.TryGetValue(varName, out Variable varObj))
@@ -128,6 +140,9 @@ namespace _ProjectBooom_.ObservableData
             varObj.Value = value;
         }
 
+        /// <summary>
+        ///     获取变量值
+        /// </summary>
         public static float GetVarValue(in string varName)
         {
             if (_varDict.TryGetValue(varName, out Variable varObj))
@@ -138,6 +153,9 @@ namespace _ProjectBooom_.ObservableData
             return 0;
         }
 
+        /// <summary>
+        ///     添加变量赋值监听器
+        /// </summary>
         public static void AddVarListener(in string varName, in Action<float> action)
         {
             if (!_varDict.TryGetValue(varName, out Variable varObj))
@@ -150,6 +168,9 @@ namespace _ProjectBooom_.ObservableData
             varObj.RegisterAction(action);
         }
 
+        /// <summary>
+        ///     移除变量赋值监听器
+        /// </summary>
         public static void RemoveVarListener(in string varName, in Action<float> action)
         {
             if (_varDict.TryGetValue(varName, out Variable varObj))
