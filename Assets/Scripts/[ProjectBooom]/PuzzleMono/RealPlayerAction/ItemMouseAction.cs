@@ -10,12 +10,12 @@ using UnityEngine;
 namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
 {
     /// <summary>
-    ///     场景中的可抓取物品信息
+    ///     现实玩家在场景中的可抓取物品信息
     /// </summary>
     public class ItemMouseAction : MouseAction
     {
         public Vector3 SceneOriginPosition;
-        
+
         public Vector3 OriginPosition;
 
         public Vector3 DragOriginMousePosition;
@@ -25,7 +25,7 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
         public ItemInfo ItemInfo;
 
         private Camera _mainCamera;
-        
+
         private ItemMouseSlotAction _itemMouseSlotAction;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
                     _itemMouseSlotAction.SlotItem = null;
                     _itemMouseSlotAction = null;
                 }
-                
+
                 DragOriginMousePosition = _mainCamera.ScreenToWorldPoint(InputWarp.MousePosition());
                 _isDragging = true;
                 RuntimeUnimportantData.BeginDragItem(this);

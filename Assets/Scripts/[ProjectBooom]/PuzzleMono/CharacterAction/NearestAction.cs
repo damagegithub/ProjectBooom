@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _ProjectBooom_.PuzzleMono.CharacterAction
 {
     /// <summary>
-    ///     接近后用于接近后触发的行为
+    ///     玩家控制角色接近后用于接近后触发的行为
     /// </summary>
     public class NearestAction : MonoBehaviour
     {
