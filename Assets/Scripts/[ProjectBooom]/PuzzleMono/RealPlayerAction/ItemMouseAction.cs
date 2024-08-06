@@ -14,18 +14,39 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
     /// </summary>
     public class ItemMouseAction : MouseAction
     {
+        /// <summary>
+        ///     物品一开始在场景中的位置
+        /// </summary>
         public Vector3 SceneOriginPosition;
 
+        /// <summary>
+        ///     物品被拖动前的起点位置
+        /// </summary>
         public Vector3 OriginPosition;
 
+        /// <summary>
+        ///     物品被拖动前的鼠标起点位置
+        /// </summary>
         public Vector3 DragOriginMousePosition;
 
+        /// <summary>
+        ///     拖动中的鼠标相对起点位置的偏移量
+        /// </summary>
         public Vector3 DragMouseOffset;
 
+        /// <summary>
+        ///     物品信息
+        /// </summary>
         public ItemInfo ItemInfo;
 
+        /// <summary>
+        ///     主摄像机 用于获取鼠标在世界空间的位置
+        /// </summary>
         private Camera _mainCamera;
 
+        /// <summary>
+        ///     如果被拖动的物品放在物品槽中 则记录该物品槽
+        /// </summary>
         private ItemMouseSlotAction _itemMouseSlotAction;
 
         /// <summary>
@@ -92,6 +113,7 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
                 return;
             }
 
+            // 物品拖动结束但是没有放置在物品槽中
             if (_isDragging && !RuntimeUnimportantData.ItemMouseSlotAction)
             {
                 _isDragging = false;
@@ -102,6 +124,7 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
                          .SetEase(Ease.OutElastic)
                          .SetId(this);
             }
+            // 物品拖动结束并且放置在物品槽中
             else if (_isDragging && RuntimeUnimportantData.ItemMouseSlotAction)
             {
                 _isDragging = false;
@@ -129,6 +152,9 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
             StartCoroutine(UpdateItemImageFollowMouse());
         }
 
+        /// <summary>
+        ///     物品图标跟随鼠标的携程(动效)
+        /// </summary>
         private IEnumerator UpdateItemImageFollowMouse()
         {
             yield return new WaitForNextFrameUnit();
@@ -172,8 +198,12 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
         }
 
         [SerializeField]
+        [Header("物品槽位的LayerMask")]
         private LayerMask _itemCatchLayerMask;
 
+        /// <summary>
+        ///     检测鼠标是否在物品槽中
+        /// </summary>
         private IEnumerator DetectItemCatch()
         {
             yield return new WaitForNextFrameUnit();
