@@ -7,14 +7,14 @@ namespace MetaGameUtils
         /// <summary>
         ///     创建文件系统监视器 用于触发文件变动的事件
         /// </summary>
-        public static FileSystemWatcher CreateFileSystemWatcher(string Path)
+        public static FileSystemWatcher CreateFileSystemWatcher(string path)
         {
-            FileSystemWatcher Watcher = new(Path)
+            FileSystemWatcher watcher = new(path)
             {
                 EnableRaisingEvents = true,
                 IncludeSubdirectories = true,
             };
-            return Watcher;
+            return watcher;
         }
     }
 }

@@ -7,9 +7,9 @@ namespace MetaGameUtils
     {
         #region WIN32API
 
-        public static readonly IntPtr HWND_TOPMOST = new(-1);
+        public static readonly IntPtr HWND_TOPMOST     = new(-1);
         public static readonly IntPtr HWND_NOT_TOPMOST = new(-2);
-        public const uint SWP_SHOWWINDOW = 0x0040;
+        public const           uint   SWP_SHOWWINDOW   = 0x0040;
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -58,7 +58,7 @@ namespace MetaGameUtils
         }
 
         [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr FindWindow(string? lpClassName, string? lpWindowName);
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -69,11 +69,11 @@ namespace MetaGameUtils
         private static extern bool SetWindowPos(
             IntPtr hWnd,
             IntPtr hWndInsertAfter,
-            int x,
-            int y,
-            int cx,
-            int cy,
-            uint uFlags
+            int    x,
+            int    y,
+            int    cx,
+            int    cy,
+            uint   uFlags
         );
 
         #endregion

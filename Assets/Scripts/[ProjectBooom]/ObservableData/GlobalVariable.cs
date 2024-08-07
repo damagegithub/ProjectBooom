@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using _ProjectBooom_.DataStruct;
 using LYP_Utils;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace _ProjectBooom_.ObservableData
@@ -19,7 +20,7 @@ namespace _ProjectBooom_.ObservableData
         ///     保存的全局变量路径
         /// </summary>
         private string SaveFilePath =>
-            Path.Combine(Application.streamingAssetsPath, "SaveData/GlobalVariable.savedata");
+            Path.Combine(Application.streamingAssetsPath, "SaveData/GlobalVariable.json");
 
         /// <summary>
         ///     初始化的全局变量
@@ -56,8 +57,9 @@ namespace _ProjectBooom_.ObservableData
                 parentDir.Create();
             }
 
-            IEnumerable<string> lines = _varDict.Values.Select(v => $"{v.Name},{v.Value}");
-            File.WriteAllText(filePath, string.Join('\n', lines));
+            Dictionary<string, float> kvMap = _varDict.ToDictionary(v => v.Key, v => GetVarValue(v.Key));
+            string json = JsonConvert.SerializeObject(kvMap);
+            File.WriteAllText(filePath, json);
         }
 
         /// <summary>
@@ -70,20 +72,11 @@ namespace _ProjectBooom_.ObservableData
                 return;
             }
 
-            string[] lines = File.ReadAllLines(filePath);
-            for (int i = 0; i < lines.Length; i++)
+            string json = File.ReadAllText(filePath);
+            Dictionary<string, float> kvMap = JsonConvert.DeserializeObject<Dictionary<string, float>>(json);
+            foreach (KeyValuePair<string, float> kv in kvMap)
             {
-                IReadOnlyList<string> parts = LCsv.ParseIgnoreQuotation(lines[i]);
-                if (parts.Count < 2)
-                {
-                    continue;
-                }
-
-                if (float.TryParse(parts[1], out float value))
-                {
-                    DebugHelper.Log($"加载变量覆盖 {parts[0]} {value}");
-                    SetVarValue(parts[0], value);
-                }
+                SetVarValue(kv.Key, kv.Value);
             }
         }
 
