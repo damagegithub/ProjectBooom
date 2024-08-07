@@ -2,7 +2,6 @@ using _ProjectBooom_.Input;
 using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.CharacterAction;
 using DG.Tweening;
-using LYP_Utils;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -44,25 +43,6 @@ namespace _ProjectBooom_.PuzzleMono.CharacterEffect
         public void IconChange()
         {
             NearestAction nearestAction = RuntimeUnimportantData.GetNearestActionObject(transform.position);
-            if (nearestAction is ItemNearestAction)
-            {
-                DebugHelper.Log($"nearestAction is ItemNearestAction");
-                _SR_Icon.sprite = AssetRef.Instance.ItemTipIcon;
-                _SR_Icon.enabled = true;
-            }
-            else if (nearestAction is SwitchNearestAction)
-            {
-                DebugHelper.Log($"nearestAction is SwitchNearestAction");
-                _SR_Icon.sprite = AssetRef.Instance.SwitchTipIcon;
-                _SR_Icon.enabled = true;
-            }
-            else
-            {
-                DebugHelper.Log($"nearestAction is null");
-                _SR_Icon.enabled = false;
-                _SR_Icon.sprite = null;
-            }
-
             IconMove(nearestAction);
         }
 
@@ -75,30 +55,24 @@ namespace _ProjectBooom_.PuzzleMono.CharacterEffect
 
             if (nearestAction is ItemNearestAction)
             {
-                DebugHelper.Log($"nearestAction is ItemNearestAction");
                 _SR_Icon.sprite = AssetRef.Instance.ItemTipIcon;
                 _SR_Icon.enabled = true;
                 DOTween.Sequence()
-                       .Append(_SR_Icon.transform.DOMove(nearestAction.transform.position, IconMoveDuration))
-                       .Join(_SR_Icon.DOFade(1f, IconMoveDuration))
+                       .Append(_SR_Icon.DOFade(1f, IconMoveDuration))
                        .SetId(this);
             }
             else if (nearestAction is SwitchNearestAction)
             {
-                DebugHelper.Log($"nearestAction is SwitchNearestAction");
                 _SR_Icon.sprite = AssetRef.Instance.SwitchTipIcon;
                 _SR_Icon.enabled = true;
                 DOTween.Sequence()
-                       .Append(_SR_Icon.transform.DOMove(nearestAction.transform.position, IconMoveDuration))
-                       .Join(_SR_Icon.DOFade(1f, IconMoveDuration))
+                       .Append(_SR_Icon.DOFade(1f, IconMoveDuration))
                        .SetId(this);
             }
             else
             {
-                DebugHelper.Log($"nearestAction is null");
                 DOTween.Sequence()
-                       .Append(_SR_Icon.transform.DOLocalMove(SceneIconOriginOS, IconMoveDuration))
-                       .Join(_SR_Icon.DOFade(0f, IconMoveDuration))
+                       .Append(_SR_Icon.DOFade(0f, IconMoveDuration))
                        .AppendCallback(() =>
                         {
                             _SR_Icon.enabled = false;
