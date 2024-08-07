@@ -3,7 +3,6 @@ using _ProjectBooom_.DataStruct;
 using _ProjectBooom_.Input;
 using _ProjectBooom_.ObservableData;
 using DG.Tweening;
-using LYP_Utils;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -163,24 +162,24 @@ namespace _ProjectBooom_.PuzzleMono.RealPlayerAction
                 while (_isFollowMouse)
                 {
                     yield return new WaitForNextFrameUnit();
-                    Vector3 localPos;
                     if (RuntimeUnimportantData.ItemMouseSlotAction && _isDragging)
                     {
-                        localPos = RuntimeUnimportantData.ItemMouseSlotAction.transform.position;
-                        DebugHelper.Log($"RuntimeUnimportantData.ItemMouseSlotAction && _isDragging");
+                        Vector3 localPos = RuntimeUnimportantData.ItemMouseSlotAction.transform.position;
+                        localPos.z = 0;
+                        _Trans_ItemImage.position = Vector3.Lerp(
+                            _Trans_ItemImage.position,
+                            localPos,
+                            Time.unscaledDeltaTime * 10
+                        );
                     }
                     else
                     {
-                        localPos = _mainCamera.ScreenToWorldPoint(InputWarp.MousePosition());
+                        _Trans_ItemImage.localPosition = Vector3.Lerp(
+                            _Trans_ItemImage.localPosition,
+                            Vector3.zero,
+                            Time.unscaledDeltaTime * 10
+                        );
                     }
-
-                    localPos.z = 0;
-
-                    _Trans_ItemImage.position = Vector3.Lerp(
-                        _Trans_ItemImage.position,
-                        localPos,
-                        Time.unscaledDeltaTime * 10
-                    );
                 }
             }
             else

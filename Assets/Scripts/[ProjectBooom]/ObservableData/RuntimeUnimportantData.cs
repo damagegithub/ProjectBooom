@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using _ProjectBooom_.PuzzleMono.CharacterAction;
 using _ProjectBooom_.PuzzleMono.RealPlayerAction;
+using UnityEngine;
 
 namespace _ProjectBooom_.ObservableData
 {
@@ -8,6 +11,58 @@ namespace _ProjectBooom_.ObservableData
     /// </summary>
     public static class RuntimeUnimportantData
     {
+        #region 场景中可交互的对象
+
+        public static Action ActionObjectChanged;
+
+        public static readonly List<NearestAction> ActionObjects = new();
+
+        public static void EnterActionObject(NearestAction actionObject)
+        {
+            if (!ActionObjects.Contains(actionObject))
+            {
+                ActionObjects.Add(actionObject);
+                ActionObjectChanged?.Invoke();
+            }
+        }
+
+        public static void ExitActionObject(NearestAction actionObject)
+        {
+            if (ActionObjects.Contains(actionObject))
+            {
+                ActionObjects.Remove(actionObject);
+                ActionObjectChanged?.Invoke();
+            }
+        }
+
+        /// <summary>
+        ///     获取最接近的可交互对象
+        /// </summary>
+        public static NearestAction GetNearestActionObject(Vector3 position)
+        {
+            if (ActionObjects.Count == 0)
+            {
+                return null;
+            }
+
+            NearestAction nearestAction = ActionObjects[0];
+            float minDistance = Vector3.Distance(nearestAction.transform.position, position);
+
+            for (int i = 1; i < ActionObjects.Count; i++)
+            {
+                float distance = Vector3.Distance(ActionObjects[i].transform.position, position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestAction = ActionObjects[i];
+                }
+            }
+
+            return nearestAction;
+        }
+
+        #endregion
+
         #region 场景中鼠标所在的物品捕获槽
 
         public static Action<ItemMouseSlotAction> ItemMouseSlotActionChanged;
@@ -25,7 +80,7 @@ namespace _ProjectBooom_.ObservableData
 
         public static void ExitItemMouseSlotAction(ItemMouseSlotAction itemMouseSlot)
         {
-            if (ItemMouseSlotAction == itemMouseSlot) 
+            if (ItemMouseSlotAction == itemMouseSlot)
             {
                 ItemMouseSlotAction = null;
                 ItemMouseSlotActionChanged?.Invoke(ItemMouseSlotAction);

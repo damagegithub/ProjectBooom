@@ -7,12 +7,8 @@ namespace _ProjectBooom_.InputUI
 {
     public class MouseUI : Singleton<MouseUI>
     {
-        [SerializeField]
-        [Header("鼠标UI常规图片")]
-        private Texture2D _mouseNormal;
-        [SerializeField]
-        [Header("鼠标UI抓取图片")]
-        private Texture2D _mouseDrag;
+        private Texture2D _mouseNormal => AssetRef.Instance.MouseNormal;
+        private Texture2D _mouseDrag   => AssetRef.Instance.MouseDrag;
 
         [Header("使用系统鼠标")]
         public bool UseSystemCursor;

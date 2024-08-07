@@ -1,4 +1,4 @@
-using System;
+using _ProjectBooom_.ObservableData;
 using UnityEngine;
 
 namespace _ProjectBooom_.PuzzleMono.CharacterAction
@@ -15,54 +15,29 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
         [Header("可交互碰撞层")]
         protected LayerMask TriggerLayer;
 
-        /// <summary>
-        ///     当前是否可触发
-        /// </summary>
-        [Header("是否可交互")]
-        public bool IsTriggered;
-
-        /// <summary>
-        ///     触发状态改变时
-        /// </summary>
-        public Action<bool> OnTriggerChangedAction;
-
-        /// <summary>
-        ///     触发状态改变时
-        /// </summary>
-        protected virtual void OnTriggerChanged() { }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (IsTriggered)
-            {
-                return;
-            }
-
             if (0 == (TriggerLayer & (1 << other.gameObject.layer)))
             {
                 return;
             }
 
-            IsTriggered = true;
-            OnTriggerChanged();
-            OnTriggerChangedAction?.Invoke(IsTriggered);
+            RuntimeUnimportantData.EnterActionObject(this);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!IsTriggered)
-            {
-                return;
-            }
-
             if (0 == (TriggerLayer & (1 << other.gameObject.layer)))
             {
                 return;
             }
 
-            IsTriggered = false;
-            OnTriggerChanged();
-            OnTriggerChangedAction?.Invoke(IsTriggered);
+            RuntimeUnimportantData.ExitActionObject(this);
+        }
+
+        public virtual void DoAction()
+        {
+            // ignore
         }
     }
 }
