@@ -1,3 +1,10 @@
 ActorID,ActorName,ActorAvatarImagePath,ActorFullBodyImagePath
-1,Anna,Texture/Avatars/PhD,Texture/Avatars/PhD_FullBody
-2,Robot,Texture/Avatars/Lian_B,exture/Avatars/Lian_B_FullBody
+1,Ò»ºÅ,Texture/Avatars/tou_01,Texture/Avatars/lian01
+2,¶þºÅ,Texture/Avatars/tou_02,Texture/Avatars/lian02
+3,²©Ê¿,Texture/Avatars/tou_phd,Texture/Avatars/phd
+4,Á«,,
+5,£¿£¿£¿,Texture/Avatars/tou_01,Texture/Avatars/lian01
+6,£¿£¿£¿,Texture/Avatars/tou_02,Texture/Avatars/lian02
+7,£¿£¿£¿,Texture/Avatars/tou_phd,Texture/Avatars/phd
+8,£¿£¿£¿,,
+9,Á«,Texture/Avatars/tou_01,Texture/Avatars/lian01
