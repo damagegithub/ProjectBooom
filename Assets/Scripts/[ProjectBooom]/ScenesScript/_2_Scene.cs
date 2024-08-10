@@ -1,3 +1,5 @@
+using _ProjectBooom_.DataStruct;
+using _ProjectBooom_.PuzzleMono.UI._2;
 using Controllers;
 using DG.Tweening;
 using UnityEngine;
@@ -11,13 +13,20 @@ namespace _ProjectBooom_.ScenesScript
     {
         public StoryController StoryController;
 
+        public CaptchaControl CaptchaControl;
+
+        [Header("全屏遮挡画布")] public CanvasGroup BlackCanvasGroup;
+
+
+        [SerializeField] [Header("验证码信息")] public CaptchaInfo[] CaptchaInfos;
+
         /// <summary>
         /// 开场动画
         ///  </summary>
         public void StartInitAnimation()
         {
             DOTween.Sequence()
-                .AppendInterval(1f)
+                .Append(BlackCanvasGroup.DOFade(0f, 1f))
                 .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
                 .SetId(this);
         }
@@ -39,7 +48,7 @@ namespace _ProjectBooom_.ScenesScript
         public void FinishAnimation()
         {
             DOTween.Sequence()
-                .AppendInterval(1f)
+                .Append(BlackCanvasGroup.DOFade(1f, 1f))
                 .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
                 .SetId(this);
         }

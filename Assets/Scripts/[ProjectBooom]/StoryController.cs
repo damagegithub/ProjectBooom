@@ -59,6 +59,12 @@ namespace _ProjectBooom_
             }
             else
             {
+                if (!SceneManager.GetSceneByName(NextSceneName).IsValid())
+                {
+                    DebugText.text = $"没有下一个场景的跳转->{SceneManager.GetActiveScene().name}";
+                    return;
+                }
+
                 // 跳转到下一个场景
                 SceneManager.LoadScene(NextSceneName);
             }

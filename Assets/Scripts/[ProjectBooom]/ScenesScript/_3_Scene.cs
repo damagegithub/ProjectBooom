@@ -10,13 +10,15 @@ namespace _ProjectBooom_.ScenesScript
     {
         public StoryController StoryController;
 
+        [Header("全屏遮挡画布")] public CanvasGroup BlackCanvasGroup;
+
         /// <summary>
         /// 开场动画
         ///  </summary>
         public void StartInitAnimation()
         {
             DOTween.Sequence()
-                .AppendInterval(1f)
+                .Append(BlackCanvasGroup.DOFade(0f, 1f))
                 .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
                 .SetId(this);
         }
@@ -27,7 +29,7 @@ namespace _ProjectBooom_.ScenesScript
         public void FinishAnimation()
         {
             DOTween.Sequence()
-                .AppendInterval(1f)
+                .Append(BlackCanvasGroup.DOFade(1f, 1f))
                 .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
                 .SetId(this);
         }

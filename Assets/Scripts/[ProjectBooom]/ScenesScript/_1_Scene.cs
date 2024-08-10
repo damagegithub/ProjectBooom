@@ -20,6 +20,8 @@ namespace _ProjectBooom_.ScenesScript
 
         public StoryController StoryController;
 
+        [Header("全屏遮挡画布")] public CanvasGroup BlackCanvasGroup;
+
         [Header("苏醒动画")] public Animator StartAnimator;
 
         [Header("博士对话框")] public CanvasGroup DoctorCanvasGroup;
@@ -49,6 +51,7 @@ namespace _ProjectBooom_.ScenesScript
             _initMoveSpeed = PlayerController.maxSpeed;
             PlayerController.maxSpeed = 0;
             DoctorCanvasGroup.alpha = 0;
+            BlackCanvasGroup.alpha = 1;
         }
 
         /// <summary>
@@ -58,6 +61,7 @@ namespace _ProjectBooom_.ScenesScript
         {
             Init();
             DOTween.Sequence()
+                .Append(BlackCanvasGroup.DOFade(0f, 1.0f))
                 // 播放苏醒动画
                 .AppendCallback(() =>
                 {
@@ -134,7 +138,6 @@ namespace _ProjectBooom_.ScenesScript
                 ))
                 .Join(LeftButton.DOFade(1f, 0.5f))
                 .Join(RightButton.DOFade(1f, 0.5f))
-                .Append(DoctorCanvasGroup.DOFade(0f, 0.5f))
                 // 恢复移动速度
                 .Join(DOTween.To(
                     () => PlayerController.maxSpeed,
@@ -142,6 +145,7 @@ namespace _ProjectBooom_.ScenesScript
                     _initMoveSpeed,
                     5.0f
                 ))
+                .Append(DoctorCanvasGroup.DOFade(0f, 0.5f))
                 .SetId(this);
 
             bool leftButtonClicked = false;
@@ -193,7 +197,7 @@ namespace _ProjectBooom_.ScenesScript
                     DoctorTextFadeTime2
                 ))
                 .Join(DoctorCanvasGroup.DOFade(1f, 0.5f))
-                .AppendInterval(0.5f)
+                .Append(BlackCanvasGroup.DOFade(1f, 1.0f))
                 .OnComplete(() => { StoryController.SetDebugText("结束当前场景"); })
                 .SetId(this);
 
