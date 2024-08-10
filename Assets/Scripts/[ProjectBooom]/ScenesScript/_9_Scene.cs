@@ -13,6 +13,11 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("全屏遮挡画布")] public CanvasGroup BlackCanvasGroup;
 
+        private void Awake()
+        {
+            BlackCanvasGroup.alpha = 1;
+        }
+
         /// <summary>
         /// 开场动画
         ///  </summary>
