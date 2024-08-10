@@ -18,7 +18,7 @@ namespace PBDialogueSystem
             GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
             DialogueUI = instance.GetComponent<DialogueStandardUI>();
             InitConversationData();
-            StartConversation(1);
+            StartConversation(101);
         }
         
         void Update()
@@ -93,7 +93,7 @@ namespace PBDialogueSystem
         {
             if (!_dialogueActors.ContainsKey(actorID))
             {
-                Debug.LogError("Actor ID not found in dialogue actors!");
+                Debug.LogError("Actor ID not found in dialogue actors! " + actorID);
                 return null;
             }
 

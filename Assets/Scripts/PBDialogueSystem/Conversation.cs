@@ -67,7 +67,7 @@ namespace PBDialogueSystem
 
         private void UpdateFullBodyImage(DialogueData data)
         {
-            if (data.FullBodySlot1 >= 0)
+            if (data.FullBodySlot1 > 0)
             {
                 DialogueActor actor1 = DialogueController.GetDialogueActor(data.FullBodySlot1);
                 if (!FullBodyImages.ContainsKey(data.FullBodySlot1))
@@ -90,7 +90,7 @@ namespace PBDialogueSystem
                 DialogueUI.FullBodyImage1.gameObject.SetActive(false);
             }
 
-            if (data.FullBodySlot2 >= 0)
+            if (data.FullBodySlot2 > 0)
             {
                 DialogueActor actor1 = DialogueController.GetDialogueActor(data.FullBodySlot2);
                 if (!FullBodyImages.ContainsKey(data.FullBodySlot2))
@@ -114,7 +114,7 @@ namespace PBDialogueSystem
             }
 
 
-            if (data.FullBodySlot3 >= 0)
+            if (data.FullBodySlot3 > 0)
             {
                 DialogueActor actor1 = DialogueController.GetDialogueActor(data.FullBodySlot3);
                 if (!FullBodyImages.ContainsKey(data.FullBodySlot3))
@@ -150,7 +150,7 @@ namespace PBDialogueSystem
                     Resources.Load<Texture2D>(actor?.ActorAvatarImagePath));
             }
 
-            SpeakerAvatar.sprite = Sprite.Create(SpeakerAvatars[data.SpeakerID],
+            SpeakerAvatar.sprite = SpeakerAvatars[data.SpeakerID]==null ? null : Sprite.Create(SpeakerAvatars[data.SpeakerID],
                 new Rect(0, 0, SpeakerAvatars[data.SpeakerID].width, SpeakerAvatars[data.SpeakerID].height),
                 new Vector2(0.5f, 0.5f));
             SpeakerAvatar.SetNativeSize();
