@@ -44,8 +44,9 @@ namespace _ProjectBooom_.ScenesScript
         [Header("完成场景博士对话框时间")] public float DoctorTextFadeTime2 = 5.0f;
         [Header("完成场景对话")] public string DoctorText2;
 
-        private void Init()
+        private void Awake()
         {
+            BlackCanvasGroup.alpha = 1;
             LeftButton.alpha = 0;
             RightButton.alpha = 0;
             _initMoveSpeed = PlayerController.maxSpeed;
@@ -59,7 +60,6 @@ namespace _ProjectBooom_.ScenesScript
         /// </summary>
         public void StartAnimation()
         {
-            Init();
             DOTween.Sequence()
                 .Append(BlackCanvasGroup.DOFade(0f, 1.0f))
                 // 播放苏醒动画

@@ -59,7 +59,7 @@ namespace _ProjectBooom_
             }
             else
             {
-                if (!SceneManager.GetSceneByName(NextSceneName).IsValid())
+                if (string.IsNullOrWhiteSpace(NextSceneName) || !IsSceneNameExist(NextSceneName))
                 {
                     DebugText.text = $"没有下一个场景的跳转->{SceneManager.GetActiveScene().name}";
                     return;
@@ -68,6 +68,21 @@ namespace _ProjectBooom_
                 // 跳转到下一个场景
                 SceneManager.LoadScene(NextSceneName);
             }
+        }
+
+        public static bool IsSceneNameExist(string sceneName)
+        {
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                var sceneNameInBuildSetting =
+                    System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
+                if (sceneNameInBuildSetting.Equals(sceneName))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
