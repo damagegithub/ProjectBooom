@@ -1,0 +1,47 @@
+using Controllers;
+using DG.Tweening;
+using UnityEngine;
+
+namespace _ProjectBooom_.ScenesScript
+{
+    /// <summary>
+    /// 走道
+    /// </summary>
+    public class _2_Scene : MonoBehaviour
+    {
+        public StoryController StoryController;
+
+        /// <summary>
+        /// 开场动画
+        ///  </summary>
+        public void StartInitAnimation()
+        {
+            DOTween.Sequence()
+                .AppendInterval(1f)
+                .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
+                .SetId(this);
+        }
+
+        /// <summary>
+        ///  开始验证码测试
+        /// </summary>
+        public void StartCapchaTest()
+        {
+            DOTween.Sequence()
+                .AppendInterval(1f)
+                .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
+                .SetId(this);
+        }
+
+        /// <summary>
+        ///  结束动画
+        /// </summary>
+        public void FinishAnimation()
+        {
+            DOTween.Sequence()
+                .AppendInterval(1f)
+                .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
+                .SetId(this);
+        }
+    }
+}

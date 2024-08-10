@@ -179,7 +179,7 @@ namespace _ProjectBooom_.ScenesScript
         {
             StartCoroutine(FinishAnimationCoroutine());
         }
-        
+
         public IEnumerator FinishAnimationCoroutine()
         {
             StoryController.SetDebugText("结束场景动画");
@@ -194,12 +194,9 @@ namespace _ProjectBooom_.ScenesScript
                 ))
                 .Join(DoctorCanvasGroup.DOFade(1f, 0.5f))
                 .AppendInterval(0.5f)
-                .OnComplete(() =>
-                {
-                    StoryController.SetDebugText("结束当前场景");
-                })
+                .OnComplete(() => { StoryController.SetDebugText("结束当前场景"); })
                 .SetId(this);
-            
+
             while (DOTween.IsTweening(this))
             {
                 // 等待博士对话结束

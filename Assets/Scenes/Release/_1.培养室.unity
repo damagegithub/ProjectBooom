@@ -277,7 +277,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &546287620
 PrefabInstance:
@@ -2194,7 +2194,7 @@ RectTransform:
   - {fileID: 817634030}
   - {fileID: 699947574}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2790,7 +2790,7 @@ MonoBehaviour:
     EndAction:
       m_PersistentCalls:
         m_Calls: []
-  CurrentStoryIndex: -1
+  CurrentStoryIndex: 0
   NextSceneName: "_2.\u8D70\u9053"
 --- !u!4 &1784474451
 Transform:
@@ -2805,7 +2805,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1784474452
 MonoBehaviour:
@@ -3236,7 +3236,7 @@ RectTransform:
   - {fileID: 1386182006}
   - {fileID: 988815673}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3539,7 +3539,7 @@ RectTransform:
   - {fileID: 1657315505}
   - {fileID: 304642143}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
