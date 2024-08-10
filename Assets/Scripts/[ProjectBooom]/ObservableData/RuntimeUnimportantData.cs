@@ -19,6 +19,8 @@ namespace _ProjectBooom_.ObservableData
 
         public static void EnterActionObject(NearestAction actionObject)
         {
+            ActionObjects.RemoveAll(na => !na);
+            
             if (!ActionObjects.Contains(actionObject))
             {
                 ActionObjects.Add(actionObject);
@@ -28,6 +30,8 @@ namespace _ProjectBooom_.ObservableData
 
         public static void ExitActionObject(NearestAction actionObject)
         {
+            ActionObjects.RemoveAll(na => !na);
+            
             if (ActionObjects.Contains(actionObject))
             {
                 ActionObjects.Remove(actionObject);
@@ -40,6 +44,8 @@ namespace _ProjectBooom_.ObservableData
         /// </summary>
         public static NearestAction GetNearestActionObject(Vector3 position)
         {
+            ActionObjects.RemoveAll(na => !na);
+            
             if (ActionObjects.Count == 0)
             {
                 return null;
@@ -67,7 +73,12 @@ namespace _ProjectBooom_.ObservableData
 
         public static Action<ItemMouseSlotAction> ItemMouseSlotActionChanged;
 
-        public static ItemMouseSlotAction ItemMouseSlotAction { get; private set; }
+        private static ItemMouseSlotAction _itemMouseSlotAction;
+        public static ItemMouseSlotAction ItemMouseSlotAction 
+        {
+            get => _itemMouseSlotAction ? _itemMouseSlotAction : null;
+            private set => _itemMouseSlotAction = value;
+        }
 
         public static void EnterItemMouseSlotAction(ItemMouseSlotAction itemMouseSlot)
         {
@@ -93,7 +104,13 @@ namespace _ProjectBooom_.ObservableData
 
         public static Action<MouseAction> FocusedMouseActionChanged;
 
-        public static MouseAction FocusedMouseAction { get; private set; }
+        private static MouseAction _focusedMouseAction;
+
+        public static MouseAction FocusedMouseAction
+        {
+            get => _focusedMouseAction ? _focusedMouseAction : null;
+            private set => _focusedMouseAction = value;
+        }
 
         public static void FocusMouseAction(MouseAction mouseAction)
         {
@@ -119,7 +136,13 @@ namespace _ProjectBooom_.ObservableData
 
         public static Action<ItemMouseAction> DraggingItemChanged;
 
-        public static ItemMouseAction DraggingItem { get; private set; }
+        private static ItemMouseAction _draggingItem;
+
+        public static ItemMouseAction DraggingItem
+        {
+            get => _draggingItem ? _draggingItem : null;
+            private set => _draggingItem = value;
+        }
 
         public static void BeginDragItem(ItemMouseAction item)
         {

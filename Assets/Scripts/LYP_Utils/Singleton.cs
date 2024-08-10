@@ -40,7 +40,7 @@ namespace LYP_Utils
 
             if (_instance != null)
             {
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
             }
             else
             {

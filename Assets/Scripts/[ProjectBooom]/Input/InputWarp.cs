@@ -51,5 +51,23 @@ namespace _ProjectBooom_.Input
             throw new System.NotImplementedException();
             #endif
         }
+        
+        public static bool LeftMoveDown()
+        {
+            #if ENABLE_LEGACY_INPUT_MANAGER
+            return UnityEngine.Input.GetKeyDown(KeyCode.A);
+            #elif ENABLE_INPUT_SYSTEM
+            throw new System.NotImplementedException();
+            #endif
+        }
+        
+        public static bool RightMoveDown()
+        {
+            #if ENABLE_LEGACY_INPUT_MANAGER
+            return UnityEngine.Input.GetKeyDown(KeyCode.D);
+            #elif ENABLE_INPUT_SYSTEM
+            throw new System.NotImplementedException();
+            #endif
+        }
     }
 }
