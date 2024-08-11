@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PBDialogueSystem
@@ -12,6 +13,8 @@ namespace PBDialogueSystem
 
         public GameObject DialogueUIGO;
         private DialogueStandardUI DialogueUI;
+        
+        public event Action<int> OnOneConversationEnd;
 
         void Start()
         {
@@ -102,7 +105,8 @@ namespace PBDialogueSystem
 
         public void OnConversationEnd(int conversationID)
         {
-            _currentConversation = null;            
+            _currentConversation = null;     
+            OnOneConversationEnd?.Invoke(conversationID);
         }
     }
 }
