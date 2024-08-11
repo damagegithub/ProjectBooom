@@ -13,6 +13,23 @@ namespace Controllers
         public float cameraMinX;
         public float cameraMaxX;
 
+        private void Awake()
+        {
+            if (!targetTrans)
+            {
+                var pc = FindObjectOfType<PlayerController>(true);
+                if (pc)
+                {
+                    targetTrans = pc.transform;
+                }
+            }
+            
+            if (!cameraTrans)
+            {
+                cameraTrans = Camera.main.transform;
+            }
+        }
+
         private void Update()
         {
             var tartgetX = targetTrans.position.x;
