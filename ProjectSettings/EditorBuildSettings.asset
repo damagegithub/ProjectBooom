@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: "Assets/Scenes/Release/_11_\u9690\u85CF.\u771F\u83B2\u623F\u95F4.unity"
     guid: e219be5a9659ba04aa57dad6e26d6164
   - enabled: 1
-    path: Assets/Scenes/Release/_1.培养室.unity
+    path: "Assets/Scenes/Release/_1.\u57F9\u517B\u5BA4.unity"
     guid: f5dece29d9b614341bb7c7f3abc4de5a
   - enabled: 1
     path: Assets/Scenes/Release/SelectCharacterScene.unity
