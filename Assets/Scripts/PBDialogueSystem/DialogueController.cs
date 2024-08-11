@@ -18,7 +18,7 @@ namespace PBDialogueSystem
             GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
             DialogueUI = instance.GetComponent<DialogueStandardUI>();
             InitConversationData();
-            StartConversation(101);
+            // StartConversation(101);
         }
         
         void Update()
