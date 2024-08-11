@@ -17,6 +17,7 @@ namespace Controllers
         /// </summary>
         public float maxSpeed = 7;
 
+        public Rigidbody2D RigidBody2D;
         public Collider2D collider2d;
         public bool controlEnabled = true;
 
@@ -77,7 +78,9 @@ namespace Controllers
                     move.x += maxSpeed;
                 }
 
-                transform.Translate(move * Time.deltaTime);
+                // transform.Translate(move * Time.deltaTime);
+                RigidBody2D.velocity = move;
+                // RigidBody2D.MovePosition( RigidBody2D.position + move * Time.fixedDeltaTime);
             }
         }
     }
