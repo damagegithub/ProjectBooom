@@ -17,6 +17,7 @@ namespace Controllers
         /// </summary>
         public float maxSpeed = 7;
 
+        public Rigidbody2D RigidBody2D;
         public Collider2D collider2d;
         public bool controlEnabled = true;
 
@@ -29,28 +30,7 @@ namespace Controllers
         {
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
-
-            // List<DialogueActor> Actors = CSVToJsonUtil.GetJsonData<DialogueActor>("Tables/Actors");
-            // foreach (var Actor in Actors)
-            // {
-            //     _actors.Add(Actor);
-            // }
-            //
-            // int selectedCharacterID = PlayerPrefs.GetInt("SelectedCharacterID", 0);
-            // if (selectedCharacterID <= 0)
-            // {
-            //     Debug.LogWarning("No character selected, defaulting to first character.");
-            // }
-            // else
-            // {
-            //     foreach (var actor in _actors)
-            //     {
-            //         if (actor.ActorID == selectedCharacterID)
-            //         {
-            //             GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(actor.ActorFullBodyImagePath);
-            //         }
-            //     }
-            // }
+            RigidBody2D = GetComponent<Rigidbody2D>();
         }
 
         //控制玩家移动
@@ -61,6 +41,8 @@ namespace Controllers
                 move = direction.normalized * maxSpeed;
             }
         }
+        
+        private bool LastDirection => spriteRenderer.flipX;
 
         private void Update()
         {
@@ -76,8 +58,15 @@ namespace Controllers
                 {
                     move.x += maxSpeed;
                 }
+                
+                var direction = move.x > 0;
+                if (direction != LastDirection)
+                {
+                    spriteRenderer.flipX = direction;
+                }
 
-                transform.Translate(move * Time.deltaTime);
+                // transform.Translate(move * Time.deltaTime);
+                RigidBody2D.velocity = move;
             }
         }
     }

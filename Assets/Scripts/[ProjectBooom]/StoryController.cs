@@ -13,6 +13,22 @@ namespace _ProjectBooom_
     /// </summary>
     public class StoryController : MonoBehaviour
     {
+        public Dictionary<string, int> SceneTable = new Dictionary<string, int>()
+        {
+            { "_1.培养室", 1 },
+            { "_2.走道", 2 },
+            { "_3.走道_会议室", 3 },
+            { "_4.会议室", 4 },
+            { "_5.培养室", 5 },
+            { "_6.小巷", 6 },
+            { "_7.培养室", 7 },
+            { "_8_伪.黑幕", -8 },
+            { "_8_真.培养室", 8 },
+            { "_9.小巷", 9 },
+            { "_10.走道", 10 },
+            { "_11_隐藏.真莲房间", 11 },
+        };
+
         [Header("调试文本")] public Text DebugText;
 
         [SerializeField] [Header("当前场景故事流程")] public List<StoryInfo> StoryInfos = new List<StoryInfo>();
@@ -65,8 +81,14 @@ namespace _ProjectBooom_
                     return;
                 }
 
-                // 跳转到下一个场景
-                SceneManager.LoadScene(NextSceneName);
+                // 设置场景结束时的索引 用于记录当前场景
+                var currentSceneName = SceneManager.GetActiveScene().name;
+                if (SceneTable.TryGetValue(currentSceneName, out var sceneIndex))
+                {
+                    PlayerPrefs.SetInt("CurrentLevel", sceneIndex);
+                    Debug.Log($"set current level: {sceneIndex}");
+                    SceneManager.LoadScene(0); // 回到选人界面
+                }
             }
         }
 
