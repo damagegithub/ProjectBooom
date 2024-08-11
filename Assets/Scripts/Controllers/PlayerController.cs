@@ -41,6 +41,8 @@ namespace Controllers
                 move = direction.normalized * maxSpeed;
             }
         }
+        
+        private bool LastDirection => spriteRenderer.flipX;
 
         private void Update()
         {
@@ -55,6 +57,12 @@ namespace Controllers
                 if (Input.GetKey(KeyCode.D))
                 {
                     move.x += maxSpeed;
+                }
+                
+                var direction = move.x > 0;
+                if (direction != LastDirection)
+                {
+                    spriteRenderer.flipX = direction;
                 }
 
                 // transform.Translate(move * Time.deltaTime);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MetaGameUtils;
 using PBDialogueSystem;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,15 @@ public class SelectCharacterController : MonoBehaviour
     private Dictionary<int, List<Vector2>> PosMap = new Dictionary<int, List<Vector2>>(); //角色位置映射表
     private List<int> GetCanSelectedCharacters()
     {
+        if(PlayerPrefs.GetInt("LevelDebug7FileCreated" ,-1) ==1)
+        {
+            bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "02.txt");
+            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "01.txt");
+            if (!Has02 && Has01)
+            {
+                return new List<int>() { 1, 3 };
+            }
+        }
         return new List<int>() {1,2};
     }
     
