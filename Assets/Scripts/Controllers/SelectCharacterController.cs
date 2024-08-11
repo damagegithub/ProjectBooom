@@ -60,7 +60,6 @@ public class SelectCharacterController : MonoBehaviour
                     {
                         Debug.Log("选中角色：" + characterID);
                         PlayerPrefs.SetInt("SelectedCharacterID", characterID);
-                        
                         //todo 选择场景
                         //跳转场景
                         SceneManager.LoadScene("_1.培养室");
