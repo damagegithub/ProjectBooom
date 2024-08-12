@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 5cada0499dfa2a744992c886cd38ef60, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 530566d7a8b9dab4c8d1ea3317879802, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -2570,7 +2570,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b2ae2f86ed3f0c4e87c7e13fe593f57, type: 2}
+  - {fileID: 2100000, guid: b478f29c557e24c4695ebe9652bd6af8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3189,16 +3189,11 @@ MonoBehaviour:
   BlackCanvasGroup: {fileID: 1818407545}
   StartAnimator: {fileID: 0}
   DoctorSpeakController: {fileID: 1386182009}
-  DoctorCanvasGroup: {fileID: 1386182008}
-  TMP_DoctorText: {fileID: 1201928084}
   StartAnimationTime: 2
   LeftButton: {fileID: 815893933}
   RightButton: {fileID: 1180899943}
-  DoctorTextFadeTime0: 5
   DoctorText0: "\u5F00\u59CB\u573A\u666F\u7684\u535A\u58EB\u5BF9\u8BDD\u5F00\u59CB\u573A\u666F\u7684\u535A\u58EB\u5BF9\u8BDD"
-  DoctorTextFadeTime1: 5
   DoctorText1: "\u79FB\u52A8\u573A\u666F\u535A\u58EB\u5BF9\u8BDD\u4F7F\u7528\u952E\u76D8AD\u952E\u6765\u8FDB\u884C\u79FB\u52A8"
-  DoctorTextFadeTime2: 5
   DoctorText2: "\u8BE5\u573A\u666F\u5DF2\u5B8C\u6210\u5BF9\u8BDD\u8BE5\u573A\u666F\u5DF2\u5B8C\u6210\u5BF9\u8BDD"
 --- !u!1 &1818407542
 GameObject:
