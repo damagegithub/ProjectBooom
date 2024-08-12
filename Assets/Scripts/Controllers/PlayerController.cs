@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using PBDialogueSystem;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
+using AnimationState = Spine.AnimationState;
 
 namespace Controllers
 {
@@ -12,46 +13,38 @@ namespace Controllers
     /// </summary>
     public class PlayerController : MonoBehaviour
     {
-        private List<DialogueActor> _actors = new List<DialogueActor>();
+        private List<DialogueActor> _actors = new();
 
-        /// <summary>
-        ///     Max horizontal speed of the player.
-        /// </summary>
+        [Header("角色最大速度")]
         public float maxSpeed = 7;
-
-        public Rigidbody2D RigidBody2D;
-        public Collider2D collider2d;
+        [Header("Spine Idle 动画速度")]
+        public float SpineIdleTimeScale = 0.5f;
+        [Header("是否可控制")]
         public bool controlEnabled = true;
 
-        private Vector2 move;
-        private SpriteRenderer spriteRenderer;
-
+        public Rigidbody2D RigidBody2D;
+        public Collider2D  collider2d;
         public Bounds Bounds => collider2d.bounds;
 
-        [SpineAnimation] public string runAnimationName;
-        [SpineAnimation] public string idleAnimationName;
-        public float runWalkDuration = 1.5f;
-        public SkeletonAnimation skeletonAnimation;
-        public Spine.AnimationState spineAnimationState;
-        public Spine.Skeleton skeleton;
+        [SpineAnimation] public string            runAnimationName;
+        [SpineAnimation] public string            idleAnimationName;
+        public                  float             runWalkDuration = 1.5f;
+        public                  SkeletonAnimation skeletonAnimation;
+        public                  AnimationState    spineAnimationState;
+        public                  Skeleton          skeleton;
+
 
         private void Awake()
         {
             collider2d = GetComponent<Collider2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
             RigidBody2D = GetComponent<Rigidbody2D>();
             skeletonAnimation = GetComponent<SkeletonAnimation>();
             spineAnimationState = skeletonAnimation.AnimationState;
             skeleton = skeletonAnimation.Skeleton;
-        }
 
-        //控制玩家移动
-        public void Move(Vector2 direction)
-        {
-            if (controlEnabled)
-            {
-                move = direction.normalized * maxSpeed;
-            }
+            OldState = AnimationType.Idle;
+            spineAnimationState.SetAnimation(0, idleAnimationName, true);
+            skeletonAnimation.timeScale = SpineIdleTimeScale;
         }
 
         private bool LastDirection => transform.localScale.x > 0; // left
@@ -68,7 +61,7 @@ namespace Controllers
         {
             if (controlEnabled)
             {
-                move = Vector2.zero;
+                var move = Vector2.zero;
                 if (Input.GetKey(KeyCode.A))
                 {
                     move.x -= maxSpeed;
@@ -81,16 +74,17 @@ namespace Controllers
 
                 if (!Mathf.Approximately(move.x, 0f))
                 {
-                    var direction = move.x < 0;
+                    bool direction = move.x < 0;
                     if (direction != LastDirection)
                     {
-                        var localScale = transform.localScale;
+                        Vector3 localScale = transform.localScale;
                         localScale.x = direction ? Mathf.Abs(localScale.x) : -Mathf.Abs(localScale.x);
                         transform.localScale = localScale;
                     }
                 }
 
                 AnimationType newState = Mathf.Approximately(move.x, 0f) ? AnimationType.Idle : AnimationType.Run;
+
                 if (newState != OldState)
                 {
                     OldState = newState;
@@ -105,10 +99,16 @@ namespace Controllers
                     }
                 }
 
-
-                // transform.Translate(move * Time.deltaTime);
                 RigidBody2D.velocity = move;
             }
+
+            // 更新 idle 速度
+            skeletonAnimation.timeScale = OldState switch
+            {
+                AnimationType.Idle => SpineIdleTimeScale,
+                AnimationType.Run  => 1,
+                _                  => skeletonAnimation.timeScale,
+            };
         }
     }
 }
