@@ -1642,7 +1642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817903092}
   - component: {fileID: 817903093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "TipIcon_\u4EA4\u4E92\u56FE\u6807"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,7 +1662,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1121488676}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &817903093
 SpriteRenderer:
@@ -2265,7 +2265,7 @@ GameObject:
   - component: {fileID: 1121488679}
   - component: {fileID: 1121488678}
   - component: {fileID: 1121488677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "Player (\u83B2)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2284,7 +2284,6 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1500759222}
   - {fileID: 817903092}
   m_Father: {fileID: 79024714}
   m_RootOrder: 0
@@ -3473,54 +3472,6 @@ MonoBehaviour:
   DoctorCanvasGroup: {fileID: 1417750320}
   TMP_DoctorText: {fileID: 483665258}
   TimePerCharacter: 0.1
---- !u!1 &1500759221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1500759222}
-  - component: {fileID: 1500759223}
-  m_Layer: 8
-  m_Name: "PuzzleEventTrigger_\u89E6\u53D1\u53EF\u4EA4\u4E92\u4E8B\u4EF6"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1500759222
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500759221}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.767999, z: 0}
-  m_LocalScale: {x: 5.4, y: 5.4, z: 5.4}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1121488676}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1500759223
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500759221}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
 --- !u!1 &1565448203
 GameObject:
   m_ObjectHideFlags: 0
