@@ -1,3 +1,4 @@
+using System;
 using _ProjectBooom_.ObservableData;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
         [SerializeField]
         [Header("是否只触发一次")]
         protected bool IsOnce = false;
+        [SerializeField]
+        [Header("是否已经触发过(如果触发过就不再触发)")]
         protected bool IsTriggered = false;
 
         /// <summary>
@@ -29,6 +32,29 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
         [SerializeField]
         [Header("可交互碰撞层")]
         protected LayerMask TriggerLayer;
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (0 == (TriggerLayer & (1 << other.gameObject.layer)))
+            {
+                return;
+            }
+
+            // 已经触发过一次的不再触发
+            if (IsTriggered)
+            {
+                return;
+            }
+
+            if (IsExplicit)
+            {
+                RuntimeUnimportantData.EnterActionObject(this);
+            }
+            else
+            {
+                DoAction();
+            }
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -50,6 +76,19 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
             else
             {
                 DoAction();
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (0 == (TriggerLayer & (1 << other.gameObject.layer)))
+            {
+                return;
+            }
+
+            if (IsExplicit)
+            {
+                RuntimeUnimportantData.ExitActionObject(this);
             }
         }
 
