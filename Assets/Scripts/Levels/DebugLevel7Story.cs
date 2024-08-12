@@ -8,12 +8,50 @@ public class DebugLevel7Story : MonoBehaviour
 {
     public DialogueController dialogueController;
 
-    private enum DebugLevle7State
-    {
-        Conversation,
-        CreateMetaGame
-    }
+
     void Start()
+    {
+        if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == -1)
+        {
+            //第一次进level7 meta流程
+            Invoke(nameof(StartConversation), 2f);
+        }else if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
+        {
+            //meta操作不正确
+            var startGameTimes = PlayerPrefs.GetInt("Level7MetaDoNothing", 1);
+            if (startGameTimes < 3)
+            {
+                StartConversation702();
+            }
+            else
+            {
+                StartConversation703();
+            }
+        }
+       
+    }
+    
+    private void StartConversation702()
+    {
+        dialogueController.StartConversation(702);
+        dialogueController.OnOneConversationEnd += (int id) =>
+        {
+            Debug.Log("Conversation ended "+ id);
+            Invoke(nameof(EndGame), 2f);
+        };
+    }
+    
+    private void StartConversation703()
+    {
+        dialogueController.StartConversation(703);
+        dialogueController.OnOneConversationEnd += (int id) =>
+        {
+            Debug.Log("Conversation ended "+ id);
+            Invoke(nameof(EndGame), 2f);
+        };
+    }
+    
+    private void StartConversation()
     {
         dialogueController.StartConversation(101);
         dialogueController.OnOneConversationEnd += (int id) =>
@@ -47,7 +85,7 @@ public class DebugLevel7Story : MonoBehaviour
     void EndGame()
     {
         Debug.Log("CloseGame ");
-        PlayerPrefs.SetInt("LevelDebug7FileCreated",1);
+        PlayerPrefs.SetInt("Level7MetaCreated",1);
         MetaGameUtil.CloseGame();
     }
     // Update is called once per frame

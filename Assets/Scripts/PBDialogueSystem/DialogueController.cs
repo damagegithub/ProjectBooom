@@ -20,6 +20,7 @@ namespace PBDialogueSystem
         {
             GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
             DialogueUI = instance.GetComponent<DialogueStandardUI>();
+            DialogueUI.gameObject.SetActive(false);
             InitConversationData();
             // StartConversation(101);
         }
@@ -79,7 +80,7 @@ namespace PBDialogueSystem
         {
             if (!_conversationData.ContainsKey(conversationID))
             {
-                Debug.LogError("Conversation ID not found in conversation data!");
+                Debug.LogError("Conversation ID not found in conversation data! "+conversationID);
                 return;
             }
 
