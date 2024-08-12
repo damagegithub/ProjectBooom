@@ -3390,6 +3390,7 @@ GameObject:
   - component: {fileID: 1417750318}
   - component: {fileID: 1417750320}
   - component: {fileID: 1417750319}
+  - component: {fileID: 1417750321}
   m_Layer: 5
   m_Name: "\u5DE6\u4E0A\u89D2\u5BF9\u8BDDUI"
   m_TagString: Untagged
@@ -3457,6 +3458,21 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1417750321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417750317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bef746921e84edd9bf226dd5b6d698e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoctorCanvasGroup: {fileID: 1417750320}
+  TMP_DoctorText: {fileID: 483665258}
+  TimePerCharacter: 0.1
 --- !u!1 &1500759221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,8 +4478,7 @@ MonoBehaviour:
   StoryController: {fileID: 2100654192}
   CaptchaControl: {fileID: 2252631}
   BlackCanvasGroup: {fileID: 214385320}
-  DoctorCanvasGroup: {fileID: 1417750320}
-  TMP_DoctorText: {fileID: 483665258}
+  DoctorSpeakController: {fileID: 1417750321}
   CaptchaInfos:
   - Title: "\u6CA1\u6709\u610F\u4E49\u7684\u6807\u9898"
     Content: "\u8BF7\u9009\u62E9\u6B63\u786E\u7B54\u6848"
