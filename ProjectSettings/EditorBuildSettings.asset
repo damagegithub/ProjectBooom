@@ -53,4 +53,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release/DebugScene_Level7.unity
     guid: bd1ebe15b12f6b947802d7c9416daa0d
+  - enabled: 1
+    path: Assets/Scenes/Release/_7.培养室.unity
+    guid: 9682bd7beb1487a4ba3f4fcb32477461
+  - enabled: 1
+    path: Assets/Scenes/Release/_8_伪.黑幕.unity
+    guid: 7d8410c92dbdc984aa14b905d42876e2
+  - enabled: 1
+    path: Assets/Scenes/Release/_8_真.培养室.unity
+    guid: 070ad04340dc931449d67e39b3e3baa0
   m_configObjects: {}
