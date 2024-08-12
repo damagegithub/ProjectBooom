@@ -15,7 +15,11 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
 
         public override void DoAction()
         {
-            ShowItem();
+            if (!IsTriggered)
+            {
+                base.DoAction();
+                ShowItem();
+            }
         }
 
         public void ShowItem()

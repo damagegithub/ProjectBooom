@@ -9,6 +9,21 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
     public class NearestAction : MonoBehaviour
     {
         /// <summary>
+        ///     是否需要玩家主动按键触发
+        /// </summary>
+        [SerializeField]
+        [Header("是否需要玩家主动按键触发")]
+        protected bool IsExplicit = false;
+
+        /// <summary>
+        ///     是否只触发一次
+        /// </summary>
+        [SerializeField]
+        [Header("是否只触发一次")]
+        protected bool IsOnce = false;
+        protected bool IsTriggered = false;
+
+        /// <summary>
         ///     触发过滤层
         /// </summary>
         [SerializeField]
@@ -22,7 +37,20 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
                 return;
             }
 
-            RuntimeUnimportantData.EnterActionObject(this);
+            // 已经触发过一次的不再触发
+            if (IsTriggered)
+            {
+                return;
+            }
+
+            if (IsExplicit)
+            {
+                RuntimeUnimportantData.EnterActionObject(this);
+            }
+            else
+            {
+                DoAction();
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -32,12 +60,22 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
                 return;
             }
 
-            RuntimeUnimportantData.ExitActionObject(this);
+            if (IsExplicit)
+            {
+                RuntimeUnimportantData.ExitActionObject(this);
+            }
         }
 
         public virtual void DoAction()
         {
-            // ignore
+            if (IsOnce && !IsTriggered)
+            {
+                IsTriggered = true;
+                if (IsExplicit)
+                {
+                    RuntimeUnimportantData.ExitActionObject(this);
+                }
+            }
         }
     }
 }

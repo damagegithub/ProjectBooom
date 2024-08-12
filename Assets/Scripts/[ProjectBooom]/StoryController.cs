@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
+using System.IO;
 using _ProjectBooom_.DataStruct;
-using LYP_Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,11 +8,11 @@ using UnityEngine.UI;
 namespace _ProjectBooom_
 {
     /// <summary>
-    ///  用于简单控制剧情流程的类
+    ///     用于简单控制剧情流程的类
     /// </summary>
     public class StoryController : MonoBehaviour
     {
-        public Dictionary<string, int> SceneTable = new Dictionary<string, int>()
+        public Dictionary<string, int> SceneTable = new()
         {
             { "_1.培养室", 1 },
             { "_2.走道", 2 },
@@ -31,42 +30,43 @@ namespace _ProjectBooom_
 
         [Header("调试文本")] public Text DebugText;
 
-        [SerializeField] [Header("当前场景故事流程")] public List<StoryInfo> StoryInfos = new List<StoryInfo>();
-        [Header("当前场景故事索引")] public int CurrentStoryIndex = 0;
-        [Header("下一个场景的名称")] public string NextSceneName;
+        [SerializeField] [Header("当前场景故事流程")] public List<StoryInfo> StoryInfos        = new();
+        [Header("当前场景故事索引")]                  public int             CurrentStoryIndex = 0;
+        [Header("下一个场景的名称")]                  public string          NextSceneName;
 
         public void SetDebugText(string debugText)
         {
             DebugText.text = $"{GetCurrentStoryInfo().StoryName}->{debugText}";
+            Debug.Log(DebugText.text);
         }
 
         private void Start()
         {
             CurrentStoryIndex = 0;
 
-            foreach (var storyInfo in StoryInfos)
+            foreach (StoryInfo storyInfo in StoryInfos)
             {
                 storyInfo.StoryController = this;
                 storyInfo.IsBegin = false;
                 storyInfo.IsFinished = false;
             }
 
-#if DEBUG
+            #if DEBUG
             if (StoryInfos.Count == 0)
             {
                 DebugText.text = $"当前场景没有剧情->{SceneManager.GetActiveScene().name}";
                 return;
             }
-#endif
+            #endif
             TryStartCurrentStory();
         }
 
         /// <summary>
-        ///  尝试开始当前剧情
+        ///     尝试开始当前剧情
         /// </summary>
         private void TryStartCurrentStory()
         {
-            var story = GetCurrentStoryInfo();
+            StoryInfo story = GetCurrentStoryInfo();
             if (story != null)
             {
                 story.IsBegin = true;
@@ -82,8 +82,8 @@ namespace _ProjectBooom_
                 }
 
                 // 设置场景结束时的索引 用于记录当前场景
-                var currentSceneName = SceneManager.GetActiveScene().name;
-                if (SceneTable.TryGetValue(currentSceneName, out var sceneIndex))
+                string currentSceneName = SceneManager.GetActiveScene().name;
+                if (SceneTable.TryGetValue(currentSceneName, out int sceneIndex))
                 {
                     PlayerPrefs.SetInt("CurrentLevel", sceneIndex);
                     Debug.Log($"set current level: {sceneIndex}");
@@ -96,8 +96,8 @@ namespace _ProjectBooom_
         {
             for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
             {
-                var sceneNameInBuildSetting =
-                    System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
+                string sceneNameInBuildSetting =
+                    Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
                 if (sceneNameInBuildSetting.Equals(sceneName))
                 {
                     return true;
@@ -108,11 +108,11 @@ namespace _ProjectBooom_
         }
 
         /// <summary>
-        /// 结束当前剧情
+        ///     结束当前剧情
         /// </summary>
         public void TryFinishCurrentStory()
         {
-            var story = GetCurrentStoryInfo();
+            StoryInfo story = GetCurrentStoryInfo();
             if (story != null)
             {
                 story.IsFinished = true;
@@ -127,7 +127,7 @@ namespace _ProjectBooom_
         }
 
         /// <summary>
-        ///  获取当前故事剧情
+        ///     获取当前故事剧情
         /// </summary>
         private StoryInfo GetCurrentStoryInfo()
         {

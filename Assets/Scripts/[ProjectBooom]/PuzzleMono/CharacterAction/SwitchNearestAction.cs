@@ -38,7 +38,11 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
 
         public override void DoAction()
         {
-            ChangeState();
+            if (!IsTriggered)
+            {
+                base.DoAction();
+                ChangeState();
+            }
         }
 
         private void ChangeState()
