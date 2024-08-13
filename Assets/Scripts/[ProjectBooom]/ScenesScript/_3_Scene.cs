@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._3;
 using DG.Tweening;
@@ -29,8 +30,7 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("场景结束对话ID2")]
         public int LevelEndDialogIndex2;
-
-
+        
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
 
@@ -39,6 +39,9 @@ namespace _ProjectBooom_.ScenesScript
         [Header("简陋电脑UI")] public RectTransform DesktopRectTrans;
         [Header("电脑画布")]   public CanvasGroup   DesktopCanvasGroup;
 
+        [Header("打开电脑前的博士对话")] public List<string> PreActionTexts;
+
+        [Header("打开电脑时的博士对话")] public List<string> InActionTexts;
 
         public void DialogFinish(int dialogIndex)
         {
@@ -115,36 +118,36 @@ namespace _ProjectBooom_.ScenesScript
             StoryController.TryFinishCurrentStory();
         }
 
-        /// <summary>
-        ///     开场动画
-        /// </summary>
-        public void StartInitAnimation()
+        // /// <summary>
+        // ///     开场动画
+        // /// </summary>
+        // public void StartInitAnimation()
+        // {
+        //     DOTween.Sequence()
+        //            .Append(BlackCanvasGroup.DOFade(0f, 1f))
+        //            .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
+        //            .SetId(this);
+        // }
+
+        public void StartComputeAction()
         {
-            DOTween.Sequence()
-                   .Append(BlackCanvasGroup.DOFade(0f, 1f))
-                   .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
-                   .SetId(this);
+            StartCoroutine(StartComputeActionCoroutine());
         }
 
-        public void StartStory()
-        {
-            StartCoroutine(StartStoryCoroutine());
-        }
-
-        public IEnumerator StartStoryCoroutine()
+        public IEnumerator StartComputeActionCoroutine()
         {
             yield return new WaitForEndOfFrame();
             const string doctorText1 = "博士：接下来需要为会议做准备，我需要你的帮助。";
             yield return DoctorSpeakController.SpeakAndWait(doctorText1, true);
-            const string doctorText2 = "博士：请帮我准备好会议所需的文件";
+            const string doctorText2 = "博士：请帮我删除会议文件夹中的文件";
             yield return DoctorSpeakController.SpeakAndWait(doctorText2, true);
 
             // 打开电脑
             DesktopRectTrans.DOScale(Vector3.one, 1f).SetId(this);
-            const string doctorText3 = "博士：文件应该都已经在桌面上了 请查看一下";
+            const string doctorText3 = "博士：首先你需要打开文件夹 请查看一下";
             yield return DoctorSpeakController.SpeakAndWait(doctorText3, true);
 
-            const string doctorText4 = "博士：请将文件拖拽到会议文件夹中";
+            const string doctorText4 = "博士：请将文件拖拽到回收站里";
             float waitTime = 5f;
             // 等待完成
             while (FoldFileReceiveUI.FileUIs.Count < 3)
@@ -170,15 +173,15 @@ namespace _ProjectBooom_.ScenesScript
             StoryController.TryFinishCurrentStory();
         }
 
-        /// <summary>
-        ///     结束动画
-        /// </summary>
-        public void FinishAnimation()
-        {
-            DOTween.Sequence()
-                   .Append(BlackCanvasGroup.DOFade(1f, 1f))
-                   .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
-                   .SetId(this);
-        }
+        // /// <summary>
+        // ///     结束动画
+        // /// </summary>
+        // public void FinishAnimation()
+        // {
+        //     DOTween.Sequence()
+        //            .Append(BlackCanvasGroup.DOFade(1f, 1f))
+        //            .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
+        //            .SetId(this);
+        // }
     }
 }
