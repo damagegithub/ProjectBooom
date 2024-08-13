@@ -1,5 +1,6 @@
 using System.Collections;
 using _ProjectBooom_.Input;
+using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using Controllers;
 using DG.Tweening;
@@ -25,9 +26,6 @@ namespace _ProjectBooom_.ScenesScript
         [Header("全屏遮挡画布")]
         public CanvasGroup BlackCanvasGroup;
 
-        // [Header("苏醒动画")] 
-        // public Animator StartAnimator;
-
         [Header("博士对话脚本")]
         public DoctorSpeakController DoctorSpeakController;
 
@@ -50,9 +48,9 @@ namespace _ProjectBooom_.ScenesScript
         public string DoctorText2;
 
         [Header("场景开场对话ID")]
-        public int LevelStartDialogIndex = 0;
+        public int LevelStartDialogIndex;
         [Header("场景结束对话ID")]
-        public int LevelEndDialogIndex = 0;
+        public int LevelEndDialogIndex;
 
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
@@ -102,10 +100,10 @@ namespace _ProjectBooom_.ScenesScript
         public void LevelEndAvgDialog()
         {
             StoryController.SetDebugText("场景结束AVG对话");
-            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex));
+            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex, true));
         }
 
-        private IEnumerator StartAVGSystemCoroutine(int dialogIndex)
+        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
         {
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
@@ -117,9 +115,17 @@ namespace _ProjectBooom_.ScenesScript
                 yield return new WaitForEndOfFrame();
             }
 
+            if (fadeEnd)
+            {
+                yield return BlackCanvasGroup.DOFade(1f, 1.0f).SetId(this).WaitForCompletion();
+            }
+
             StoryController.TryFinishCurrentStory();
         }
 
+        /// <summary>
+        ///  教学
+        /// </summary>
         public void LevelTutorial()
         {
             StartCoroutine(LevelTutorialCoroutine());
@@ -127,139 +133,167 @@ namespace _ProjectBooom_.ScenesScript
 
         private IEnumerator LevelTutorialCoroutine()
         {
-            StoryController.SetDebugText("教程中");
-            yield return DoctorSpeakController.SpeakAndWait(DoctorText0);
-            StoryController.SetDebugText("学习移动");
-            yield return DoctorSpeakController.SpeakAndWait(DoctorText1);
-            yield return DoctorSpeakController.SpeakAndWait(DoctorText2);
-            StoryController.TryFinishCurrentStory();
-        }
-
-        /// <summary>
-        ///     剧情1 苏醒
-        /// </summary>
-        public void StartAnimation()
-        {
-            StartCoroutine(StartAnimationCoroutine());
-        }
-
-        public IEnumerator StartAnimationCoroutine()
-        {
-            yield return DOTween
-                        .Sequence()
-                        .Append(BlackCanvasGroup.DOFade(0f, 1.0f))
-                         //  // 播放苏醒动画
-                         // .AppendCallback(() =>
-                         //  {
-                         //      // if (StartAnimator)
-                         //      // {
-                         //      //     StartAnimator.enabled = true;
-                         //      //     StartAnimator.SetTrigger("Start");
-                         //      // }
-                         //
-                         //      StoryController.SetDebugText("播放苏醒动画");
-                         //  })
-                         //  // 等待动画播放完毕
-                         // .AppendInterval(StartAnimationTime)
-                         //  // 关闭动画
-                         // .AppendCallback(() =>
-                         //  {
-                         //      if (StartAnimator)
-                         //      {
-                         //          StartAnimator.enabled = false;
-                         //      }
-                         //  })
-                         // 显示博士对话框
-                        .AppendCallback(() =>
-                         {
-                             StoryController.SetDebugText("播放博士对话");
-                             DoctorSpeakController.Speak(DoctorText0);
-                         })
-                        .SetId(this)
-                        .WaitForCompletion();
-
-            StoryController.SetDebugText("等待对话文字播放完毕");
-            while (DoctorSpeakController.IsSpeaking)
+            StoryController.SetDebugText("博士等待对话");
+            DoctorSpeakController.SpeakWithoutFade(DoctorText0, true);
+            // 等待第一次移动
+            PlayerController.maxSpeed = 1;
+            while (!InputWarp.LeftMoveDown() && !InputWarp.RightMoveDown())
             {
-                yield return new WaitForEndOfFrame();
-            }
-
-            StoryController.TryFinishCurrentStory();
-        }
-
-        /// <summary>
-        ///     剧情2 学习移动
-        /// </summary>
-        public void LearnMovement()
-        {
-            StartCoroutine(LearnMovementCoroutine());
-        }
-
-        public IEnumerator LearnMovementCoroutine()
-        {
-            StoryController.SetDebugText("学习移动");
-            yield return DoctorSpeakController.SpeakAndWait(DoctorText1);
-            yield return DOTween
-                        .To(() => PlayerController.maxSpeed,
-                            x => PlayerController.maxSpeed = x,
-                            _initMoveSpeed,
-                            5.0f)
-                        .SetId(this)
-                        .WaitForCompletion();
-
-            LeftButton.alpha = 1;
-            RightButton.alpha = 1;
-            StoryController.SetDebugText("等待左移动或右移动按下");
-            bool leftButtonClicked = false;
-            bool rightButtonClicked = false;
-            while (leftButtonClicked == false || rightButtonClicked == false)
-            {
-                if (InputWarp.LeftMoveDown())
-                {
-                    leftButtonClicked = true;
-                    LeftButton.DOFade(0f, 0.5f).SetId(this);
-                }
-
-                if (InputWarp.RightMoveDown())
-                {
-                    rightButtonClicked = true;
-                    RightButton.DOFade(0f, 0.5f).SetId(this);
-                }
-
+                // 等待左右移动
                 yield return new WaitForNextFrameUnit();
             }
 
-            StoryController.SetDebugText("等待对话结束和动画结束");
-            while (DoctorSpeakController.IsSpeaking || DOTween.IsTweening(this))
+            DOTween.To(() => PlayerController.maxSpeed,
+                       x => PlayerController.maxSpeed = x,
+                       _initMoveSpeed,
+                       10.0f)
+                   .SetId(this);
+            StoryController.SetDebugText("等待触发器");
+            DoctorSpeakController.SpeakWithoutFade(DoctorText1);
+            // 等待某个变量被触发
+            while (0f == GlobalVariable.GetVarValue("Level1_已到达教学地点"))
             {
-                // 等待博士对话结束
                 yield return new WaitForNextFrameUnit();
             }
 
-            StoryController.TryFinishCurrentStory();
-        }
-
-        /// <summary>
-        ///     剧情3 结束当前场景
-        /// </summary>
-        public void FinishAnimation()
-        {
-            StartCoroutine(FinishAnimationCoroutine());
-        }
-
-        public IEnumerator FinishAnimationCoroutine()
-        {
-            StoryController.SetDebugText("结束场景动画");
             yield return DoctorSpeakController.SpeakAndWait(DoctorText2);
 
-            yield return BlackCanvasGroup
-                        .DOFade(1f, 1.0f)
-                        .OnComplete(() => { StoryController.SetDebugText("结束当前场景"); })
-                        .SetId(this)
-                        .WaitForCompletion();
+            // 如果还在DOTween 就结束
+            if (DOTween.IsTweening(this))
+            {
+                DOTween.Kill(this);
+            }
 
-
+            PlayerController.maxSpeed = _initMoveSpeed;
+            // 到结束AVG
             StoryController.TryFinishCurrentStory();
         }
+
+        // /// <summary>
+        // ///     剧情1 苏醒
+        // /// </summary>
+        // public void StartAnimation()
+        // {
+        //     StartCoroutine(StartAnimationCoroutine());
+        // }
+        //
+        // public IEnumerator StartAnimationCoroutine()
+        // {
+        //     yield return DOTween
+        //                 .Sequence()
+        //                 .Append(BlackCanvasGroup.DOFade(0f, 1.0f))
+        //                  //  // 播放苏醒动画
+        //                  // .AppendCallback(() =>
+        //                  //  {
+        //                  //      // if (StartAnimator)
+        //                  //      // {
+        //                  //      //     StartAnimator.enabled = true;
+        //                  //      //     StartAnimator.SetTrigger("Start");
+        //                  //      // }
+        //                  //
+        //                  //      StoryController.SetDebugText("播放苏醒动画");
+        //                  //  })
+        //                  //  // 等待动画播放完毕
+        //                  // .AppendInterval(StartAnimationTime)
+        //                  //  // 关闭动画
+        //                  // .AppendCallback(() =>
+        //                  //  {
+        //                  //      if (StartAnimator)
+        //                  //      {
+        //                  //          StartAnimator.enabled = false;
+        //                  //      }
+        //                  //  })
+        //                  // 显示博士对话框
+        //                 .AppendCallback(() =>
+        //                  {
+        //                      StoryController.SetDebugText("播放博士对话");
+        //                      DoctorSpeakController.Speak(DoctorText0);
+        //                  })
+        //                 .SetId(this)
+        //                 .WaitForCompletion();
+        //
+        //     StoryController.SetDebugText("等待对话文字播放完毕");
+        //     while (DoctorSpeakController.IsSpeaking)
+        //     {
+        //         yield return new WaitForEndOfFrame();
+        //     }
+        //
+        //     StoryController.TryFinishCurrentStory();
+        // }
+
+        // /// <summary>
+        // ///     剧情2 学习移动
+        // /// </summary>
+        // public void LearnMovement()
+        // {
+        //     StartCoroutine(LearnMovementCoroutine());
+        // }
+        //
+        // public IEnumerator LearnMovementCoroutine()
+        // {
+        //     StoryController.SetDebugText("学习移动");
+        //     yield return DoctorSpeakController.SpeakAndWait(DoctorText1);
+        //     yield return DOTween
+        //                 .To(() => PlayerController.maxSpeed,
+        //                     x => PlayerController.maxSpeed = x,
+        //                     _initMoveSpeed,
+        //                     5.0f)
+        //                 .SetId(this)
+        //                 .WaitForCompletion();
+        //
+        //     LeftButton.alpha = 1;
+        //     RightButton.alpha = 1;
+        //     StoryController.SetDebugText("等待左移动或右移动按下");
+        //     bool leftButtonClicked = false;
+        //     bool rightButtonClicked = false;
+        //     while (leftButtonClicked == false || rightButtonClicked == false)
+        //     {
+        //         if (InputWarp.LeftMoveDown())
+        //         {
+        //             leftButtonClicked = true;
+        //             LeftButton.DOFade(0f, 0.5f).SetId(this);
+        //         }
+        //
+        //         if (InputWarp.RightMoveDown())
+        //         {
+        //             rightButtonClicked = true;
+        //             RightButton.DOFade(0f, 0.5f).SetId(this);
+        //         }
+        //
+        //         yield return new WaitForNextFrameUnit();
+        //     }
+        //
+        //     StoryController.SetDebugText("等待对话结束和动画结束");
+        //     while (DoctorSpeakController.IsSpeaking || DOTween.IsTweening(this))
+        //     {
+        //         // 等待博士对话结束
+        //         yield return new WaitForNextFrameUnit();
+        //     }
+        //
+        //     StoryController.TryFinishCurrentStory();
+        // }
+
+        // /// <summary>
+        // ///     剧情3 结束当前场景
+        // /// </summary>
+        // public void FinishAnimation()
+        // {
+        //     StartCoroutine(FinishAnimationCoroutine());
+        // }
+        //
+        // public IEnumerator FinishAnimationCoroutine()
+        // {
+        //     StoryController.SetDebugText("结束场景动画");
+        //     yield return DoctorSpeakController.SpeakAndWait(DoctorText2);
+        //
+        //     yield return BlackCanvasGroup
+        //                 .DOFade(1f, 1.0f)
+        //                 .OnComplete(() => { StoryController.SetDebugText("结束当前场景"); })
+        //                 .SetId(this)
+        //                 .WaitForCompletion();
+        //
+        //
+        //     StoryController.TryFinishCurrentStory();
+        // }
     }
 }

@@ -1,9 +1,7 @@
-using UnityEngine;
-
 namespace _ProjectBooom_.PuzzleMono.UI._3
 {
     /// <summary>
-    ///  回收站文件接收处UI
+    ///     回收站文件接收处UI
     /// </summary>
     public class RecycleFileReceiveUI : FileReceiveUI
     {

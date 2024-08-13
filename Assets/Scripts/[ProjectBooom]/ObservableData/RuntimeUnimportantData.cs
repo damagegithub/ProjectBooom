@@ -20,7 +20,7 @@ namespace _ProjectBooom_.ObservableData
         public static void EnterActionObject(NearestAction actionObject)
         {
             ActionObjects.RemoveAll(na => !na);
-            
+
             if (!ActionObjects.Contains(actionObject))
             {
                 ActionObjects.Add(actionObject);
@@ -31,7 +31,7 @@ namespace _ProjectBooom_.ObservableData
         public static void ExitActionObject(NearestAction actionObject)
         {
             ActionObjects.RemoveAll(na => !na);
-            
+
             if (ActionObjects.Contains(actionObject))
             {
                 ActionObjects.Remove(actionObject);
@@ -45,7 +45,7 @@ namespace _ProjectBooom_.ObservableData
         public static NearestAction GetNearestActionObject(Vector3 position)
         {
             ActionObjects.RemoveAll(na => !na);
-            
+
             if (ActionObjects.Count == 0)
             {
                 return null;
@@ -74,7 +74,7 @@ namespace _ProjectBooom_.ObservableData
         public static Action<ItemMouseSlotAction> ItemMouseSlotActionChanged;
 
         private static ItemMouseSlotAction _itemMouseSlotAction;
-        public static ItemMouseSlotAction ItemMouseSlotAction 
+        public static ItemMouseSlotAction ItemMouseSlotAction
         {
             get => _itemMouseSlotAction ? _itemMouseSlotAction : null;
             private set => _itemMouseSlotAction = value;
