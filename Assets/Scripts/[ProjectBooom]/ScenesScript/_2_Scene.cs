@@ -1,5 +1,6 @@
 using System.Collections;
 using _ProjectBooom_.DataStruct;
+using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._2;
 using DG.Tweening;
@@ -25,9 +26,6 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("博士对话脚本")]
         public DoctorSpeakController DoctorSpeakController;
-
-        [Header("第一次验证码时间")]
-        public float FirstCaptchaTime = 5.0f;
 
         [Header("验证码间隔时间")]
         public float CaptchaIntervalTime = 3.0f;
@@ -118,8 +116,13 @@ namespace _ProjectBooom_.ScenesScript
 
         public IEnumerator StartCaptchaTestCoroutine()
         {
+            // 等待触发验证码
+            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("开启验证码")))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            
             // 等待指定的时间
-            yield return new WaitForSeconds(FirstCaptchaTime);
             for (int i = 0; i < CaptchaInfos.Length; i++)
             {
                 StoryController.SetDebugText($"当前第{i+1}个验证码");
