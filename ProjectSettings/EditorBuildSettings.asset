@@ -62,4 +62,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release/_8_真.培养室.unity
     guid: 070ad04340dc931449d67e39b3e3baa0
+  - enabled: 1
+    path: Assets/Scenes/Release/_10.unity
+    guid: 86101ff3ddd579a499e5c1475adc002f
+  - enabled: 1
+    path: Assets/Scenes/Release/_8A2.unity
+    guid: 6e747cf2ddeee3946920c20fa26e6f78
   m_configObjects: {}

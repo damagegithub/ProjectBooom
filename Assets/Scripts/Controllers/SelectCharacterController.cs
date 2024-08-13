@@ -11,45 +11,38 @@ using Image = UnityEngine.UI.Image;
 
 public class SelectCharacterController : MonoBehaviour
 {
-    
     //选人界面控制器
-    
-    public GameObject CharacterPreab; //预制体
-    public Transform CharacterPanelParent; //角色父panel
-    
 
-    
-    private List<DialogueActor> _actors = new List<DialogueActor>(); //角色列表
-    private Dictionary<int, List<Vector2>> PosMap = new Dictionary<int, List<Vector2>>(); //角色位置映射表
+    public GameObject CharacterPreab;       //预制体
+    public Transform  CharacterPanelParent; //角色父panel
+
+
+    private List<DialogueActor>            _actors = new List<DialogueActor>();            //角色列表
+    private Dictionary<int, List<Vector2>> PosMap  = new Dictionary<int, List<Vector2>>(); //角色位置映射表
+
     private List<int> GetCanSelectedCharacters()
     {
-        if(PlayerPrefs.GetInt("LevelDebug7FileCreated" ,-1) ==1)
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "02.txt");
-            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "01.txt");
-            if (!Has02 && Has01)
-            {
-                return new List<int>() { 1, 3 };
-            }
+            new List<int>() { 1, 2, 3 };
         }
-        return new List<int>() {1,2};
+
+        return new List<int>() { 1, 2 };
     }
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        PosMap.Add(2, new List<Vector2>() {new Vector2(-500, 0), new Vector2(500, 0)});
-        PosMap.Add(3, new List<Vector2>() {new Vector2(-400, 0), new Vector2(0, 0),  new Vector2(400, 0)});
-        
+        PosMap.Add(2, new List<Vector2>() { new Vector2(-500, 0), new Vector2(500, 0) });
+        PosMap.Add(3, new List<Vector2>() { new Vector2(-400, 0), new Vector2(0, 0), new Vector2(400, 0) });
+
         List<DialogueActor> Actors = CSVToJsonUtil.GetJsonData<DialogueActor>("Tables/Actors");
         foreach (var Actor in Actors)
         {
             _actors.Add(Actor);
         }
-        
-        
-        
+
+
         var CanSelectedCharacters = GetCanSelectedCharacters();
         var index = 0;
         foreach (var characterID in CanSelectedCharacters)
@@ -78,15 +71,11 @@ public class SelectCharacterController : MonoBehaviour
                     break;
                 }
             }
+
             index++;
         }
-        
-
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 }

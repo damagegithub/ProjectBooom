@@ -3,53 +3,39 @@ using System.Collections.Generic;
 using MetaGameUtils;
 using PBDialogueSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Level8bStory : MonoBehaviour
+public class Level10Story : MonoBehaviour
 {
     public DialogueController dialogueController;
 
-
+    // Start is called before the first frame update
     void Start()
     {
         Invoke(nameof(StartConversation), 2f);
     }
-    
-    
+
     private void StartConversation()
     {
-        dialogueController.StartConversation(101);// todo 801
+
+        dialogueController.StartConversation(101);//todo 1002
         dialogueController.OnOneConversationEnd += (int id) =>
         {
-            Debug.Log("Conversation ended "+ id);
+            Debug.Log("Conversation ended " + id);
+            PlayerPrefs.SetInt("Level10Finished", 1);
             StartCoroutine(ExecuteMetaAfterDelay(2));
         };
     }
-    
     
     IEnumerator ExecuteMetaAfterDelay(float delay)
     {
         // 等待指定的时间
         yield return new WaitForSeconds(delay);
         
-        // 延迟后执行代码
-        MetaGame();
-    }
-
-    
-    void MetaGame()
-    {
-        MetaGameUtil.CreateFolderOnDesktop("GameInfo");
-        MetaGameUtil.CreateFileOnDesktop("GameInfo", "01.txt", "01本体");
-        MetaGameUtil.CreateFileOnDesktop("GameInfo", "02.txt", "02本体");
-        ShowDesktop.ShowDesktopFunc();
-        Invoke(nameof(EndGame), 2f);
-    }
-
-    void EndGame()
-    {
         MetaGameUtil.CloseGame();
     }
 
+    // Update is called once per frame
     void Update()
     {
         
