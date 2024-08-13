@@ -73,14 +73,14 @@ namespace _ProjectBooom_.PuzzleMono.UI
             while (DoctorTextQueue.TryDequeue(out string message))
             {
                 yield return new WaitForNextFrameUnit();
-                yield return DocSpeak(message);
+                yield return DoctorSpeak(message);
             }
 
             IsSpeaking = false;
         }
 
 
-        public IEnumerator DocSpeak(string text)
+        public IEnumerator DoctorSpeak(string text)
         {
             TMP_DoctorText.maxVisibleCharacters = 0;
             TMP_DoctorText.text = text;
