@@ -3146,7 +3146,7 @@ MonoBehaviour:
   TriggerLayer:
     serializedVersion: 2
     m_Bits: 256
-  VarName: "\u5F00\u542F\u9A8C\u8BC1\u7801"
+  VarName: "\u573A\u666F2\u5F00\u542F\u5BF9\u8BDD"
   VarValue: 1
 --- !u!1 &1284222155
 GameObject:
@@ -4533,12 +4533,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0626739feb304b83acf08d3a0bd79c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerController: {fileID: 0}
   StoryController: {fileID: 2100654192}
   CaptchaControl: {fileID: 2252631}
   DialogueController: {fileID: 76679110}
   BlackCanvasGroup: {fileID: 214385320}
   DoctorSpeakController: {fileID: 1417750321}
-  FirstCaptchaTime: 5
   CaptchaIntervalTime: 3
   LevelStartDialogIndex: 201
   LevelEndDialogIndex: 202

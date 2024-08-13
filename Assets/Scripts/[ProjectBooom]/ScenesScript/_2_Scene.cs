@@ -3,6 +3,7 @@ using _ProjectBooom_.DataStruct;
 using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._2;
+using Controllers;
 using DG.Tweening;
 using PBDialogueSystem;
 using UnityEngine;
@@ -14,6 +15,8 @@ namespace _ProjectBooom_.ScenesScript
     /// </summary>
     public class _2_Scene : MonoBehaviour
     {
+        public PlayerController PlayerController;
+        
         public StoryController StoryController;
 
         public CaptchaControl CaptchaControl;
@@ -53,6 +56,11 @@ namespace _ProjectBooom_.ScenesScript
 
         private void Awake()
         {
+            if (!PlayerController)
+            {
+                PlayerController = FindObjectOfType<PlayerController>(true);
+            }
+            
             if (!DialogueController)
             {
                 DialogueController = FindObjectOfType<DialogueController>(true);
@@ -73,8 +81,21 @@ namespace _ProjectBooom_.ScenesScript
         /// </summary>
         public void LevelBeginAvgDialog()
         {
-            StoryController.SetDebugText("场景开始AVG对话");
-            StartCoroutine(StartAVGSystemCoroutine(LevelStartDialogIndex));
+            StartCoroutine(LevelBeginAvgDialogCoroutine());
+        }
+
+        public IEnumerator LevelBeginAvgDialogCoroutine()
+        {
+            StoryController.SetDebugText("等待场景开始AVG对话");
+            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+            // 等待触发对话
+            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("场景2开启对话")))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            // 停止移动并开启对话
+            PlayerController.maxSpeed = 0;
+            yield return StartAVGSystemCoroutine(LevelStartDialogIndex);
         }
 
         /// <summary>
@@ -116,24 +137,15 @@ namespace _ProjectBooom_.ScenesScript
 
         public IEnumerator StartCaptchaTestCoroutine()
         {
-            // 等待触发验证码
-            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("开启验证码")))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            
             // 等待指定的时间
             for (int i = 0; i < CaptchaInfos.Length; i++)
             {
-                StoryController.SetDebugText($"当前第{i+1}个验证码");
+                StoryController.SetDebugText($"当前第{i + 1}个验证码");
                 CaptchaControl.Show(CaptchaInfos[i]);
                 while (!CaptchaControl.IsAnswered)
                 {
                     yield return new WaitForEndOfFrame();
                 }
-
-                // 等待指定的时间
-                yield return new WaitForSeconds(CaptchaIntervalTime);
             }
 
             // 进入下个片段
