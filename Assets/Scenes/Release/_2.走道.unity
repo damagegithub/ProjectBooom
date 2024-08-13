@@ -498,7 +498,6 @@ GameObject:
   m_Component:
   - component: {fileID: 254220216}
   - component: {fileID: 254220218}
-  - component: {fileID: 254220217}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D
   m_TagString: Untagged
@@ -521,21 +520,6 @@ Transform:
   m_Father: {fileID: 383421707}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &254220217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254220215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343c40ad0bcf49618ccd417268bed8cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightSwitchTime: 0.2
-  SwitchName: "\u6D4B\u8BD5\u5F00\u5173_1"
-  SwitchState: 1
 --- !u!114 &254220218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,7 +1048,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490741295
 MonoBehaviour:
@@ -1491,7 +1475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 669388657}
   - component: {fileID: 669388659}
-  - component: {fileID: 669388658}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D (1)
   m_TagString: Untagged
@@ -1514,21 +1497,6 @@ Transform:
   m_Father: {fileID: 383421707}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &669388658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669388656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343c40ad0bcf49618ccd417268bed8cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightSwitchTime: 0.2
-  SwitchName: "\u6D4B\u8BD5\u5F00\u5173_1"
-  SwitchState: 1
 --- !u!114 &669388659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,7 +1557,6 @@ GameObject:
   m_Component:
   - component: {fileID: 813842793}
   - component: {fileID: 813842795}
-  - component: {fileID: 813842794}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D (3)
   m_TagString: Untagged
@@ -1612,21 +1579,6 @@ Transform:
   m_Father: {fileID: 383421707}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &813842794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813842792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343c40ad0bcf49618ccd417268bed8cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightSwitchTime: 0.2
-  SwitchName: "\u6D4B\u8BD5\u5F00\u5173_1"
-  SwitchState: 1
 --- !u!114 &813842795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,7 +1896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 928284690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -1953,14 +1905,12 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 500, y: 50}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 1
+  m_ConstraintCount: 2
 --- !u!1 &991273194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +1969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u9A8C\u8BC1\u7801\u6807\u9898"
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
@@ -2547,7 +2497,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1122544856
 MonoBehaviour:
@@ -3678,7 +3628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u9A8C\u8BC1\u7801\u63CF\u8FF0\u5185\u5BB9"
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
@@ -4063,7 +4013,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1733100562
 MonoBehaviour:
@@ -4377,8 +4327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugText: {fileID: 1371761138}
   StoryInfos:
-  - StoryName: "\u5F00\u59CB\u52A8\u753B"
-    StoryDescription: "\u5F00\u59CB\u52A8\u753B"
+  - StoryName: "\u5F00\u59CBAVG"
+    StoryDescription: "\u5F00\u59CBAVG"
     IsBegin: 0
     IsFinished: 0
     BeginAction:
@@ -4386,7 +4336,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2100654194}
           m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._2_Scene, Assembly-CSharp
-          m_MethodName: StartInitAnimation
+          m_MethodName: LevelBeginAvgDialog
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4421,8 +4371,8 @@ MonoBehaviour:
     EndAction:
       m_PersistentCalls:
         m_Calls: []
-  - StoryName: "\u7ED3\u675F\u52A8\u753B"
-    StoryDescription: "\u7ED3\u675F\u52A8\u753B"
+  - StoryName: "\u7ED3\u675FAVG"
+    StoryDescription: "\u7ED3\u675FAVG"
     IsBegin: 0
     IsFinished: 0
     BeginAction:
@@ -4430,7 +4380,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2100654194}
           m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._2_Scene, Assembly-CSharp
-          m_MethodName: FinishAnimation
+          m_MethodName: LevelEndAvgDialog
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4474,35 +4424,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StoryController: {fileID: 2100654192}
   CaptchaControl: {fileID: 2252631}
+  DialogueController: {fileID: 76679110}
   BlackCanvasGroup: {fileID: 214385320}
   DoctorSpeakController: {fileID: 1417750321}
+  FirstCaptchaTime: 5
+  CaptchaIntervalTime: 3
+  LevelStartDialogIndex: 201
+  LevelEndDialogIndex: 202
+  CurrentDialogIndex: -1
   CaptchaInfos:
-  - Title: "\u6CA1\u6709\u610F\u4E49\u7684\u6807\u9898"
-    Content: "\u8BF7\u9009\u62E9\u6B63\u786E\u7B54\u6848"
+  - Title: 
+    Content: "\u4F60\u5728\u6C99\u6F20\u4E2D\u53D1\u73B0\u4E86\u4E00\u53EA\u4E4C\u9F9F\uFF0C\u5B83\u8EBA\u5728\u80CC\u4E0A\uFF0C\u65E0\u6CD5\u7FFB\u8EAB\uFF0C\u4F60\u4F1A\u600E\u4E48\u505A\uFF1F"
     Answers:
-    - "\u9519\u8BEF"
-    - "\u6B63\u786E"
-    - "\u9519\u8BEF"
-    - "\u9519\u8BEF"
-    CorrectAnswer: "\u6B63\u786E"
+    - "\u7ACB\u523B\u5E2E\u5B83\u7FFB\u8EAB\uFF0C\u5B83\u770B\u8D77\u6765\u5F88\u65E0\u52A9\u3002"
+    - "\u6211\u4E0D\u786E\u5B9A\u4E3A\u4EC0\u4E48\u8981\u5E2E\u5B83\uFF0C\u8FD9\u662F\u81EA\u7136\u7684\u9009\u62E9\u3002"
+    - "\u8D70\u5F00\uFF0C\u56E0\u4E3A\u8FD9\u53EA\u662F\u4E00\u4E2A\u4E4C\u9F9F\u3002"
+    - "\u89C2\u5BDF\u4E00\u4F1A\u513F\uFF0C\u770B\u5B83\u662F\u5426\u80FD\u81EA\u5DF1\u7FFB\u8EAB\u3002"
+    CorrectAnswer: 
     AnswerInfos: []
-  - Title: "\u6CA1\u6709\u610F\u4E49\u7684\u6807\u98982"
-    Content: "\u8BF7\u9009\u62E9\u6B63\u786E\u7B54\u6848"
+  - Title: 
+    Content: "\u4F60\u5728\u56DE\u5BB6\u7684\u8DEF\u4E0A\u53D1\u73B0\u4E86\u4E00\u6761\u72D7\u88AB\u8F66\u649E\u6B7B\u4E86\u3002\u4F60\u4F1A\u600E\u4E48\u505A\uFF1F"
     Answers:
-    - "\u9519\u8BEF"
-    - "\u9519\u8BEF"
-    - "\u6B63\u786E"
-    - "\u9519\u8BEF"
-    CorrectAnswer: "\u6B63\u786E"
+    - "\u611F\u5230\u975E\u5E38\u96BE\u8FC7\uFF0C\u8BD5\u56FE\u8054\u7CFB\u5B83\u7684\u4E3B\u4EBA\u3002"
+    - "\u628A\u5B83\u79FB\u5230\u8DEF\u8FB9\uFF0C\u4EE5\u9632\u5B83\u88AB\u66F4\u591A\u7684\u8F66\u78BE\u538B\u3002"
+    - "\u7EE7\u7EED\u524D\u884C\uFF0C\u8FD9\u548C\u6211\u65E0\u5173\u3002"
+    - "\u611F\u5230\u6709\u4E9B\u4E0D\u5B89\uFF0C\u4F46\u4E0D\u592A\u786E\u5B9A\u5E94\u8BE5\u505A\u4EC0\u4E48\u3002"
+    CorrectAnswer: 
     AnswerInfos: []
-  - Title: "\u6CA1\u6709\u610F\u4E49\u7684\u6807\u98983"
-    Content: "\u8BF7\u9009\u62E9\u6B63\u786E\u7B54\u6848"
+  - Title: 
+    Content: "\u4F60\u770B\u5230\u4E00\u4E2A\u5B69\u5B50\u62FF\u7740\u4E00\u53EA\u6B7B\u6389\u7684\u8774\u8776\uFF0C\u7B11\u5F97\u5F88\u5F00\u5FC3\u3002\u4F60\u4F1A\u600E\u4E48\u53CD\u5E94\uFF1F"
     Answers:
-    - "\u9519\u8BEF"
-    - "\u9519\u8BEF"
-    - "\u9519\u8BEF"
-    - "\u6B63\u786E"
-    CorrectAnswer: "\u6B63\u786E"
+    - "\u611F\u5230\u4E0D\u5B89\uFF0C\u8BD5\u56FE\u544A\u8BC9\u5B69\u5B50\u8774\u8776\u7684\u751F\u547D\u91CD\u8981\u6027\u3002"
+    - "\u89C9\u5F97\u5B69\u5B50\u53EA\u662F\u597D\u5947\uFF0C\u6CA1\u6709\u5FC5\u8981\u5E72\u9884\u3002"
+    - "\u5FFD\u7565\u8FD9\u4EF6\u4E8B\uFF0C\u5B69\u5B50\u4EEC\u7ECF\u5E38\u8FD9\u6837\u505A\u3002"
+    - "\u62CD\u5F20\u7167\u7247\uFF0C\u56E0\u4E3A\u8FD9\u662F\u4E00\u4E2A\u6709\u8DA3\u7684\u77AC\u95F4\u3002"
+    CorrectAnswer: 
+    AnswerInfos: []
+  - Title: 
+    Content: "\u4F60\u6B63\u5728\u4E3A\u4E00\u573A\u665A\u5BB4\u505A\u51C6\u5907\uFF0C\u5374\u7A81\u7136\u63A5\u5230\u7535\u8BDD\uFF0C\u4F60\u6700\u4EB2\u8FD1\u7684\u670B\u53CB\u610F\u5916\u53BB\u4E16\u4E86\u3002\u4F60\u4F1A\u5982\u4F55\u5E94\u5BF9\uFF1F"
+    Answers:
+    - "\u7ACB\u523B\u53D6\u6D88\u665A\u5BB4\uFF0C\u53BB\u966A\u4F34\u670B\u53CB\u7684\u5BB6\u4EBA\u3002"
+    - "\u611F\u5230\u9707\u60CA\uFF0C\u4F46\u53EF\u80FD\u4F1A\u7EE7\u7EED\u51C6\u5907\u665A\u5BB4\uFF0C\u4EE5\u540E\u518D\u5904\u7406\u8FD9\u4EF6\u4E8B\u3002"
+    - "\u5B8C\u6210\u665A\u5BB4\u540E\u518D\u53BB\u5904\u7406\uFF0C\u56E0\u4E3A\u6765\u5BBE\u4EEC\u5DF2\u7ECF\u5728\u8DEF\u4E0A\u4E86\u3002"
+    - "\u611F\u5230\u96BE\u8FC7\uFF0C\u4F46\u751F\u6D3B\u8FD8\u8981\u7EE7\u7EED\uFF0C\u6211\u4F1A\u6309\u8BA1\u5212\u8FDB\u884C\u665A\u5BB4\u3002"
+    CorrectAnswer: 
+    AnswerInfos: []
+  - Title: 
+    Content: "\u4F60\u5728\u8857\u4E0A\u770B\u5230\u4E00\u540D\u4E5E\u4E10\u88AB\u4EBA\u6253\u5012\u5728\u5730\u3002\u4F60\u4F1A\u600E\u4E48\u505A\uFF1F"
+    Answers:
+    - "\u7ACB\u523B\u4E0A\u524D\u5236\u6B62\u5E76\u62A5\u8B66\u3002"
+    - "\u89C2\u5BDF\u4E00\u4E0B\u60C5\u51B5\uFF0C\u7136\u540E\u51B3\u5B9A\u662F\u5426\u4ECB\u5165\u3002"
+    - "\u7EE7\u7EED\u8D70\u5F00\uFF0C\u56E0\u4E3A\u8FD9\u548C\u6211\u65E0\u5173\u3002"
+    - "\u611F\u5230\u540C\u60C5\uFF0C\u4F46\u53EF\u80FD\u4E0D\u4F1A\u4ECB\u5165\uFF0C\u56E0\u4E3A\u53EF\u80FD\u6709\u5371\u9669\u3002"
+    CorrectAnswer: 
     AnswerInfos: []
 --- !u!1001 &2755645732479501966
 PrefabInstance:
@@ -4545,11 +4519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2755645733888440587, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2755645733888440587, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2755645733888440587, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
       propertyPath: m_LocalPosition.x

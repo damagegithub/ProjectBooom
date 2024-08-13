@@ -26,15 +26,17 @@ namespace _ProjectBooom_.PuzzleMono.UI
             public string Text;
             public bool   AutoFade = true;
 
-            public SpeakMessage(string text)
-            {
-                Text = text;
-            }
+            public SpeakMessage(string text) => Text = text;
         }
 
         private Queue<SpeakMessage> DoctorTextQueue = new();
 
         public bool IsSpeaking { get; private set; }
+
+        private void OnEnable()
+        {
+            DoctorCanvasGroup.alpha = 0;
+        }
 
         /// <summary>
         ///     说话

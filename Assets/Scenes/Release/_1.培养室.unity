@@ -2521,7 +2521,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1772445552}
   - component: {fileID: 1772445554}
-  - component: {fileID: 1772445553}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D
   m_TagString: Untagged
@@ -2544,21 +2543,6 @@ Transform:
   m_Father: {fileID: 241383512}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &1772445553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772445551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343c40ad0bcf49618ccd417268bed8cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightSwitchTime: 0.2
-  SwitchName: "\u6D4B\u8BD5\u5F00\u5173_1"
-  SwitchState: 1
 --- !u!114 &1772445554
 MonoBehaviour:
   m_ObjectHideFlags: 0

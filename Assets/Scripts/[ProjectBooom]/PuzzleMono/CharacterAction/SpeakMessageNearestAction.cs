@@ -24,14 +24,14 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
         #endif
 
         /// <summary>
-        ///   是否可以中断当前对话并播放
+        ///     是否可以中断当前对话并播放
         /// </summary>
         [Header("是否可以中断当前对话并播放")]
         [SerializeField]
         public bool IsBreakable;
 
         /// <summary>
-        ///   对话内容
+        ///     对话内容
         /// </summary>
         [Header("对话内容")] [SerializeField] public string Message;
 
@@ -45,7 +45,7 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
         }
 
         /// <summary>
-        ///  播放对话
+        ///     播放对话
         /// </summary>
         private void Speak()
         {

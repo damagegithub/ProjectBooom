@@ -10,9 +10,12 @@ namespace _ProjectBooom_.DataStruct
     [Serializable]
     public class Variable
     {
-        [SerializeField] public  string Name;
-        [SerializeField] public  int    ID;
-        [SerializeField] private float  _value;
+        [SerializeField]
+        public string Name;
+        [SerializeField]
+        public int ID;
+        [SerializeField]
+        private float _value;
 
         public float Value
         {

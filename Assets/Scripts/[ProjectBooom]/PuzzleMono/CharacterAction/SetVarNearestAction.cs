@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _ProjectBooom_.PuzzleMono.CharacterAction
 {
     /// <summary>
-    ///  修改变量触发器
+    ///     修改变量触发器
     /// </summary>
     public class SetVarNearestAction : NearestAction
     {
@@ -25,7 +25,7 @@ namespace _ProjectBooom_.PuzzleMono.CharacterAction
             UnityEditor.Selection.activeObject = go;
         }
         #endif
-        
+
         public string VarName;
         public float  VarValue;
 

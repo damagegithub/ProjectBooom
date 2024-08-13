@@ -48,9 +48,9 @@ namespace _ProjectBooom_.ScenesScript
         public string DoctorText2;
 
         [Header("场景开场对话ID")]
-        public int LevelStartDialogIndex = 0;
+        public int LevelStartDialogIndex;
         [Header("场景结束对话ID")]
-        public int LevelEndDialogIndex = 0;
+        public int LevelEndDialogIndex;
 
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
@@ -100,10 +100,10 @@ namespace _ProjectBooom_.ScenesScript
         public void LevelEndAvgDialog()
         {
             StoryController.SetDebugText("场景结束AVG对话");
-            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex));
+            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex, true));
         }
 
-        private IEnumerator StartAVGSystemCoroutine(int dialogIndex)
+        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
         {
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
@@ -113,6 +113,11 @@ namespace _ProjectBooom_.ScenesScript
             while (CurrentDialogIndex == dialogIndex)
             {
                 yield return new WaitForEndOfFrame();
+            }
+
+            if (fadeEnd)
+            {
+                yield return BlackCanvasGroup.DOFade(1f, 1.0f).SetId(this).WaitForCompletion();
             }
 
             StoryController.TryFinishCurrentStory();

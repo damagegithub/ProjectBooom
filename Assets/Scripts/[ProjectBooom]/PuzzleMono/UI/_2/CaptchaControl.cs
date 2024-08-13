@@ -1,6 +1,5 @@
 using _ProjectBooom_.DataStruct;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,20 +7,20 @@ using UnityEngine.UI;
 namespace _ProjectBooom_.PuzzleMono.UI._2
 {
     /// <summary>
-    ///  验证码UI
+    ///     验证码UI
     /// </summary>
     public class CaptchaControl : MonoBehaviour
     {
-        public CanvasGroup CanvasGroup;
+        public CanvasGroup     CanvasGroup;
         public TextMeshProUGUI TitleText;
         public TextMeshProUGUI ContentText;
-        public Transform AnswerRoot;
-        public GameObject AnswerPrefab;
+        public Transform       AnswerRoot;
+        public GameObject      AnswerPrefab;
 
         public UnityEvent OnAnswerClick;
 
         public bool IsAnswered { get; private set; }
-        public bool IsCorrect { get; private set; }
+        public bool IsCorrect  { get; private set; }
 
         private CaptchaInfo CaptchaInfo;
 
@@ -39,8 +38,8 @@ namespace _ProjectBooom_.PuzzleMono.UI._2
 
             for (int i = 0; i < captchaInfo.Answers.Length; i++)
             {
-                var answer = captchaInfo.Answers[i];
-                var answerGo = Instantiate(AnswerPrefab, AnswerRoot);
+                string answer = captchaInfo.Answers[i];
+                GameObject answerGo = Instantiate(AnswerPrefab, AnswerRoot);
                 answerGo.GetComponentInChildren<TextMeshProUGUI>().text = answer;
                 answerGo.GetComponentInChildren<Button>().onClick.AddListener(() => OnAnyAnswerClick(answer));
             }
