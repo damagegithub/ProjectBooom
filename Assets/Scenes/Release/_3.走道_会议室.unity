@@ -596,9 +596,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2.5
+  SpineIdleTimeScale: 0.5
+  controlEnabled: 1
   RigidBody2D: {fileID: 0}
   collider2d: {fileID: 0}
-  controlEnabled: 1
   runAnimationName: walk
   idleAnimationName: idle
   runWalkDuration: 1.5
@@ -1865,6 +1866,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970329783}
   m_CullTransparentMesh: 1
+--- !u!1 &1006598692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006598694}
+  - component: {fileID: 1006598693}
+  m_Layer: 0
+  m_Name: DialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1006598693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006598692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e8774342a84cb18caa9aab15fedd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueUIGO: {fileID: 2497189196920159342, guid: 42c6514d79545f14696de6a1c388cde2, type: 3}
+--- !u!4 &1006598694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006598692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1043.2114, y: 560.27325, z: 1.472727}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1165936439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3184,8 +3230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugText: {fileID: 970329785}
   StoryInfos:
-  - StoryName: "\u5F00\u59CB\u52A8\u753B"
-    StoryDescription: "\u5F00\u59CB\u52A8\u753B"
+  - StoryName: "\u5F00\u59CBAVG"
+    StoryDescription: "\u5F00\u59CBAVG"
     IsBegin: 0
     IsFinished: 0
     BeginAction:
@@ -3193,7 +3239,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2039370002}
           m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._3_Scene, Assembly-CSharp
-          m_MethodName: StartInitAnimation
+          m_MethodName: LevelBeginAvgDialog
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3228,8 +3274,8 @@ MonoBehaviour:
     EndAction:
       m_PersistentCalls:
         m_Calls: []
-  - StoryName: "\u7ED3\u675F\u52A8\u753B"
-    StoryDescription: "\u7ED3\u675F\u52A8\u753B"
+  - StoryName: "\u7ED3\u675FAVG"
+    StoryDescription: "\u7ED3\u675FAVG"
     IsBegin: 0
     IsFinished: 0
     BeginAction:
@@ -3237,7 +3283,29 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2039370002}
           m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._3_Scene, Assembly-CSharp
-          m_MethodName: FinishAnimation
+          m_MethodName: LevelEndAvgDialog
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    EndAction:
+      m_PersistentCalls:
+        m_Calls: []
+  - StoryName: "\u7ED3\u675FAVG2"
+    StoryDescription: "\u7ED3\u675FAVG2"
+    IsBegin: 0
+    IsFinished: 0
+    BeginAction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2039370002}
+          m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._3_Scene, Assembly-CSharp
+          m_MethodName: LevelEndAvgDialog2
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3282,8 +3350,14 @@ MonoBehaviour:
   StoryController: {fileID: 2039370000}
   BlackCanvasGroup: {fileID: 1904852648}
   DoctorSpeakController: {fileID: 1264338626}
+  DialogueController: {fileID: 1006598693}
+  LevelStartDialogIndex: 301
+  LevelEndDialogIndex: 302
+  LevelEndDialogIndex2: 303
+  CurrentDialogIndex: -1
   FoldFileReceiveUI: {fileID: 1377964973}
   DesktopRectTrans: {fileID: 2055496707}
+  DesktopCanvasGroup: {fileID: 2055496710}
 --- !u!1 &2055496706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,9 +3448,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055496706}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &4611810960300861530
 PrefabInstance:

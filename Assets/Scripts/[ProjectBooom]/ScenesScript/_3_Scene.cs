@@ -2,13 +2,13 @@ using System.Collections;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._3;
 using DG.Tweening;
-using TMPro;
+using PBDialogueSystem;
 using UnityEngine;
 
 namespace _ProjectBooom_.ScenesScript
 {
     /// <summary>
-    /// 走道会议室
+    ///     走道会议室
     /// </summary>
     public class _3_Scene : MonoBehaviour
     {
@@ -18,24 +18,106 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("博士对话脚本")] public DoctorSpeakController DoctorSpeakController;
 
+        [Header("AVG控制器")]
+        public DialogueController DialogueController;
+
+        [Header("场景开场对话ID")]
+        public int LevelStartDialogIndex;
+
+        [Header("场景结束对话ID")]
+        public int LevelEndDialogIndex;
+
+        [Header("场景结束对话ID2")]
+        public int LevelEndDialogIndex2;
+
+
+        [Header("进行中的对话ID")]
+        public int CurrentDialogIndex = -1;
+
         [Header("文件接收处")] public FoldFileReceiveUI FoldFileReceiveUI;
 
         [Header("简陋电脑UI")] public RectTransform DesktopRectTrans;
+        [Header("电脑画布")]   public CanvasGroup   DesktopCanvasGroup;
+
+
+        public void DialogFinish(int dialogIndex)
+        {
+            if (CurrentDialogIndex == dialogIndex)
+            {
+                CurrentDialogIndex = -1;
+            }
+        }
 
         private void Awake()
         {
+            if (!DialogueController)
+            {
+                DialogueController = FindObjectOfType<DialogueController>(true);
+            }
+
             if (!DoctorSpeakController)
             {
                 DoctorSpeakController = FindObjectOfType<DoctorSpeakController>(true);
             }
 
+            DialogueController.OnOneConversationEnd += DialogFinish;
             BlackCanvasGroup.alpha = 1;
             DesktopRectTrans.localScale = Vector3.zero;
+            DesktopCanvasGroup.alpha = 1;
+            DesktopCanvasGroup.interactable = true;
+            DesktopCanvasGroup.blocksRaycasts = true;
         }
 
         /// <summary>
-        /// 开场动画
-        ///  </summary>
+        ///     场景开始的对话
+        /// </summary>
+        public void LevelBeginAvgDialog()
+        {
+            StoryController.SetDebugText("场景开始AVG对话");
+            StartCoroutine(StartAVGSystemCoroutine(LevelStartDialogIndex));
+        }
+
+        /// <summary>
+        ///     场景结束的对话
+        /// </summary>
+        public void LevelEndAvgDialog()
+        {
+            StoryController.SetDebugText("场景结束AVG对话");
+            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex, true));
+        }
+
+        /// <summary>
+        ///     场景结束的对话2
+        /// </summary>
+        public void LevelEndAvgDialog2()
+        {
+            StoryController.SetDebugText("场景结束AVG对话2");
+            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex2, true));
+        }
+
+        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
+        {
+            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+
+            CurrentDialogIndex = dialogIndex;
+            DialogueController.StartConversation(dialogIndex);
+
+            while (CurrentDialogIndex == dialogIndex)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (fadeEnd)
+            {
+                yield return BlackCanvasGroup.DOFade(1f, 1.0f).SetId(this).WaitForCompletion();
+            }
+
+            StoryController.TryFinishCurrentStory();
+        }
+
+        /// <summary>
+        ///     开场动画
+        /// </summary>
         public void StartInitAnimation()
         {
             DOTween.Sequence()
@@ -89,7 +171,7 @@ namespace _ProjectBooom_.ScenesScript
         }
 
         /// <summary>
-        ///  结束动画
+        ///     结束动画
         /// </summary>
         public void FinishAnimation()
         {
