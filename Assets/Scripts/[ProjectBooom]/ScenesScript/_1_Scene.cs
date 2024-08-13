@@ -19,16 +19,19 @@ namespace _ProjectBooom_.ScenesScript
 
         public StoryController StoryController;
 
-        [Header("全屏遮挡画布")] 
+        [Header("AVG控制器")]
+        public DialogueController DialogueController;
+
+        [Header("全屏遮挡画布")]
         public CanvasGroup BlackCanvasGroup;
 
         // [Header("苏醒动画")] 
         // public Animator StartAnimator;
 
-        [Header("博士对话脚本")] 
+        [Header("博士对话脚本")]
         public DoctorSpeakController DoctorSpeakController;
 
-        [Header("苏醒动画时间")] 
+        [Header("苏醒动画时间")]
         public float StartAnimationTime = 2.0f;
 
         [Header("学习移动左按键")]
@@ -37,7 +40,7 @@ namespace _ProjectBooom_.ScenesScript
         [Header("学习移动右按键")]
         public CanvasGroup RightButton;
 
-        [Header("开始场景对话")] 
+        [Header("开始场景对话")]
         public string DoctorText0;
 
         [Header("学习移动对话")]
@@ -46,9 +49,6 @@ namespace _ProjectBooom_.ScenesScript
         [Header("完成场景对话")]
         public string DoctorText2;
 
-        [Header("AVG控制器")] 
-        public DialogueController DialogueController;
-        
         [Header("场景开场对话ID")]
         public int LevelStartDialogIndex = 0;
         [Header("场景结束对话ID")]
@@ -76,6 +76,7 @@ namespace _ProjectBooom_.ScenesScript
             {
                 DialogueController = FindObjectOfType<DialogueController>();
             }
+
             DialogueController.OnOneConversationEnd += DialogFinish;
 
             BlackCanvasGroup.alpha = 1;
@@ -106,6 +107,8 @@ namespace _ProjectBooom_.ScenesScript
 
         private IEnumerator StartAVGSystemCoroutine(int dialogIndex)
         {
+            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+
             CurrentDialogIndex = dialogIndex;
             DialogueController.StartConversation(dialogIndex);
 
@@ -113,7 +116,7 @@ namespace _ProjectBooom_.ScenesScript
             {
                 yield return new WaitForEndOfFrame();
             }
-            
+
             StoryController.TryFinishCurrentStory();
         }
 
@@ -121,7 +124,7 @@ namespace _ProjectBooom_.ScenesScript
         {
             StartCoroutine(LevelTutorialCoroutine());
         }
-        
+
         private IEnumerator LevelTutorialCoroutine()
         {
             StoryController.SetDebugText("教程中");
@@ -145,27 +148,27 @@ namespace _ProjectBooom_.ScenesScript
             yield return DOTween
                         .Sequence()
                         .Append(BlackCanvasGroup.DOFade(0f, 1.0f))
-                        //  // 播放苏醒动画
-                        // .AppendCallback(() =>
-                        //  {
-                        //      // if (StartAnimator)
-                        //      // {
-                        //      //     StartAnimator.enabled = true;
-                        //      //     StartAnimator.SetTrigger("Start");
-                        //      // }
-                        //
-                        //      StoryController.SetDebugText("播放苏醒动画");
-                        //  })
-                        //  // 等待动画播放完毕
-                        // .AppendInterval(StartAnimationTime)
-                        //  // 关闭动画
-                        // .AppendCallback(() =>
-                        //  {
-                        //      if (StartAnimator)
-                        //      {
-                        //          StartAnimator.enabled = false;
-                        //      }
-                        //  })
+                         //  // 播放苏醒动画
+                         // .AppendCallback(() =>
+                         //  {
+                         //      // if (StartAnimator)
+                         //      // {
+                         //      //     StartAnimator.enabled = true;
+                         //      //     StartAnimator.SetTrigger("Start");
+                         //      // }
+                         //
+                         //      StoryController.SetDebugText("播放苏醒动画");
+                         //  })
+                         //  // 等待动画播放完毕
+                         // .AppendInterval(StartAnimationTime)
+                         //  // 关闭动画
+                         // .AppendCallback(() =>
+                         //  {
+                         //      if (StartAnimator)
+                         //      {
+                         //          StartAnimator.enabled = false;
+                         //      }
+                         //  })
                          // 显示博士对话框
                         .AppendCallback(() =>
                          {

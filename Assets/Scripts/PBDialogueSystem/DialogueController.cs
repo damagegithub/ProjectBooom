@@ -18,8 +18,18 @@ namespace PBDialogueSystem
 
         void Start()
         {
-            GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
-            DialogueUI = instance.GetComponent<DialogueStandardUI>();
+            // 先尝试在场景中找到对话UI
+            if (!DialogueUI)
+            {
+                DialogueUI = FindObjectOfType<DialogueStandardUI>(true);
+            }
+
+            // 如果场景中没有对话UI，则实例化一个
+            if (!DialogueUI)
+            {
+                GameObject instance = Instantiate(DialogueUIGO, transform.position, Quaternion.identity);
+                DialogueUI = instance.GetComponent<DialogueStandardUI>();
+            }
             DialogueUI.gameObject.SetActive(false);
             InitConversationData();
             // StartConversation(101);
