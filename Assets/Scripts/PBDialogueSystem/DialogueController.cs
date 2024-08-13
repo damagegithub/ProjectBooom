@@ -16,6 +16,11 @@ namespace PBDialogueSystem
         
         public event Action<int> OnOneConversationEnd;
 
+        public void ClearOnOneConversationEnd()
+        {
+            OnOneConversationEnd = null;
+        }
+
         void Start()
         {
             // 先尝试在场景中找到对话UI
