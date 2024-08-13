@@ -34,14 +34,23 @@ namespace _ProjectBooom_.ScenesScript
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
 
-        [Header("文件接收处")] public FoldFileReceiveUI FoldFileReceiveUI;
+        [Header("文件接收处")] 
+        public FoldFileReceiveUI FoldFileReceiveUI;
 
-        [Header("简陋电脑UI")] public RectTransform DesktopRectTrans;
-        [Header("电脑画布")]   public CanvasGroup   DesktopCanvasGroup;
+        [Header("简陋电脑UI")] 
+        public RectTransform DesktopRectTrans;
+        
+        [Header("电脑画布")]   
+        public CanvasGroup   DesktopCanvasGroup;
 
-        [Header("打开电脑前的博士对话")] public List<string> PreActionTexts;
+        [Header("打开电脑前的博士对话")] 
+        public List<string> PreActionTexts;
 
-        [Header("打开电脑时的博士对话")] public List<string> InActionTexts;
+        [Header("打开电脑时的博士对话")] 
+        public List<string> InActionTexts;
+        
+        [Header("需要删除的文件数量")]
+        public int DeleteFileCount = 2;
 
         public void DialogFinish(int dialogIndex)
         {
@@ -118,17 +127,6 @@ namespace _ProjectBooom_.ScenesScript
             StoryController.TryFinishCurrentStory();
         }
 
-        // /// <summary>
-        // ///     开场动画
-        // /// </summary>
-        // public void StartInitAnimation()
-        // {
-        //     DOTween.Sequence()
-        //            .Append(BlackCanvasGroup.DOFade(0f, 1f))
-        //            .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
-        //            .SetId(this);
-        // }
-
         public void StartComputeAction()
         {
             StartCoroutine(StartComputeActionCoroutine());
@@ -150,7 +148,7 @@ namespace _ProjectBooom_.ScenesScript
             const string doctorText4 = "博士：请将文件拖拽到回收站里";
             float waitTime = 5f;
             // 等待完成
-            while (FoldFileReceiveUI.FileUIs.Count < 3)
+            while (FoldFileReceiveUI.FileUIs.Count < DeleteFileCount)
             {
                 yield return new WaitForEndOfFrame();
                 waitTime -= Time.deltaTime;
@@ -172,16 +170,5 @@ namespace _ProjectBooom_.ScenesScript
 
             StoryController.TryFinishCurrentStory();
         }
-
-        // /// <summary>
-        // ///     结束动画
-        // /// </summary>
-        // public void FinishAnimation()
-        // {
-        //     DOTween.Sequence()
-        //            .Append(BlackCanvasGroup.DOFade(1f, 1f))
-        //            .OnComplete(() => { StoryController.TryFinishCurrentStory(); })
-        //            .SetId(this);
-        // }
     }
 }
