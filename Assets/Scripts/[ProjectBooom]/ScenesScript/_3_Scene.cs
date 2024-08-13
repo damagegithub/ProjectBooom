@@ -30,7 +30,7 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("场景结束对话ID2")]
         public int LevelEndDialogIndex2;
-        
+
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
 

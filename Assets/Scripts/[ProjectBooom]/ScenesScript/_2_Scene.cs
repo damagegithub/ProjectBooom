@@ -16,7 +16,7 @@ namespace _ProjectBooom_.ScenesScript
     public class _2_Scene : MonoBehaviour
     {
         public PlayerController PlayerController;
-        
+
         public StoryController StoryController;
 
         public CaptchaControl CaptchaControl;
@@ -60,7 +60,7 @@ namespace _ProjectBooom_.ScenesScript
             {
                 PlayerController = FindObjectOfType<PlayerController>(true);
             }
-            
+
             if (!DialogueController)
             {
                 DialogueController = FindObjectOfType<DialogueController>(true);
@@ -77,7 +77,7 @@ namespace _ProjectBooom_.ScenesScript
         }
 
         /// <summary>
-        ///  场景开始的对话
+        ///     场景开始的对话
         /// </summary>
         public void LevelBeginAvgDialog()
         {
@@ -93,13 +93,14 @@ namespace _ProjectBooom_.ScenesScript
             {
                 yield return new WaitForEndOfFrame();
             }
+
             // 停止移动并开启对话
             PlayerController.maxSpeed = 0;
             yield return StartAVGSystemCoroutine(LevelStartDialogIndex);
         }
 
         /// <summary>
-        ///  场景结束的对话
+        ///     场景结束的对话
         /// </summary>
         public void LevelEndAvgDialog()
         {
