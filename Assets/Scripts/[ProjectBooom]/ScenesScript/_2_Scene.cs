@@ -3,6 +3,7 @@ using _ProjectBooom_.DataStruct;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._2;
 using DG.Tweening;
+using PBDialogueSystem;
 using UnityEngine;
 
 namespace _ProjectBooom_.ScenesScript
@@ -16,12 +17,29 @@ namespace _ProjectBooom_.ScenesScript
 
         public CaptchaControl CaptchaControl;
 
+        [Header("AVG控制器")]
+        public DialogueController DialogueController;
+        
         [Header("全屏遮挡画布")] public CanvasGroup BlackCanvasGroup;
 
         [Header("博士对话脚本")] public DoctorSpeakController DoctorSpeakController;
 
         [SerializeField] [Header("验证码信息")] public CaptchaInfo[] CaptchaInfos;
 
+        [Header("场景开场对话ID")]
+        public int LevelStartDialogIndex = 0;
+        [Header("场景结束对话ID")]
+        public int LevelEndDialogIndex = 0;
+
+        [Header("进行中的对话ID")]
+        public int CurrentDialogIndex = -1;
+        public void DialogFinish(int dialogIndex)
+        {
+            if (CurrentDialogIndex == dialogIndex)
+            {
+                CurrentDialogIndex = -1;
+            }
+        }
         private void Awake()
         {
             if (!DoctorSpeakController)
