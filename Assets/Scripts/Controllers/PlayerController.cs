@@ -19,6 +19,8 @@ namespace Controllers
         public float maxSpeed = 7;
         [Header("Spine Idle 动画速度")]
         public float SpineIdleTimeScale = 0.5f;
+        [Header("Spine Walk 动画速度")]
+        public float SpineWalkTimeScale = 1f;
         [Header("是否可控制")]
         public bool controlEnabled = true;
 
@@ -106,7 +108,7 @@ namespace Controllers
             skeletonAnimation.timeScale = OldState switch
             {
                 AnimationType.Idle => SpineIdleTimeScale,
-                AnimationType.Run  => 1,
+                AnimationType.Run  => SpineWalkTimeScale,
                 _                  => skeletonAnimation.timeScale,
             };
         }
