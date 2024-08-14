@@ -18,22 +18,29 @@ public class DebugLevel7Story : MonoBehaviour
         }else if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
         {
             //meta操作不正确
-            var startGameTimes = PlayerPrefs.GetInt("Level7MetaDoNothing", 1);
-            if (startGameTimes < 3)
-            {
-                StartConversation702();
-            }
-            else
-            {
-                StartConversation703();
-            }
+            Invoke(nameof(StartConversationRepeat), 1f);
         }
        
+    }
+
+    private void StartConversationRepeat()
+    {
+        var startGameTimes = PlayerPrefs.GetInt("Level7MetaDoNothing", 1);
+        PlayerPrefs.SetInt("Level7MetaDoNothing", startGameTimes + 1);
+        if (startGameTimes < 3)
+        {
+            StartConversation702();
+        }
+        else
+        {
+            StartConversation703();
+        }
     }
     
     private void StartConversation702()
     {
-        dialogueController.StartConversation(702);
+        Debug.Log("StartConversation702");
+        dialogueController.StartConversation(101);//todo 702
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);
@@ -43,7 +50,8 @@ public class DebugLevel7Story : MonoBehaviour
     
     private void StartConversation703()
     {
-        dialogueController.StartConversation(703);
+        Debug.Log("StartConversation703");
+        dialogueController.StartConversation(101);//todo 703
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);
@@ -53,7 +61,7 @@ public class DebugLevel7Story : MonoBehaviour
     
     private void StartConversation()
     {
-        dialogueController.StartConversation(101);
+        dialogueController.StartConversation(101);//todo 701
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);

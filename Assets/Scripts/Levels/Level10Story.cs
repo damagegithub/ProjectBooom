@@ -1,43 +1,44 @@
 using System.Collections;
-using System.Collections.Generic;
 using MetaGameUtils;
 using PBDialogueSystem;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Level10Story : MonoBehaviour
+namespace Levels
 {
-    public DialogueController dialogueController;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Level10Story : MonoBehaviour
     {
-        Invoke(nameof(StartConversation), 2f);
-    }
+        public DialogueController dialogueController;
 
-    private void StartConversation()
-    {
-
-        dialogueController.StartConversation(101);//todo 1002
-        dialogueController.OnOneConversationEnd += (int id) =>
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.Log("Conversation ended " + id);
-            PlayerPrefs.SetInt("Level10Finished", 1);
-            StartCoroutine(ExecuteMetaAfterDelay(2));
-        };
-    }
-    
-    IEnumerator ExecuteMetaAfterDelay(float delay)
-    {
-        // 等待指定的时间
-        yield return new WaitForSeconds(delay);
-        
-        MetaGameUtil.CloseGame();
-    }
+            Invoke(nameof(StartConversation), 2f);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        private void StartConversation()
+        {
+
+            dialogueController.StartConversation(101);//todo 1002
+            dialogueController.OnOneConversationEnd += (int id) =>
+            {
+                Debug.Log("Conversation ended " + id);
+                PlayerPrefs.SetInt("Level10Finished", 1);
+                StartCoroutine(ExecuteMetaAfterDelay(2));
+            };
+        }
+    
+        IEnumerator ExecuteMetaAfterDelay(float delay)
+        {
+            // 等待指定的时间
+            yield return new WaitForSeconds(delay);
         
+            MetaGameUtil.CloseGame();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,8 @@ namespace PBDialogueSystem
         {
             if (DialogueUI.GameObject().activeSelf == false)
             {
-                DialogueUI.GameObject().SetActive(true);
+                DialogueUI.GameObject().SetActive(true);        
+                DialogueUI.GetComponent<CanvasGroup>().DOFade(1, 2);
             }
 
             _currentDialogueID++;

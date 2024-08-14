@@ -68,4 +68,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release/_8A2.unity
     guid: 6e747cf2ddeee3946920c20fa26e6f78
+  - enabled: 1
+    path: Assets/Scenes/Release/_8B.unity
+    guid: 76bcfa4f3e4287341a7321296e620776
+  - enabled: 1
+    path: Assets/Scenes/Release/_11.unity
+    guid: cda4346d3d1a4834185f6a16ba406d2e
+  - enabled: 1
+    path: Assets/Scenes/Release/_9.unity
+    guid: c36507b2c5ff41d44a22a57f94fe1d63
+  - enabled: 1
+    path: Assets/Scenes/Release/_8A.unity
+    guid: 975a97b5975f09648a90c7aa9630bd2f
+  - enabled: 1
+    path: Assets/Scenes/Release/_1.培养室.unity
+    guid: f5dece29d9b614341bb7c7f3abc4de5a
+  - enabled: 1
+    path: Assets/Scenes/Release/_10A.unity
+    guid: 459424e954183b94d92bb9d673234423
   m_configObjects: {}

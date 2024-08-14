@@ -67,6 +67,26 @@ public class SelectCharacterController : MonoBehaviour
                         //跳转场景
                         SceneManager.LoadScene("_1.培养室");
                         SceneManager.UnloadSceneAsync("SelectCharacterScene");
+                        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
+                        {
+                            SceneManager.LoadScene("_8A");
+                            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+                        }
+                        else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 9)
+                        {
+                            SceneManager.LoadScene("_9");
+                            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+                        }
+                        else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
+                        {
+                            SceneManager.LoadScene("_10A");
+                            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+                        }
+                        else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
+                        {
+                            SceneManager.LoadScene("_11");
+                            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+                        }
                     });
                     break;
                 }
