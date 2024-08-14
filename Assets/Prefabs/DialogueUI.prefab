@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2497189196920159250}
   - component: {fileID: 2497189196920159249}
   - component: {fileID: 2497189196920159251}
+  - component: {fileID: 8393035977339643155}
   m_Layer: 0
   m_Name: DialogueUI
   m_TagString: Untagged
@@ -122,6 +123,18 @@ MonoBehaviour:
   FullBodyImage1: {fileID: 2497189198806304960}
   FullBodyImage2: {fileID: 2497189197261419820}
   FullBodyImage3: {fileID: 2497189197880787699}
+--- !u!225 &8393035977339643155
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497189196920159342}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2497189197169979325
 GameObject:
   m_ObjectHideFlags: 0

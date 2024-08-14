@@ -17,6 +17,7 @@ public class Level9Story : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Level9MetaCreated", -1) == 1)
         {
+            Debug.Log("StartConversation---902");
             dialogueController.StartConversation(101);//todo 902
         }
         else
