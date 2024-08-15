@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dea88b8bfbd93941b433ee338a4192d, type: 3}
   m_Name: CameraColorDispersion
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 1000
     blitMaterial: {fileID: 2100000, guid: fad600b984fc9804ebebc1125e176625, type: 2}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dea88b8bfbd93941b433ee338a4192d, type: 3}
   m_Name: CameraNoise
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 1000
     blitMaterial: {fileID: 2100000, guid: bb7c7996de421174c96f2beacd1dedf5, type: 2}
