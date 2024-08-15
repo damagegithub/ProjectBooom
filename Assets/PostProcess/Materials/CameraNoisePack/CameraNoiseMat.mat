@@ -51,7 +51,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Lerp: 0.25
+    - _Lerp: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
     - _dotted_noise_strength: 0.2

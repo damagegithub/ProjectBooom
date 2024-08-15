@@ -42,10 +42,10 @@ namespace _ProjectBooom_.ScenesScript
         public string tip3 = "门已打开, 这样路就打通了";
         public string tip4 = "电路已连接";
 
-        public Image BackgroundNormal;
-        public Image BackgroundSpotLight;
-        public Image BackgroundSpotLightAndOpenCabinet;
-        public Image BackgroundSpotLightAndOpenCabinetAndOpenDoor;
+        public SpriteRenderer BackgroundNormal;
+        public SpriteRenderer BackgroundSpotLight;
+        public SpriteRenderer BackgroundSpotLightAndOpenCabinet;
+        public SpriteRenderer BackgroundSpotLightAndOpenCabinetAndOpenDoor;
 
         public SetVarNearestAction lockAction1;
         public SetVarNearestAction lockAction2;
@@ -65,7 +65,8 @@ namespace _ProjectBooom_.ScenesScript
 
             DialogueController.OnOneConversationEnd += DialogFinish;
             BlackCanvasGroup.alpha = 1;
-
+            
+            smoothLight.SetActive(false);
             BackgroundNormal.DOFade(1f, 0f).SetId(this);
             BackgroundSpotLight.DOFade(0f, 0f).SetId(this);
             BackgroundSpotLightAndOpenCabinet.DOFade(0f, 0f).SetId(this);
