@@ -65,8 +65,8 @@ namespace _ProjectBooom_.ScenesScript
             StoryController.SetDebugText("场景开始AVG对话");
             yield return StartAVGSystemCoroutine(DialogIndex0);
             // 控制移动
-            var dir = TargetPosX - PlayerController02.transform.position.x;
-            var speed = PlayerController02.maxSpeed * Mathf.Sign(dir);
+            float dir = TargetPosX - PlayerController02.transform.position.x;
+            float speed = PlayerController02.maxSpeed * Mathf.Sign(dir);
             PlayerController02.ScriptSpeed = new Vector2(speed, 0);
 
             float newDir = dir;
@@ -77,11 +77,13 @@ namespace _ProjectBooom_.ScenesScript
             }
 
             PlayerController02.ScriptSpeed = Vector2.zero;
-            var playerPos = PlayerController02.transform.position;
+            Vector3 playerPos = PlayerController02.transform.position;
             playerPos.x = TargetPosX;
             PlayerController02.transform.position = playerPos;
 
             yield return StartAVGSystemCoroutine(DialogIndex1, true);
+            
+            StoryController.TryFinishCurrentStory();
         }
 
         private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
