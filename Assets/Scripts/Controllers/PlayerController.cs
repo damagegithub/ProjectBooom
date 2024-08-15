@@ -26,7 +26,7 @@ namespace Controllers
 
         public Rigidbody2D RigidBody2D;
         public Collider2D  collider2d;
-        public Bounds Bounds => collider2d.bounds;
+        public Bounds      Bounds => collider2d.bounds;
 
         [SpineAnimation] public string            runAnimationName;
         [SpineAnimation] public string            idleAnimationName;
@@ -59,11 +59,18 @@ namespace Controllers
 
         private AnimationType OldState = AnimationType.Idle;
 
+        public bool IsScriptControl;
+        public Vector2 ScriptSpeed;
+
         private void Update()
         {
-            if (controlEnabled)
+            Vector2 move = Vector2.zero;
+            if (IsScriptControl)
             {
-                var move = Vector2.zero;
+                move = ScriptSpeed;
+            }
+            else if (controlEnabled)
+            {
                 if (Input.GetKey(KeyCode.A))
                 {
                     move.x -= maxSpeed;
@@ -73,7 +80,10 @@ namespace Controllers
                 {
                     move.x += maxSpeed;
                 }
+            }
 
+            if (IsScriptControl || controlEnabled)
+            {
                 if (!Mathf.Approximately(move.x, 0f))
                 {
                     bool direction = move.x < 0;

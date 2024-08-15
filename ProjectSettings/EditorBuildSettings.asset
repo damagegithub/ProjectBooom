@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: "Assets/Scenes/Release/_3_4.\u4F1A\u8BAE\u5BA4.unity"
     guid: a81c906589a6b204fa077e8fda67d076
   - enabled: 1
-    path: "Assets/Scenes/Release/_4.\u4F1A\u8BAE\u5BA4.unity"
+    path: "Assets/Scenes/Release/_4.\u4F1A\u8BAE\u5BA4.obsolete.unity"
     guid: a330e38395f3b79479b4bf1a9314cc17
   - enabled: 1
     path: "Assets/Scenes/Release/_5.\u57F9\u517B\u5BA4.unity"
