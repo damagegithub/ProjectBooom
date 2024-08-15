@@ -2844,6 +2844,7 @@ MonoBehaviour:
   FileNameText: {fileID: 1165936441}
   FileReceiveUIs:
   - {fileID: 1377964973}
+  MainCamera: {fileID: 1858229121}
 --- !u!1 &1168934197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,8 +2913,8 @@ Canvas:
   m_GameObject: {fileID: 1168934197}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1858229121}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5071,6 +5072,9 @@ MonoBehaviour:
   DeleteComputedCanvasGroup: {fileID: 1774268154}
   DeleteComputedWaitSeconds: 3
   ConferenceRoomScene: "_3_4.\u4F1A\u8BAE\u5BA4"
+  Renderer2DData: {fileID: 11400000, guid: 566f928ca220f9c498124e155211cf4b, type: 2}
+  CameraNoiseBlit: CameraNoise
+  CameraColorDispersionBlit: CameraColorDispersion
 --- !u!1 &2055496706
 GameObject:
   m_ObjectHideFlags: 0

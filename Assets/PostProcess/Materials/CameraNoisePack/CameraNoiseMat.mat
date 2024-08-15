@@ -51,13 +51,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _Lerp: 0.25
     - _QueueControl: 0
     - _QueueOffset: 0
     - _dotted_noise_strength: 0.2
     - _horz_dist_strength: 0.008695652
-    - _horz_wav_screen_size: 50
+    - _horz_wav_screen_size: 1920
     - _horz_wav_strength: 0.01
-    - _horz_wav_vert_size: 100
+    - _horz_wav_vert_size: 1920
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

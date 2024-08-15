@@ -24,6 +24,8 @@ namespace _ProjectBooom_.PuzzleMono.UI._3
 
         public List<FileReceiveUI> FileReceiveUIs = new();
 
+        public Camera MainCamera;
+
         public void StartDrag(FileUI fileUI)
         {
             SourceFileUI = fileUI;
@@ -72,7 +74,15 @@ namespace _ProjectBooom_.PuzzleMono.UI._3
             // 检查所有的文件接收处UI
             foreach (FileReceiveUI fileReceiveUI in FileReceiveUIs)
             {
-                if (RectTransformUtility.RectangleContainsScreenPoint(fileReceiveUI.FoldRectTrans, mousePosScreen))
+                if (MainCamera 
+                  && RectTransformUtility
+                       .RectangleContainsScreenPoint(fileReceiveUI.FoldRectTrans, mousePosScreen, MainCamera))
+                {
+                    fileReceiveUI.ReceiveFile(this);
+                    return;
+                }
+                else if (RectTransformUtility
+                        .RectangleContainsScreenPoint(fileReceiveUI.FoldRectTrans, mousePosScreen))
                 {
                     fileReceiveUI.ReceiveFile(this);
                     return;

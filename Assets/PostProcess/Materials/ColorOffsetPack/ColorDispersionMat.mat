@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColorOffsetMat
+  m_Name: ColorDispersionMat
   m_Shader: {fileID: -6465566751694194690, guid: 3e7c3d72cf6fda244b20d3fb0f89734c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -68,7 +68,7 @@ Material:
     - _OffsetBlend: 1
     - _OffsetBloomIntensive: 1
     - _OffsetColorMultiple: 0.2
-    - _OffsetIntensive: -6
+    - _OffsetIntensive: -3
     - _OffsetWeight: 0.25
     - _QueueControl: 0
     - _QueueOffset: 0

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._3;
+using Cyan;
 using DG.Tweening;
 using PBDialogueSystem;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 namespace _ProjectBooom_.ScenesScript
@@ -63,6 +65,16 @@ namespace _ProjectBooom_.ScenesScript
         [Header("会议室场景名")]
         public string ConferenceRoomScene;
 
+        [Header("默认渲染管线")]
+        public Renderer2DData Renderer2DData;
+        [Header("相机噪音Blit")]
+        public string CameraNoiseBlit = "CameraNoise";
+        [Header("相机色散Blit")]
+        public string CameraColorDispersionBlit = "CameraColorDispersion";
+
+        private  ScriptableRendererFeature _cameraNoiseData;
+        private  ScriptableRendererFeature _cameraColorDispersionData;
+
         public void DialogFinish(int dialogIndex)
         {
             if (CurrentDialogIndex == dialogIndex)
@@ -89,6 +101,15 @@ namespace _ProjectBooom_.ScenesScript
             DesktopCanvasGroup.alpha = 1;
             DesktopCanvasGroup.interactable = true;
             DesktopCanvasGroup.blocksRaycasts = true;
+
+            _cameraNoiseData = Renderer2DData
+                              .rendererFeatures
+                              .Find(srf => srf.name.Equals(CameraNoiseBlit));
+            _cameraColorDispersionData = Renderer2DData
+                                        .rendererFeatures
+                                        .Find(srf => srf.name.Equals(CameraColorDispersionBlit));
+            _cameraNoiseData.SetActive(false);
+            _cameraColorDispersionData.SetActive(false);
         }
 
         /// <summary>
@@ -145,7 +166,19 @@ namespace _ProjectBooom_.ScenesScript
             }
 
             // 打开电脑
-            DesktopRectTrans.DOScale(Vector3.one, 1f).SetId(this);
+            yield return DOTween.Sequence()
+                                .Append(DesktopCanvasGroup.DOFade(0f, 0f))
+                                .Join(DesktopRectTrans.DOScale(Vector3.one, 0f))
+                                .Append(DesktopCanvasGroup.DOFade(1f, 1f))
+                                .JoinCallback(() =>
+                                 {
+                                     _cameraNoiseData.SetActive(true);
+                                     _cameraColorDispersionData.SetActive(true);
+                                 })
+                                .SetEase(Ease.Linear)
+                                .SetId(this)
+                                .WaitForCompletion();
+
             yield return DoctorSpeakController
                .SpeakAndWait("博士：首先你需要打开文件夹 请查看一下", true);
 
@@ -167,7 +200,17 @@ namespace _ProjectBooom_.ScenesScript
             DeleteComputedCanvasGroup.alpha = 1;
             // 对话结束等待3秒返回
             yield return new WaitForSeconds(DeleteComputedWaitSeconds);
-            DesktopRectTrans.DOScale(Vector3.zero, 1f).SetId(this);
+            // DesktopRectTrans.DOScale(Vector3.zero, 1f).SetId(this);
+            yield return DOTween.Sequence()
+                                .Append(DesktopCanvasGroup.DOFade(0f, 1f))
+                                .JoinCallback(() =>
+                                 {
+                                     _cameraNoiseData.SetActive(false);
+                                     _cameraColorDispersionData.SetActive(false);
+                                 })
+                                .SetEase(Ease.Linear)
+                                .SetId(this)
+                                .WaitForCompletion();
             // 302 对话
             yield return StartAVGSystemCoroutine(LevelEndDialogIndex, false, false);
             DoctorSpeakController.SpeakWithoutFade("继续向左进入会议室");
