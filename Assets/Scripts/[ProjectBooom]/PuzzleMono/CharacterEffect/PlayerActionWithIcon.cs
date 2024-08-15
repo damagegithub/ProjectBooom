@@ -61,7 +61,7 @@ namespace _ProjectBooom_.PuzzleMono.CharacterEffect
                        .Append(_SR_Icon.DOFade(1f, IconMoveDuration))
                        .SetId(this);
             }
-            else if (nearestAction is SwitchNearestAction)
+            else if (nearestAction is SwitchNearestAction || nearestAction is SetVarNearestAction)
             {
                 _SR_Icon.sprite = AssetRef.Instance.SwitchTipIcon;
                 _SR_Icon.enabled = true;

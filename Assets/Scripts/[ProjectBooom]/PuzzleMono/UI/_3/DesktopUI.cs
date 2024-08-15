@@ -48,7 +48,7 @@ namespace _ProjectBooom_.PuzzleMono.UI._3
                 fileUI.FileImage.enabled = false;
                 fileUI.FileNameText.SetText(pureFileName);
 
-                var images = customUI.GetComponentsInChildren<Image>(true);
+                Image[] images = customUI.GetComponentsInChildren<Image>(true);
                 for (int i = 0; i < images.Length; i++)
                 {
                     images[i].enabled = false;

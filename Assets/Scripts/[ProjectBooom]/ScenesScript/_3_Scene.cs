@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using _ProjectBooom_.PuzzleMono.UI._3;
 using DG.Tweening;
 using PBDialogueSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _ProjectBooom_.ScenesScript
 {
@@ -34,23 +36,32 @@ namespace _ProjectBooom_.ScenesScript
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
 
-        [Header("文件接收处")] 
+        [Header("文件接收处")]
         public FoldFileReceiveUI FoldFileReceiveUI;
 
-        [Header("简陋电脑UI")] 
+        [Header("简陋电脑UI")]
         public RectTransform DesktopRectTrans;
-        
-        [Header("电脑画布")]   
-        public CanvasGroup   DesktopCanvasGroup;
 
-        [Header("打开电脑前的博士对话")] 
+        [Header("电脑画布")]
+        public CanvasGroup DesktopCanvasGroup;
+
+        [Header("打开电脑前的博士对话")]
         public List<string> PreActionTexts;
 
-        [Header("打开电脑时的博士对话")] 
+        [Header("打开电脑时的博士对话")]
         public List<string> InActionTexts;
-        
+
         [Header("需要删除的文件数量")]
         public int DeleteFileCount = 2;
+
+        [Header("删除完成通知UI")]
+        public CanvasGroup DeleteComputedCanvasGroup;
+
+        [Header("删除完成等待时间")]
+        public float DeleteComputedWaitSeconds = 3f;
+
+        [Header("会议室场景名")]
+        public string ConferenceRoomScene;
 
         public void DialogFinish(int dialogIndex)
         {
@@ -89,25 +100,7 @@ namespace _ProjectBooom_.ScenesScript
             StartCoroutine(StartAVGSystemCoroutine(LevelStartDialogIndex));
         }
 
-        /// <summary>
-        ///     场景结束的对话
-        /// </summary>
-        public void LevelEndAvgDialog()
-        {
-            StoryController.SetDebugText("场景结束AVG对话");
-            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex, true));
-        }
-
-        /// <summary>
-        ///     场景结束的对话2
-        /// </summary>
-        public void LevelEndAvgDialog2()
-        {
-            StoryController.SetDebugText("场景结束AVG对话2");
-            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex2, true));
-        }
-
-        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
+        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false, bool autoStory = true)
         {
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
@@ -124,7 +117,10 @@ namespace _ProjectBooom_.ScenesScript
                 yield return BlackCanvasGroup.DOFade(1f, 1.0f).SetId(this).WaitForCompletion();
             }
 
-            StoryController.TryFinishCurrentStory();
+            if (autoStory)
+            {
+                StoryController.TryFinishCurrentStory();
+            }
         }
 
         public void StartComputeAction()
@@ -134,18 +130,25 @@ namespace _ProjectBooom_.ScenesScript
 
         public IEnumerator StartComputeActionCoroutine()
         {
+            DeleteComputedCanvasGroup.alpha = 0;
             yield return new WaitForEndOfFrame();
-            const string doctorText1 = "博士：接下来需要为会议做准备，我需要你的帮助。";
-            yield return DoctorSpeakController.SpeakAndWait(doctorText1, true);
-            const string doctorText2 = "博士：请帮我删除会议文件夹中的文件";
-            yield return DoctorSpeakController.SpeakAndWait(doctorText2, true);
+            yield return DoctorSpeakController
+               .SpeakAndWait("博士：接下来需要为会议做准备，我需要你的帮助。", true);
+            yield return DoctorSpeakController
+               .SpeakAndWait("博士：请帮我删除会议文件夹中的文件", true);
+            DoctorSpeakController.SpeakWithoutFade("博士：请先打开计算机");
+
+            // 等待触发
+            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("打开电脑")))
+            {
+                yield return new WaitForEndOfFrame();
+            }
 
             // 打开电脑
             DesktopRectTrans.DOScale(Vector3.one, 1f).SetId(this);
-            const string doctorText3 = "博士：首先你需要打开文件夹 请查看一下";
-            yield return DoctorSpeakController.SpeakAndWait(doctorText3, true);
+            yield return DoctorSpeakController
+               .SpeakAndWait("博士：首先你需要打开文件夹 请查看一下", true);
 
-            const string doctorText4 = "博士：请将文件拖拽到回收站里";
             float waitTime = 5f;
             // 等待完成
             while (FoldFileReceiveUI.FileUIs.Count < DeleteFileCount)
@@ -155,20 +158,34 @@ namespace _ProjectBooom_.ScenesScript
                 if (waitTime <= 0)
                 {
                     waitTime = 5f;
-                    DoctorSpeakController.Speak(doctorText4, true);
+                    DoctorSpeakController
+                       .Speak("博士：请将文件拖拽到回收站里", true);
                 }
             }
 
+            // 删除完成
+            DeleteComputedCanvasGroup.alpha = 1;
+            // 对话结束等待3秒返回
+            yield return new WaitForSeconds(DeleteComputedWaitSeconds);
             DesktopRectTrans.DOScale(Vector3.zero, 1f).SetId(this);
-            const string doctorText5 = "博士：非常感谢你的帮助";
-            yield return DoctorSpeakController.SpeakAndWait(doctorText5, true);
+            // 302 对话
+            yield return StartAVGSystemCoroutine(LevelEndDialogIndex, false, false);
+            DoctorSpeakController.SpeakWithoutFade("继续向左进入会议室");
+
+            // 进入会议室 等待触发
+            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("进入会议室")))
+            {
+                yield return new WaitForEndOfFrame();
+            }
 
             while (DOTween.IsTweening(this))
             {
                 yield return new WaitForEndOfFrame();
             }
 
-            StoryController.TryFinishCurrentStory();
+            SceneManager.LoadScene(ConferenceRoomScene);
+
+            // StoryController.TryFinishCurrentStory();
         }
     }
 }
