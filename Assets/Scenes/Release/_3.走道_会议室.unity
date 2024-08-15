@@ -605,6 +605,8 @@ MonoBehaviour:
   idleAnimationName: idle
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
+  IsScriptControl: 0
+  ScriptSpeed: {x: 0, y: 0}
 --- !u!50 &184138964
 Rigidbody2D:
   serializedVersion: 4
@@ -5024,7 +5026,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   CurrentStoryIndex: 0
-  NextSceneName: 
+  NextSceneName: "_3_4.\u4F1A\u8BAE\u5BA4"
 --- !u!4 &2039370001
 Transform:
   m_ObjectHideFlags: 0

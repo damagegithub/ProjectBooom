@@ -184,8 +184,6 @@ namespace _ProjectBooom_.ScenesScript
             }
 
             SceneManager.LoadScene(ConferenceRoomScene);
-
-            // StoryController.TryFinishCurrentStory();
         }
     }
 }
