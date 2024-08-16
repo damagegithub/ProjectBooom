@@ -110,9 +110,13 @@ namespace Controllers
                             break;
                     }
                 }
-
-                RigidBody2D.velocity = move;
+                
             }
+            else
+            {
+                spineAnimationState.SetAnimation(0, idleAnimationName, true);
+            }
+                RigidBody2D.velocity = move;
 
             // 更新 idle 速度
             skeletonAnimation.timeScale = OldState switch

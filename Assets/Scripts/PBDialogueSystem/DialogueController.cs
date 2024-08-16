@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
 namespace PBDialogueSystem
@@ -98,7 +99,11 @@ namespace PBDialogueSystem
                 Debug.LogError("Conversation ID not found in conversation data! "+conversationID);
                 return;
             }
-
+            PlayerController PlayerController = GameObject.FindObjectOfType<PlayerController>();
+            if (PlayerController)
+            {
+                PlayerController.controlEnabled = false;
+            }
             _currentConversation = null;
             _currentConversation = new Conversation(conversationID,DialogueUI.TextWriter);
             _currentConversation.DialogueUI = DialogueUI;
@@ -123,6 +128,12 @@ namespace PBDialogueSystem
         {
             _currentConversation = null;     
             OnOneConversationEnd?.Invoke(conversationID);
+            
+            PlayerController PlayerController = GameObject.FindObjectOfType<PlayerController>();
+            if (PlayerController)
+            {
+                PlayerController.controlEnabled = true;
+            }
         }
     }
 }

@@ -76,7 +76,7 @@ namespace PBDialogueSystem
                 {
                     //使用代码根据路径加载图片
                     FullBodyImages.Add(data.FullBodySlot1,
-                        Resources.Load<Texture2D>(actor1?.ActorAvatarImagePath));
+                        Resources.Load<Texture2D>(actor1?.ActorFullBodyImagePath));
                 }
 
                 DialogueUI.FullBodyImage1.sprite = Sprite.Create(FullBodyImages[data.FullBodySlot1],
@@ -99,7 +99,7 @@ namespace PBDialogueSystem
                 {
                     //使用代码根据路径加载图片
                     FullBodyImages.Add(data.FullBodySlot2,
-                        Resources.Load<Texture2D>(actor1?.ActorAvatarImagePath));
+                        Resources.Load<Texture2D>(actor1?.ActorFullBodyImagePath));
                 }
 
                 DialogueUI.FullBodyImage2.sprite = Sprite.Create(FullBodyImages[data.FullBodySlot2],
@@ -123,7 +123,7 @@ namespace PBDialogueSystem
                 {
                     //使用代码根据路径加载图片
                     FullBodyImages.Add(data.FullBodySlot3,
-                        Resources.Load<Texture2D>(actor1?.ActorAvatarImagePath));
+                        Resources.Load<Texture2D>(actor1?.ActorFullBodyImagePath));
                 }
 
                 DialogueUI.FullBodyImage3.sprite = Sprite.Create(FullBodyImages[data.FullBodySlot3],
