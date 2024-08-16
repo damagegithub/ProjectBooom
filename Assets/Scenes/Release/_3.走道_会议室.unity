@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 31963384}
   - component: {fileID: 31963386}
-  - component: {fileID: 31963385}
+  - component: {fileID: 31963387}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D
   m_TagString: Untagged
@@ -155,21 +155,6 @@ Transform:
   m_Father: {fileID: 1240768864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &31963385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31963383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343c40ad0bcf49618ccd417268bed8cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LightSwitchTime: 0.2
-  SwitchName: "\u6D4B\u8BD5\u5F00\u5173_1"
-  SwitchState: 1
 --- !u!114 &31963386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +205,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &31963387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31963383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87a8027779a45abb4bbaaf7ba6a5cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Light2D: {fileID: 31963386}
+  OriginIntensity: 0
+  FadeDuration: 1
+  FadeOnAwake: 1
 --- !u!1 &99125517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5068,7 +5069,7 @@ MonoBehaviour:
   DesktopCanvasGroup: {fileID: 2055496710}
   PreActionTexts: []
   InActionTexts: []
-  DeleteFileCount: 2
+  DeleteFileCount: 1
   DeleteComputedCanvasGroup: {fileID: 1774268154}
   DeleteComputedWaitSeconds: 3
   ConferenceRoomScene: "_3_4.\u4F1A\u8BAE\u5BA4"
