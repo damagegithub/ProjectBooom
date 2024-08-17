@@ -15,7 +15,7 @@ public class SpriteClickHandle : MonoBehaviour
     {
         Debug.Log("Sprite clicked!");
         // 在这里处理点击事件，例如触发动画或改变场景
-        
+        if (!CharacterPanelParent) return;
         CharacterPanelParent.gameObject.SetActive(false);
         SelectShowObj.SetActive(true);
         var actor = SelectShowObj.transform.Find("Actor");
