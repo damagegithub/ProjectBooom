@@ -55,11 +55,11 @@ public class SelectCharacterController : MonoBehaviour
             {
                 if (actor.ActorID == characterID)
                 {
-                    var Image = obj.GetComponent<Image>();
-                    Image.sprite = Resources.Load<Sprite>(actor.ActorFullBodyImagePath);
-                    Image.SetNativeSize();
+                    var SpriteImage = obj.GetComponentInChildren<SpriteRenderer>();
+                    SpriteImage.sprite = Resources.Load<Sprite>(actor.ActorFullBodyImagePath);
+                    
                     obj.GetComponentInChildren<TextMeshProUGUI>().text = actor.ActorName;
-                    obj.GetComponent<Button>().onClick.AddListener(() =>
+                    obj.GetComponentInChildren<Button>().onClick.AddListener(() =>
                     {
                         Debug.Log("选中角色：" + characterID);
                         PlayerPrefs.SetInt("SelectedCharacterID", characterID);

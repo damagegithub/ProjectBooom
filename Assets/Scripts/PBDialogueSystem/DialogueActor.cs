@@ -8,5 +8,6 @@
         public string ActorName;
         public string ActorAvatarImagePath;
         public string ActorFullBodyImagePath;
+        public string SelectSceneImagePath;
     }
 }
