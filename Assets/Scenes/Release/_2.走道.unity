@@ -172,7 +172,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2252628}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1211,9 +1211,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: -523756615, guid: 326de1a2500553149a70b7869cd12db1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2533,9 +2533,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: -523756615, guid: 326de1a2500553149a70b7869cd12db1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4210,9 +4210,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: -523756615, guid: 326de1a2500553149a70b7869cd12db1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4458,8 +4458,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugText: {fileID: 1371761138}
   StoryInfos:
-  - StoryName: "\u5F00\u59CBAVG"
-    StoryDescription: "\u5F00\u59CBAVG"
+  - StoryName: "\u5F00\u59CB"
+    StoryDescription: "\u5F00\u59CB"
     IsBegin: 0
     IsFinished: 0
     BeginAction:
@@ -4467,51 +4467,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2100654194}
           m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._2_Scene, Assembly-CSharp
-          m_MethodName: LevelBeginAvgDialog
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    EndAction:
-      m_PersistentCalls:
-        m_Calls: []
-  - StoryName: "\u586B\u5199\u9A8C\u8BC1\u7801"
-    StoryDescription: "\u586B\u5199\u9A8C\u8BC1\u7801"
-    IsBegin: 0
-    IsFinished: 0
-    BeginAction:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2100654194}
-          m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._2_Scene, Assembly-CSharp
-          m_MethodName: StartCaptchaTest
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    EndAction:
-      m_PersistentCalls:
-        m_Calls: []
-  - StoryName: "\u7ED3\u675FAVG"
-    StoryDescription: "\u7ED3\u675FAVG"
-    IsBegin: 0
-    IsFinished: 0
-    BeginAction:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2100654194}
-          m_TargetAssemblyTypeName: _ProjectBooom_.ScenesScript._2_Scene, Assembly-CSharp
-          m_MethodName: LevelEndAvgDialog
+          m_MethodName: SingleStory
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4560,8 +4516,12 @@ MonoBehaviour:
   BlackCanvasGroup: {fileID: 214385320}
   DoctorSpeakController: {fileID: 1417750321}
   CaptchaIntervalTime: 3
-  LevelStartDialogIndex: 201
-  LevelEndDialogIndex: 202
+  DialogID0: 201
+  DialogID1: 202
+  DialogID2: 203
+  DialogID3: 204
+  DialogID4: 205
+  DialogID5: 206
   CurrentDialogIndex: -1
   CaptchaInfos:
   - Title: 
@@ -4616,6 +4576,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 928284691}
     m_Modifications:
+    - target: {fileID: 2755645733888440585, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755645733888440585, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -523756615, guid: 326de1a2500553149a70b7869cd12db1, type: 3}
+    - target: {fileID: 2755645733888440585, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755645733888440585, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755645733888440585, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2755645733888440586, guid: 75fe2808b9d9ad84e8de3fb0ee1e9826, type: 3}
       propertyPath: m_Name
       value: "\u7B54\u6848\u6309\u94AE"
