@@ -2336,8 +2336,8 @@ MonoBehaviour:
   controlEnabled: 1
   RigidBody2D: {fileID: 0}
   collider2d: {fileID: 0}
-  runAnimationName: walk
-  idleAnimationName: idle
+  runAnimationName: walk1
+  idleAnimationName: idea1
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
   IsScriptControl: 0
@@ -2401,8 +2401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 530566d7a8b9dab4c8d1ea3317879802, type: 2}
-  initialSkinName: 
+  skeletonDataAsset: {fileID: 11400000, guid: 67734350ef391984da253fa9f47b66d8, type: 2}
+  initialSkinName: boshi
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
