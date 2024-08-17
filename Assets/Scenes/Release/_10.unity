@@ -991,6 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91afbf5385fb3ba42befb39c63a7d1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MouseScale: 0.8
   MouseNormal: {fileID: 2800000, guid: d4dbf4aed07150543b770d4c69cf2880, type: 3}
   MouseDrag: {fileID: 2800000, guid: cbde463128ac51c47b9a13196b5ee1ea, type: 3}
   ItemTipIcon: {fileID: 21300000, guid: fc0b8f52ab57de74c81b5a814863861d, type: 3}
@@ -2126,7 +2127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597081503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 705, y: -311, z: 972}
+  m_LocalPosition: {x: 9114, y: -311, z: 972}
   m_LocalScale: {x: 20.000519, y: 20.000519, z: 20.000519}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2171,6 +2172,7 @@ MonoBehaviour:
   collider2d: {fileID: 0}
   runAnimationName: walk
   idleAnimationName: idle
+  huiwuAnimationName: 
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
   IsScriptControl: 0
