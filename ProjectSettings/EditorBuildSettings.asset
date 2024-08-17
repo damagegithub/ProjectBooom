@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Release/_3_4.\u4F1A\u8BAE\u5BA4.unity"
     guid: a81c906589a6b204fa077e8fda67d076
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Scenes/Release/_4.\u4F1A\u8BAE\u5BA4.obsolete.unity"
     guid: a330e38395f3b79479b4bf1a9314cc17
   - enabled: 1
@@ -37,7 +37,7 @@ EditorBuildSettings:
     guid: 5d524755fe74128448e0c60798e538b4
   - enabled: 1
     path: Assets/Scenes/Release/SelectCharacterScene.unity
-    guid: a408ea494878f5241baa22498422fa5e
+    guid: e8079869121930749bd862a161c9b5dd
   - enabled: 1
     path: Assets/Scenes/Release/DebugScene_Level7.unity
     guid: bd1ebe15b12f6b947802d7c9416daa0d
@@ -69,6 +69,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Release/_10A.unity
     guid: 459424e954183b94d92bb9d673234423
   - enabled: 1
-    path: Assets/Scenes/Release/_7.培养室.unity
+    path: "Assets/Scenes/Release/_7.\u57F9\u517B\u5BA4.unity"
     guid: 5d524755fe74128448e0c60798e538b4
   m_configObjects: {}
