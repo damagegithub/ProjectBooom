@@ -1,4 +1,3 @@
-using System;
 using LYP_Utils;
 using UnityEngine;
 
@@ -11,6 +10,8 @@ namespace _ProjectBooom_.ObservableData
     {
         private void OnEnable()
         {
+            DontDestroyOnLoad(GlobalManager);
+            
             int normalX = MouseNormal.width;
             int normalY = MouseNormal.height;
             MouseNormal = Resize(MouseNormal, (int)(normalX * MouseScale), (int)(normalY * MouseScale));

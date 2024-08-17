@@ -65,12 +65,11 @@ namespace LYP_Utils
         {
             get
             {
-                if (_globalManager)
+                if (!_globalManager)
                 {
-                    return _globalManager;
+                    _globalManager = GameObject.Find(GlobalManagerName);
                 }
 
-                _globalManager = GameObject.Find(GlobalManagerName);
                 if (!_globalManager)
                 {
                     _globalManager = new GameObject(GlobalManagerName);
