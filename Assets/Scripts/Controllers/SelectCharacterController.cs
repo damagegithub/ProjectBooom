@@ -49,7 +49,7 @@ public class SelectCharacterController : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
         {
-            return new List<int>() { 4, 1, 3 };
+            return new List<int>() { -1, 1, 3 };
         }
 
         return new List<int>() { 1, 2 };

@@ -1,4 +1,5 @@
 using System.Collections;
+using _ProjectBooom_.PuzzleMono.UI;
 using DG.Tweening;
 using PBDialogueSystem;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Levels
         public DialogueController dialogueController;
         [Header("全屏遮挡画布")]
         public CanvasGroup BlackCanvasGroup;
+        [Header("博士对话脚本")]
+        public DoctorSpeakController DoctorSpeakController;
         
         private void Awake()
         {
@@ -35,7 +38,8 @@ namespace Levels
             dialogueController.OnOneConversationEnd += (int id) =>
             {
                 Debug.Log("Conversation ended " + id);
-
+                DoctorSpeakController.gameObject.SetActive(true);
+                DoctorSpeakController.SpeakWithoutFade("必须马上离开这里！");
                 dialogueController.ClearOnOneConversationEnd(); 
             };
         }

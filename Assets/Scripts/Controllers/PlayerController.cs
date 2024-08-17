@@ -64,6 +64,13 @@ namespace Controllers
         public bool    IsScriptControl;
         public Vector2 ScriptSpeed;
 
+        public void DisablePlayerControl()
+        {
+            controlEnabled = false;
+            spineAnimationState.SetAnimation(0, idleAnimationName, true);
+        }
+
+
         private void Update()
         {
             Vector2 move = Vector2.zero;
@@ -112,10 +119,6 @@ namespace Controllers
                             break;
                     }
                 }
-            }
-            else
-            {
-                spineAnimationState.SetAnimation(0, idleAnimationName, true);
             }
 
             RigidBody2D.velocity = move;
