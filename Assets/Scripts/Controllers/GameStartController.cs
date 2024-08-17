@@ -55,8 +55,6 @@ public class GameStartController : MonoBehaviour
         LevelDebug7Button.onClick.AddListener(() =>
         {
             PlayerPrefs.SetInt("CurrentLevel", 7);
-            SceneManager.LoadScene("DebugScene_Level7");
-            SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
         });
         
         LevelDebug3Button.onClick.AddListener(() =>

@@ -147,6 +147,11 @@ public class SelectCharacterController : MonoBehaviour
             SceneManager.LoadScene("_3.走道_会议室");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 7)
+        {
+            SceneManager.LoadScene("_7.培养室");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
         {
             SceneManager.LoadScene("_8A");
