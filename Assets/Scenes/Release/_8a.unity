@@ -2172,6 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 2029430270}
+  BlackCanvasGroup: {fileID: 1818407545}
 --- !u!1 &1597081503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2.5
   SpineIdleTimeScale: 0.5
+  SpineWalkTimeScale: 1
   controlEnabled: 1
   RigidBody2D: {fileID: 0}
   collider2d: {fileID: 0}
@@ -2249,6 +2251,8 @@ MonoBehaviour:
   idleAnimationName: idle
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
+  IsScriptControl: 0
+  ScriptSpeed: {x: 0, y: 0}
 --- !u!50 &1597081507
 Rigidbody2D:
   serializedVersion: 4
