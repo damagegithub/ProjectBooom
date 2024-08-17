@@ -26,6 +26,7 @@ namespace PBDialogueSystem
         public PBTypeWritter TypeWriter = null;
         public Image SpeakerAvatar;
         private Dictionary<int, Texture2D> SpeakerAvatars = new Dictionary<int, Texture2D>();
+        private Dictionary<int, Texture2D> SpeakerNameImages = new Dictionary<int, Texture2D>();
         private Dictionary<int, Texture2D> FullBodyImages = new Dictionary<int, Texture2D>();
 
         public Conversation(int newConversationID, PBTypeWritter InTypeWriter)
@@ -138,7 +139,18 @@ namespace PBDialogueSystem
         {
             //设置对话者头像
 
-            DialogueUI.SpeakerNameTextMesh.text = actor?.ActorName;
+            if (!SpeakerNameImages.ContainsKey(data.SpeakerID))
+            {
+                //使用代码根据路径加载图片
+                SpeakerNameImages.Add(data.SpeakerID,
+                                      Resources.Load<Texture2D>(actor?.NameImg));
+            }
+            DialogueUI.SpeakerNameImg.sprite = SpeakerNameImages[data.SpeakerID]== null ? null : Sprite.Create(SpeakerNameImages[data.SpeakerID],
+                                                             new Rect(0, 0, SpeakerNameImages[data.SpeakerID].width, SpeakerNameImages[data.SpeakerID].height),
+                                                             new Vector2(0.5f, 0.5f));
+            DialogueUI.SpeakerNameImg.SetNativeSize();
+            DialogueUI.SpeakerNameImg.gameObject.SetActive(SpeakerNameImages[data.SpeakerID]!= null);
+            
             if (!SpeakerAvatars.ContainsKey(data.SpeakerID))
             {
                 //使用代码根据路径加载图片
@@ -146,7 +158,7 @@ namespace PBDialogueSystem
                     Resources.Load<Texture2D>(actor?.ActorAvatarImagePath));
             }
 
-            SpeakerAvatar.sprite = SpeakerAvatars[data.SpeakerID]==null ? null : Sprite.Create(SpeakerAvatars[data.SpeakerID],
+            SpeakerAvatar.sprite = SpeakerAvatars[data.SpeakerID]== null ? null : Sprite.Create(SpeakerAvatars[data.SpeakerID],
                 new Rect(0, 0, SpeakerAvatars[data.SpeakerID].width, SpeakerAvatars[data.SpeakerID].height),
                 new Vector2(0.5f, 0.5f));
             SpeakerAvatar.SetNativeSize();

@@ -10,7 +10,7 @@ namespace PBDialogueSystem
 
         public PBTypeWritter TextWriter;
         
-        public TextMeshProUGUI SpeakerNameTextMesh;
+        public Image SpeakerNameImg;
         public Image SpeakerAvatar;
         public string SpeakerName { get; set; }
         public string DialogueText { get; set; }

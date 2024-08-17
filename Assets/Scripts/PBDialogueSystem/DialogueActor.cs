@@ -11,5 +11,6 @@
         public string SelectSceneImagePath;
         public string SelectFBImagePath;
         public string SelectWord;
+        public string NameImg;
     }
 }
