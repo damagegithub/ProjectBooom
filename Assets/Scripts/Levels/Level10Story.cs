@@ -33,7 +33,7 @@ namespace Levels
         private void StartConversation()
         {
 
-            dialogueController.StartConversation(101);//todo 1002
+            dialogueController.StartConversation(1002);
             dialogueController.OnOneConversationEnd += (int id) =>
             {
                 Debug.Log("Conversation ended " + id);

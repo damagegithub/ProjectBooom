@@ -67,12 +67,13 @@ public class GameStartController : MonoBehaviour
 
     private void Level7Check()
     {
-        if (PlayerPrefs.GetInt("CurrentLevel", -1) != 7)
+        //关卡7 或者 -8关
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) != 7 && PlayerPrefs.GetInt("Level7MetaCreated", -1) != -8)
         {
             return;
         }
 
-        if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
+        if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1 )
         {
             bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "02.txt");
             bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "01.txt");
@@ -121,6 +122,7 @@ public class GameStartController : MonoBehaviour
             }
             else if (!HasXXX && !HasTxt && Has01)
             {
+                //山城路
                 //跳转到level11
                 PlayerPrefs.SetInt("Level9MetaToLevel11", 1);
                 PlayerPrefs.SetInt("CurrentLevel", 11);

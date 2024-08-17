@@ -27,14 +27,14 @@ namespace Levels
         {
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
             
-            Invoke(nameof(StartConversation803), 2f);
+            Invoke(nameof(StartConversation802), 2f);
         }
         
 
-        private void StartConversation803()
+        private void StartConversation802()
         {
 
-            dialogueController.StartConversation(101);//todo 803
+            dialogueController.StartConversation(802);
             dialogueController.OnOneConversationEnd += (int id) =>
             {
              

@@ -33,7 +33,7 @@ public class Level10AStory : MonoBehaviour
     private void StartConversation()
     {
 
-        dialogueController.StartConversation(101);//todo 1001
+        dialogueController.StartConversation(1001);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended " + id);
