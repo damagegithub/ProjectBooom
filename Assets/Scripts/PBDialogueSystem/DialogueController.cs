@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Controllers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PBDialogueSystem
 {
@@ -128,6 +129,8 @@ namespace PBDialogueSystem
             _currentConversation.SpeakerAvatar = DialogueUI.SpeakerAvatar;
             _currentConversation.DialogueController = this;
             _currentConversation.ConversationData = _conversationData[conversationID];
+            _currentConversation._isBlackBG = false;
+            DialogueUI.gameObject.GetComponent<Image>().color=new Color(0,0,0,0);
             _currentConversation.NextDialogue();
         }
 

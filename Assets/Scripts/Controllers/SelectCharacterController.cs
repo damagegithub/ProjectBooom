@@ -32,6 +32,16 @@ public class SelectCharacterController : MonoBehaviour
         {
             return new List<int>() { 1, 2};
         }
+        
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
+        {
+            return new List<int>() { 1, 3};
+        }
+        
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 9)
+        {
+            return new List<int>() { 1, 3};
+        }
 
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
@@ -62,6 +72,10 @@ public class SelectCharacterController : MonoBehaviour
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 6)
         {
             return new List<int>() {2};
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
+        {
+            return new List<int>() {3};
         }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {

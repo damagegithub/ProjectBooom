@@ -31,11 +31,11 @@ public class Level9Story : MonoBehaviour
         if (PlayerPrefs.GetInt("Level9MetaCreated", -1) == 1)
         {
             Debug.Log("StartConversation---902");
-            dialogueController.StartConversation(101);//todo 902
+            dialogueController.StartConversation(902);
         }
         else
         {
-            dialogueController.StartConversation(101);//todo 901
+            dialogueController.StartConversation(901);
         }
         dialogueController.OnOneConversationEnd += (int id) =>
         {

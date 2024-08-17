@@ -34,12 +34,12 @@ namespace Levels
         {
             if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1)
             {
-                dialogueController.StartConversation(101); //todo 1102
+                dialogueController.StartConversation(1102); 
                 dialogueController.OnOneConversationEnd += (int id) => { Invoke(nameof(EndGame), 2f); };
             }
             else if (PlayerPrefs.GetInt("Level11MetaDeleteDoc", -1) == 1)
             {
-                dialogueController.StartConversation(101); //todo 1103
+                dialogueController.StartConversation(1103); 
                 dialogueController.OnOneConversationEnd += (int id) =>
                 {
                     //todo 播放结局 然后
@@ -50,7 +50,7 @@ namespace Levels
             }
             else
             {
-                dialogueController.StartConversation(101); //todo 1101
+                dialogueController.StartConversation(1101); 
                 dialogueController.OnOneConversationEnd += (int id) =>
                 {
                     Debug.Log("Conversation ended " + id);

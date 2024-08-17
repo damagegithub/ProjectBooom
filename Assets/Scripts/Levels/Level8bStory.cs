@@ -30,10 +30,9 @@ public class Level8bStory : MonoBehaviour
     
     private void StartConversation()
     {
-        dialogueController.StartConversation(101);// todo 801
+        dialogueController.StartConversation(803);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
-            Debug.Log("Conversation ended "+ id);
             StartCoroutine(ExecuteMetaAfterDelay(2));
         };
     }
@@ -55,6 +54,7 @@ public class Level8bStory : MonoBehaviour
         MetaGameUtil.CreateFileOnDesktop("GameInfo", "01.txt", "01本体");
         MetaGameUtil.CreateFileOnDesktop("GameInfo", "02.txt", "02本体");
         ShowDesktop.ShowDesktopFunc();
+        PlayerPrefs.SetInt("CurrentLevel", 7);
         Invoke(nameof(EndGame), 2f);
     }
 

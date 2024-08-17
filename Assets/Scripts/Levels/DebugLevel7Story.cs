@@ -53,10 +53,11 @@ public class DebugLevel7Story : MonoBehaviour
     private void StartConversation702()
     {
         Debug.Log("StartConversation702");
-        dialogueController.StartConversation(101);//todo 702
+        dialogueController.StartConversation(702);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);
+            ShowDesktop.ShowDesktopFunc();
             Invoke(nameof(EndGame), 2f);
         };
     }
@@ -64,17 +65,18 @@ public class DebugLevel7Story : MonoBehaviour
     private void StartConversation703()
     {
         Debug.Log("StartConversation703");
-        dialogueController.StartConversation(101);//todo 703
+        dialogueController.StartConversation(703);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);
+            ShowDesktop.ShowDesktopFunc();
             Invoke(nameof(EndGame), 2f);
         };
     }
     
     private void StartConversation()
     {
-        dialogueController.StartConversation(101);//todo 701
+        dialogueController.StartConversation(701);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended "+ id);

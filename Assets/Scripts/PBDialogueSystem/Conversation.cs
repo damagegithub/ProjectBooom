@@ -29,7 +29,7 @@ namespace PBDialogueSystem
         private Dictionary<int, Texture2D> FullBodyImages = new Dictionary<int, Texture2D>();
         private Dictionary<int, AudioClip> AudioClips = new Dictionary<int, AudioClip>();
         
-        private bool _isBlackBG = false;
+        public bool _isBlackBG = false;
 
         public Conversation(int newConversationID, PBTypeWritter InTypeWriter)
         {
