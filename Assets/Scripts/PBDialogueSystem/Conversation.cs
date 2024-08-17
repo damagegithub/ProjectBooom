@@ -28,6 +28,8 @@ namespace PBDialogueSystem
         private Dictionary<int, Texture2D> SpeakerNameImages = new Dictionary<int, Texture2D>();
         private Dictionary<int, Texture2D> FullBodyImages = new Dictionary<int, Texture2D>();
         private Dictionary<int, AudioClip> AudioClips = new Dictionary<int, AudioClip>();
+        
+        private bool _isBlackBG = false;
 
         public Conversation(int newConversationID, PBTypeWritter InTypeWriter)
         {
@@ -43,7 +45,7 @@ namespace PBDialogueSystem
             if (DialogueUI.GameObject().activeSelf == false)
             {
                 DialogueUI.GameObject().SetActive(true);        
-                DialogueUI.GetComponent<CanvasGroup>().DOFade(1, 2);
+                DialogueUI.GetComponentInChildren<CanvasGroup>().DOFade(1, 1);
             }
 
             _currentDialogueID++;
@@ -74,6 +76,25 @@ namespace PBDialogueSystem
                 }
                 DialogueUI.GetComponent<AudioSource>().clip = AudioClips[data.BGMID] == null ? null : AudioClips[data.BGMID];
                 DialogueUI.GetComponent<AudioSource>().Play();
+            }
+
+            if ((data.BlackBG==1) && !_isBlackBG )//当前是0,现在要是1
+            {
+                
+                if (_currentDialogueID == 1)
+                {
+                    DialogueUI.gameObject.GetComponent<Image>().color=new Color(0,0,0,1);
+                }
+                else
+                {
+                    DialogueUI.gameObject.GetComponent<Image>().DOFade(1, 1);
+                }
+                _isBlackBG = true;
+            }
+            else if ((data.BlackBG==0) && _isBlackBG )
+            {
+                DialogueUI.gameObject.GetComponent<Image>().DOFade(0, 1);
+                _isBlackBG = false;
             }
 
             //设置对话内容
