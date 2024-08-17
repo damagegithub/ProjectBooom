@@ -33,11 +33,11 @@ namespace _ProjectBooom_.ScenesScript
         [Header("苏醒动画时间")]
         public float StartAnimationTime = 2.0f;
 
-        [Header("学习移动左按键")]
-        public CanvasGroup LeftButton;
-
-        [Header("学习移动右按键")]
-        public CanvasGroup RightButton;
+        // [Header("学习移动左按键")]
+        // public CanvasGroup LeftButton;
+        //
+        // [Header("学习移动右按键")]
+        // public CanvasGroup RightButton;
 
         [Header("开始场景对话")]
         public string DoctorText0;
@@ -79,8 +79,8 @@ namespace _ProjectBooom_.ScenesScript
             DialogueController.OnOneConversationEnd += DialogFinish;
 
             BlackCanvasGroup.alpha = 1;
-            LeftButton.alpha = 0;
-            RightButton.alpha = 0;
+            // LeftButton.alpha = 0;
+            // RightButton.alpha = 0;
             _initMoveSpeed = PlayerController.maxSpeed;
             PlayerController.maxSpeed = 0;
             BlackCanvasGroup.alpha = 1;

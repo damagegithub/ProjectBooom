@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3482611386901142802}
   - component: {fileID: 3482611386901142803}
+  - component: {fileID: 8241207460278811303}
   m_Layer: 8
   m_Name: "TipIcon_\u4EA4\u4E92\u56FE\u6807"
   m_TagString: Untagged
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8241207460278811303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482611386901142805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24018395dbbfdcf458964d124825991f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3482611387117831822
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +226,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: idea1
   loop: 1
   timeScale: 1
 --- !u!61 &3482611387117831819
@@ -254,7 +267,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 5.9753833
+  m_Mass: 69696.875
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -283,6 +296,7 @@ MonoBehaviour:
   collider2d: {fileID: 3482611387117831819}
   runAnimationName: walk1
   idleAnimationName: idea1
+  huiwuAnimationName: huiwu
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 3482611387117831816}
   IsScriptControl: 0

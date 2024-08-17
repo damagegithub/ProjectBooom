@@ -1,3 +1,4 @@
+using System;
 using _ProjectBooom_.DataStruct;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace _ProjectBooom_.PuzzleMono.UI._2
     public class CaptchaControl : MonoBehaviour
     {
         public CanvasGroup     CanvasGroup;
-        public TextMeshProUGUI TitleText;
+        // public TextMeshProUGUI TitleText;
         public TextMeshProUGUI ContentText;
         public Transform       AnswerRoot;
         public GameObject      AnswerPrefab;
@@ -24,10 +25,17 @@ namespace _ProjectBooom_.PuzzleMono.UI._2
 
         private CaptchaInfo CaptchaInfo;
 
+        private void Awake()
+        {
+            CanvasGroup.alpha = 0;
+            CanvasGroup.blocksRaycasts = false;
+            CanvasGroup.interactable = false;
+        }
+
         public void Show(CaptchaInfo captchaInfo)
         {
             CaptchaInfo = captchaInfo;
-            TitleText.text = captchaInfo.Title;
+            // TitleText.text = captchaInfo.Title;
             ContentText.text = captchaInfo.Content;
 
             // 暂时不考虑性能开销

@@ -30,6 +30,7 @@ namespace Controllers
 
         [SpineAnimation] public string            runAnimationName;
         [SpineAnimation] public string            idleAnimationName;
+        [SpineAnimation] public string            huiwuAnimationName;
         public                  float             runWalkDuration = 1.5f;
         public                  SkeletonAnimation skeletonAnimation;
         public                  AnimationState    spineAnimationState;
@@ -60,7 +61,7 @@ namespace Controllers
 
         private AnimationType OldState = AnimationType.Idle;
 
-        public bool IsScriptControl;
+        public bool    IsScriptControl;
         public Vector2 ScriptSpeed;
 
         private void Update()
@@ -111,13 +112,13 @@ namespace Controllers
                             break;
                     }
                 }
-                
             }
             else
             {
                 spineAnimationState.SetAnimation(0, idleAnimationName, true);
             }
-                RigidBody2D.velocity = move;
+
+            RigidBody2D.velocity = move;
 
             // 更新 idle 速度
             skeletonAnimation.timeScale = OldState switch
