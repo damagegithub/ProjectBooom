@@ -96,13 +96,13 @@ TextureImporter:
       name: "\u9009\u9879\u6761_0"
       rect:
         serializedVersion: 2
-        x: 531
-        y: 514
-        width: 904
-        height: 231
+        x: 563
+        y: 538
+        width: 874
+        height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 140, y: 0, z: 279, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0

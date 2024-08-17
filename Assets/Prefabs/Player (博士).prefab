@@ -129,7 +129,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: idea1
   loop: 1
   timeScale: 1
 --- !u!61 &1996690024325138876
@@ -199,6 +199,7 @@ MonoBehaviour:
   collider2d: {fileID: 1996690024325138876}
   runAnimationName: walk1
   idleAnimationName: idea1
+  huiwuAnimationName: huiwu
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 1996690024325138879}
   IsScriptControl: 0
