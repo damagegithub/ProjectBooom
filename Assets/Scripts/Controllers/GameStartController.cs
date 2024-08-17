@@ -8,25 +8,26 @@ using UnityEngine.UI;
 
 public class GameStartController : MonoBehaviour
 {
-    public Button GameStartButton;
-    public Button LevelDebug7Button;
-    public Button LevelDebug3Button;
-    public Button ClearPlayerPrefsButton;
+    public Button      GameStartButton;
+    public Button      LevelDebug7Button;
+    public Button      LevelDebug3Button;
+    public Button      LevelDebug11Button;
+    public Button      ClearPlayerPrefsButton;
     public CanvasGroup BlackCanvasGroup;
+
     private void Awake()
     {
         BlackCanvasGroup.alpha = 1;
     }
-        
+
     void Start()
     {
+        // PlayerPrefs.DeleteAll();
         StartCoroutine(ScriptStart());
     }
 
     public IEnumerator ScriptStart()
     {
-        
-
         Level7Check();
         Level9Check();
         Level11Check();
@@ -34,7 +35,7 @@ public class GameStartController : MonoBehaviour
         GameStartButton.onClick.AddListener(() =>
         {
             var currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-            
+
             if (currentLevel == 1)
             {
                 //完成关卡1之前, 没有选人界面
@@ -52,15 +53,10 @@ public class GameStartController : MonoBehaviour
         ClearPlayerPrefsButton.onClick.AddListener(() => { PlayerPrefs.DeleteAll(); });
 
 
-        LevelDebug7Button.onClick.AddListener(() =>
-        {
-            PlayerPrefs.SetInt("CurrentLevel", 7);
-        });
-        
-        LevelDebug3Button.onClick.AddListener(() =>
-        {
-            PlayerPrefs.SetInt("CurrentLevel", 3);
-        });
+        LevelDebug7Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 7); });
+        LevelDebug11Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 11); });
+
+        LevelDebug3Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 3); });
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
 
@@ -73,7 +69,7 @@ public class GameStartController : MonoBehaviour
             return;
         }
 
-        if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1 )
+        if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
         {
             bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "02.txt");
             bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "01.txt");
@@ -110,33 +106,39 @@ public class GameStartController : MonoBehaviour
             bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "01.txt");
             if (!HasXXX && HasTxt && Has01)
             {
-                //正确 可以选人
+                //对应案子a, 出现lian 本体
                 PlayerPrefs.SetInt("CurrentLevel", 10);
                 if (PlayerPrefs.GetInt("Level10Finished", -1) == 1)
                 {
                     //经历过第10关, 直接再去9
                     PlayerPrefs.SetInt("CurrentLevel", 9);
+                    PlayerPrefs.SetInt("levle9MetaDialog", 902);
                     SceneManager.LoadScene("_9");
                     SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
                 }
             }
             else if (!HasXXX && !HasTxt && Has01)
             {
-                //山城路
+                //对应案子b, 删除了文件,进入关卡11
                 //跳转到level11
                 PlayerPrefs.SetInt("Level9MetaToLevel11", 1);
                 PlayerPrefs.SetInt("CurrentLevel", 11);
-                SceneManager.LoadScene("_11");
-                SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                // SceneManager.LoadScene("_11");
+                // SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             }
             else if (HasXXX && !HasTxt && Has01)
             {
+                //对应C 玩家没有任何操作
+                PlayerPrefs.SetInt("levle9MetaDialog", 902);
                 SceneManager.LoadScene("_9");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             }
             else
             {
-                PlayerPrefs.SetInt("CurrentLevel", 8);
+                // 对应案子d, 其他情况
+                PlayerPrefs.SetInt("levle9MetaDialog", 903);
+                SceneManager.LoadScene("_9");
+                SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             }
         }
     }
@@ -145,19 +147,22 @@ public class GameStartController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
         {
-            var FloderName = "PB_Meta";
-            bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "doc.txt");
-            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "01.txt");
-            if (!HasDoc && Has01)
+            if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1)
             {
-                PlayerPrefs.SetInt("Level11MetaDeleteDoc", 1);
-                SceneManager.LoadScene("_11");
-                SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
-            }
-            else
-            {
-                SceneManager.LoadScene("_11");
-                SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                var FloderName = "PB_Meta";
+                bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "doc.txt");
+                bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "01.txt");
+                if (!HasDoc && Has01)
+                {
+                    PlayerPrefs.SetInt("Level11MetaDeleteDoc", 1);
+                    SceneManager.LoadScene("_11");
+                    SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                }
+                else
+                {
+                    SceneManager.LoadScene("_11");
+                    SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                }
             }
         }
     }

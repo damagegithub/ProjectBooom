@@ -33,11 +33,12 @@ namespace Levels
         private void StartConversation()
         {
 
-            dialogueController.StartConversation(1002);
+            dialogueController.StartConversation(1001);
             dialogueController.OnOneConversationEnd += (int id) =>
             {
                 Debug.Log("Conversation ended " + id);
                 PlayerPrefs.SetInt("Level10Finished", 1);
+                PlayerPrefs.SetInt("CurrentLevel", 9);
                 StartCoroutine(ExecuteMetaAfterDelay(2));
             };
         }
