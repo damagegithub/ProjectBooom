@@ -83,8 +83,6 @@ namespace PBDialogueSystem
                     new Rect(0, 0, FullBodyImages[data.FullBodySlot1].width, FullBodyImages[data.FullBodySlot1].height),
                     new Vector2(0.5f, 0.5f));
                 DialogueUI.FullBodyImage1.SetNativeSize();
-                DialogueUI.FullBodyImage1.gameObject.transform.localPosition =
-                    new Vector3(data.FullBodySlot1_X, data.FullBodySlot1_Y, 0);
                 DialogueUI.FullBodyImage1.gameObject.SetActive(true);
             }
             else
@@ -106,8 +104,6 @@ namespace PBDialogueSystem
                     new Rect(0, 0, FullBodyImages[data.FullBodySlot2].width, FullBodyImages[data.FullBodySlot2].height),
                     new Vector2(0.5f, 0.5f));
                 DialogueUI.FullBodyImage2.SetNativeSize();
-                DialogueUI.FullBodyImage2.gameObject.transform.localPosition =
-                    new Vector3(data.FullBodySlot2_X, data.FullBodySlot2_Y, 0);
                 DialogueUI.FullBodyImage2.gameObject.SetActive(true);
             }
             else
@@ -130,8 +126,6 @@ namespace PBDialogueSystem
                     new Rect(0, 0, FullBodyImages[data.FullBodySlot3].width, FullBodyImages[data.FullBodySlot3].height),
                     new Vector2(0.5f, 0.5f));
                 DialogueUI.FullBodyImage3.SetNativeSize();
-                DialogueUI.FullBodyImage3.gameObject.transform.localPosition =
-                    new Vector3(data.FullBodySlot3_X, data.FullBodySlot3_Y, 0);
                 DialogueUI.FullBodyImage3.gameObject.SetActive(true);
             }
             else

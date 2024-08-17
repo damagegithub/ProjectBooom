@@ -86,9 +86,11 @@ namespace _ProjectBooom_
                 string currentSceneName = SceneManager.GetActiveScene().name;
                 if (SceneTable.TryGetValue(currentSceneName, out int sceneIndex))
                 {
-                    PlayerPrefs.SetInt("CurrentLevel", sceneIndex);
+                    PlayerPrefs.SetInt("CurrentLevel", sceneIndex + 1);
                     Debug.Log($"set current level: {sceneIndex}");
-                    SceneManager.LoadScene(0); // 回到选人界面
+                    // SceneManager.LoadScene(0); // 回到选人界面
+                    SceneManager.LoadScene("SelectCharacterScene");
+                    SceneManager.UnloadSceneAsync(currentSceneName);
                 }
             }
         }

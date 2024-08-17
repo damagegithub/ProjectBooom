@@ -26,9 +26,15 @@ public class SelectCharacterController : MonoBehaviour
 
     private List<int> GetCanSelectedCharacters()
     {
+
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) <= 6)
+        {
+            return new List<int>() { 1, 2};
+        }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            new List<int>() { 1, 2, 3 };
+            return new List<int>() { 1, 2, 3 };
         }
 
         return new List<int>() { 1, 2 };
@@ -36,11 +42,30 @@ public class SelectCharacterController : MonoBehaviour
 
     private List<int> GetUsableCharacters()
     {
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 2)
+        {
+            return new List<int>() {2};
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 3)
+        {
+            return new List<int>() {1};
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
+        {
+            return new List<int>() {2};
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 5)
+        {
+            return new List<int>() {1};
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 6)
+        {
+            return new List<int>() {2};
+        }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            new List<int>() { 1 };
+            return new List<int>() { 1 };
         }
-
         return new List<int>() { 1 };
     }
 
@@ -48,8 +73,10 @@ public class SelectCharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PosMap.Add(1, new List<Vector2>() { new Vector2(0, 0) });
         PosMap.Add(2, new List<Vector2>() { new Vector2(-500, 0), new Vector2(500, 0) });
         PosMap.Add(3, new List<Vector2>() { new Vector2(-400, 0), new Vector2(0, 0), new Vector2(400, 0) });
+        SpritePosMap.Add(1, new List<Vector2>() { new Vector2(0, 0) });
         SpritePosMap.Add(2, new List<Vector2>() { new Vector2(-2, 0), new Vector2(2, 0) });
         SpritePosMap.Add(3, new List<Vector2>() { new Vector2(-3, 0), new Vector2(0, 0), new Vector2(3, 0) });
 
@@ -75,7 +102,6 @@ public class SelectCharacterController : MonoBehaviour
                     var SpriteImage = obj.GetComponentInChildren<SpriteRenderer>();
                     SpriteImage.sprite = Resources.Load<Sprite>(actor.SelectSceneImagePath);
                     SpriteImage.transform.position = SpritePosMap[CanSelectedCharacters.Count][index];
-                    obj.GetComponentInChildren<TextMeshProUGUI>().text = actor.ActorName;
                     var light = obj.GetComponentInChildren<Light2D>();
                     light.transform.position = SpritePosMap[CanSelectedCharacters.Count][index] + new Vector2(0, 8);
                     light.gameObject.SetActive(false);
@@ -98,8 +124,18 @@ public class SelectCharacterController : MonoBehaviour
 
     public void JumpToGame()
     {
-        SceneManager.LoadScene("_1.培养室");
-        SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        var CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", -1);
+        Debug.Log("CurrentLevel:" + CurrentLevel);
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 2)
+        {
+            SceneManager.LoadScene("_2.走道");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 3)
+        {
+            SceneManager.LoadScene("_3.走道_会议室");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
         {
             SceneManager.LoadScene("_8A");

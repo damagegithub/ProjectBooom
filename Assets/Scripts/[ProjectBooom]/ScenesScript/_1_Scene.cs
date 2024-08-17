@@ -7,6 +7,7 @@ using DG.Tweening;
 using PBDialogueSystem;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _ProjectBooom_.ScenesScript
 {
@@ -121,6 +122,7 @@ namespace _ProjectBooom_.ScenesScript
             }
 
             StoryController.TryFinishCurrentStory();
+            
         }
 
         /// <summary>

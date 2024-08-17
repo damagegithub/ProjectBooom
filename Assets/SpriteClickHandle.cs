@@ -24,7 +24,7 @@ public class SpriteClickHandle : MonoBehaviour
         var Name = SelectShowObj.transform.Find("Name");
         Name.transform.Find("Name2").GetComponent<Image>().sprite = Resources.Load<Sprite>(Actor.SelectWord);
         Name.transform.Find("Name1").GetComponent<Image>().sprite = Resources.Load<Sprite>(Actor.SelectWord);
-        Invoke(nameof(JumpToGame), 9999f);
+        Invoke(nameof(JumpToGame), 3f);
     }
 
     void JumpToGame()

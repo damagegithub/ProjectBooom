@@ -9,6 +9,7 @@ public class GameStartController : MonoBehaviour
 {
     public Button GameStartButton;
     public Button LevelDebug7Button;
+    public Button LevelDebug3Button;
     public Button ClearPlayerPrefsButton;
 
     void Start()
@@ -19,18 +20,18 @@ public class GameStartController : MonoBehaviour
 
         GameStartButton.onClick.AddListener(() =>
         {
-            var currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
-
-            if (currentLevel != 0)
+            var currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+            
+            if (currentLevel == 1)
             {
-                //完成关卡1之后, 进入选人界面
-                SceneManager.LoadScene("SelectCharacterScene");
+                //完成关卡1之前, 没有选人界面
+                SceneManager.LoadScene("_1.培养室");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             }
             else
             {
-                //完成关卡1之前, 没有选人界面
-                SceneManager.LoadScene("_1.培养室");
+                //完成关卡1之后, 进入选人界面
+                SceneManager.LoadScene("SelectCharacterScene");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             }
         });
@@ -43,6 +44,11 @@ public class GameStartController : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", 7);
             SceneManager.LoadScene("DebugScene_Level7");
             SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+        });
+        
+        LevelDebug3Button.onClick.AddListener(() =>
+        {
+            PlayerPrefs.SetInt("CurrentLevel", 3);
         });
     }
 

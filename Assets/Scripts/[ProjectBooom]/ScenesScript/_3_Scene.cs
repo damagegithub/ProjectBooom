@@ -101,6 +101,8 @@ namespace _ProjectBooom_.ScenesScript
             DesktopCanvasGroup.alpha = 1;
             DesktopCanvasGroup.interactable = true;
             DesktopCanvasGroup.blocksRaycasts = true;
+            DesktopCanvasGroup.gameObject.SetActive(true);
+            
 
             _cameraNoiseData = Renderer2DData
                               .rendererFeatures
