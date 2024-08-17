@@ -121,7 +121,7 @@ namespace PBDialogueSystem
             PlayerController PlayerController = GameObject.FindObjectOfType<PlayerController>();
             if (PlayerController)
             {
-                PlayerController.controlEnabled = false;
+                PlayerController.DisablePlayerControl();
             }
             _currentConversation = null;
             _currentConversation = new Conversation(conversationID,DialogueUI.TextWriter);
