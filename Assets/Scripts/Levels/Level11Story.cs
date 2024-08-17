@@ -12,6 +12,7 @@ namespace Levels
 
         // Start is called before the first frame update
         public CanvasGroup BlackCanvasGroup;
+        public GameObject CG;
         private void Awake()
         {
             BlackCanvasGroup.alpha = 1;
@@ -43,9 +44,10 @@ namespace Levels
                 dialogueController.OnOneConversationEnd += (int id) =>
                 {
                     //todo 播放结局 然后
+                    CG.SetActive(true);
                     PlayerPrefs.SetInt("GameFinished", 1);
                     PlayerPrefs.SetInt("CurrentLevel", 999); 
-                    Invoke(nameof(EndGame), 2f);
+                    Invoke(nameof(EndGame), 6f);
                 };
             }
             else

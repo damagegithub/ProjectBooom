@@ -27,29 +27,34 @@ public class SelectCharacterController : MonoBehaviour
 
     private List<int> GetCanSelectedCharacters()
     {
-
         if (PlayerPrefs.GetInt("CurrentLevel", -1) <= 6)
         {
-            return new List<int>() { 1, 2};
+            return new List<int>() { 1, 2 };
         }
-        
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
         {
-            return new List<int>() { 1, 3};
+            return new List<int>() { 1, 3 };
         }
-        
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 9)
         {
-            return new List<int>() { 1, 3};
+            return new List<int>() { 1, 3 };
         }
 
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
             return new List<int>() { 4, 1, 3 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
         {
             return new List<int>() { -1, 1, 3 };
+        }
+
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 999)
+        {
+            return new List<int>() { -1, 1, -1 };
         }
 
         return new List<int>() { 1, 2 };
@@ -59,48 +64,64 @@ public class SelectCharacterController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 2)
         {
-            return new List<int>() {2};
+            return new List<int>() { 2 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 3)
         {
-            return new List<int>() {1};
+            return new List<int>() { 1 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
         {
-            return new List<int>() {2};
+            return new List<int>() { 2 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 5)
         {
-            return new List<int>() {1};
+            return new List<int>() { 1 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 6)
         {
-            return new List<int>() {2};
+            return new List<int>() { 2 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
         {
-            return new List<int>() {3};
+            return new List<int>() { 3 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
             return new List<int>() { 4 };
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 1)
         {
             return new List<int>() { 4 };
         }
+
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
+        {
+            return new List<int>() { 1 };
+        }
+
         return new List<int>() { 1 };
     }
 
     public CanvasGroup BlackCanvasGroup;
+
     private void Awake()
     {
         BlackCanvasGroup.alpha = 1;
     }
+
     void Start()
     {
         StartCoroutine(ScriptStart());
     }
+
     public IEnumerator ScriptStart()
     {
         PosMap.Add(1, new List<Vector2>() { new Vector2(0, 0) });
@@ -139,24 +160,25 @@ public class SelectCharacterController : MonoBehaviour
                     {
                         light.gameObject.SetActive(true);
                         var Handle = obj.GetComponentInChildren<SpriteClickHandle>();
-                        
+
                         Handle.SelectShowObj = SelectShowPanel;
                         Handle.CharacterPanelParent = CharacterPanelParent;
                         Handle.Actor = actor;
                         Handle.SelectCharacterController = this;
                     }
-
-                    index++;
                 }
             }
+
+            index++;
         }
+
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
 
     public IEnumerator EndSelect()
     {
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
-        
+
         var CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", -1);
         Debug.Log("CurrentLevel:" + CurrentLevel);
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 2)
@@ -164,16 +186,19 @@ public class SelectCharacterController : MonoBehaviour
             SceneManager.LoadScene("_2.走道");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 3)
         {
             SceneManager.LoadScene("_3.走道_会议室");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 7)
         {
             SceneManager.LoadScene("_7.培养室");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 8)
         {
             SceneManager.LoadScene("_8A");
@@ -194,10 +219,15 @@ public class SelectCharacterController : MonoBehaviour
             SceneManager.LoadScene("_11");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+        else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 999)
+        {
+            SceneManager.LoadScene("_12");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
     }
+
     public void JumpToGame()
     {
         StartCoroutine(EndSelect());
     }
-    
 }

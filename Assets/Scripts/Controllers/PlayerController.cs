@@ -49,6 +49,11 @@ namespace Controllers
             OldState = AnimationType.Idle;
             spineAnimationState.SetAnimation(0, idleAnimationName, true);
             skeletonAnimation.timeScale = SpineIdleTimeScale;
+
+            if (PlayerPrefs.GetInt("CurrentLevel", -1) == 999)
+            {
+                spineAnimationState.SetAnimation(0, huiwuAnimationName, true);
+            }
         }
 
         private bool LastDirection => transform.localScale.x > 0; // left
@@ -73,6 +78,7 @@ namespace Controllers
 
         private void Update()
         {
+            if (PlayerPrefs.GetInt("CurrentLevel", -1) == 999) return;
             Vector2 move = Vector2.zero;
             if (IsScriptControl)
             {
