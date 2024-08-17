@@ -20,7 +20,7 @@ namespace _ProjectBooom_.ScenesScript
 
         [Header("对话ID")]
         public int DialogIndex0;
-        public int DialogIndex1;
+        // public int DialogIndex1;
 
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
@@ -64,24 +64,24 @@ namespace _ProjectBooom_.ScenesScript
         {
             StoryController.SetDebugText("场景开始AVG对话");
             yield return StartAVGSystemCoroutine(DialogIndex0);
-            // 控制移动
-            float dir = TargetPosX - PlayerController02.transform.position.x;
-            float speed = PlayerController02.maxSpeed * Mathf.Sign(dir);
-            PlayerController02.ScriptSpeed = new Vector2(speed, 0);
+            // // 控制移动
+            // float dir = TargetPosX - PlayerController02.transform.position.x;
+            // float speed = PlayerController02.maxSpeed * Mathf.Sign(dir);
+            // PlayerController02.ScriptSpeed = new Vector2(speed, 0);
+            //
+            // float newDir = dir;
+            // while (Mathf.Approximately(Mathf.Sign(newDir), Mathf.Sign(dir)))
+            // {
+            //     yield return new WaitForEndOfFrame();
+            //     newDir = TargetPosX - PlayerController02.transform.position.x;
+            // }
+            //
+            // PlayerController02.ScriptSpeed = Vector2.zero;
+            // Vector3 playerPos = PlayerController02.transform.position;
+            // playerPos.x = TargetPosX;
+            // PlayerController02.transform.position = playerPos;
 
-            float newDir = dir;
-            while (Mathf.Approximately(Mathf.Sign(newDir), Mathf.Sign(dir)))
-            {
-                yield return new WaitForEndOfFrame();
-                newDir = TargetPosX - PlayerController02.transform.position.x;
-            }
-
-            PlayerController02.ScriptSpeed = Vector2.zero;
-            Vector3 playerPos = PlayerController02.transform.position;
-            playerPos.x = TargetPosX;
-            PlayerController02.transform.position = playerPos;
-
-            yield return StartAVGSystemCoroutine(DialogIndex1, true);
+            // yield return StartAVGSystemCoroutine(DialogIndex1, true);
             
             StoryController.TryFinishCurrentStory();
         }
