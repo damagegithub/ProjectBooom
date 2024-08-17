@@ -33,11 +33,13 @@ namespace _ProjectBooom_.ScenesScript
         [Header("验证码间隔时间")]
         public float CaptchaIntervalTime = 3.0f;
 
-        [Header("场景开场对话ID")]
-        public int LevelStartDialogIndex;
-
-        [Header("场景结束对话ID")]
-        public int LevelEndDialogIndex;
+        [Header("对话ID")]
+        public int DialogID0 = 201;
+        public int DialogID1 = 202;
+        public int DialogID2 = 203;
+        public int DialogID3 = 204;
+        public int DialogID4 = 205;
+        public int DialogID5 = 206;
 
         [Header("进行中的对话ID")]
         public int CurrentDialogIndex = -1;
@@ -75,46 +77,50 @@ namespace _ProjectBooom_.ScenesScript
 
             BlackCanvasGroup.alpha = 1;
         }
-
-        /// <summary>
-        ///     场景开始的对话
-        /// </summary>
-        public void LevelBeginAvgDialog()
+        
+        public void SingleStory()
         {
-            StartCoroutine(LevelBeginAvgDialogCoroutine());
+            StartCoroutine(SingleStoryCoroutine());
         }
-
-        public IEnumerator LevelBeginAvgDialogCoroutine()
+        
+        private IEnumerator SingleStoryCoroutine()
         {
             StoryController.SetDebugText("等待场景开始AVG对话");
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
-            // 等待触发对话
-            while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("场景2开启对话")))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
+            // 控制移动
+            yield return new WaitUntil(() => Mathf.Approximately(1f, GlobalVariable.GetVarValue("场景2开启对话")));
             // 停止移动并开启对话
             PlayerController.maxSpeed = 0;
-            yield return StartAVGSystemCoroutine(LevelStartDialogIndex);
+            yield return StartAVGSystemCoroutine(DialogID0,false,false);
+            
+            // 测试验证码
+            StoryController.SetDebugText($"当前第1个验证码");
+            CaptchaControl.Show(CaptchaInfos[0]);
+            yield return new WaitUntil(() => CaptchaControl.IsAnswered);
+            yield return StartAVGSystemCoroutine(DialogID1,false,false);
+            StoryController.SetDebugText($"当前第2个验证码");
+            CaptchaControl.Show(CaptchaInfos[1]);
+            yield return new WaitUntil(() => CaptchaControl.IsAnswered);
+            yield return StartAVGSystemCoroutine(DialogID2,false,false);
+            StoryController.SetDebugText($"当前第3个验证码");
+            CaptchaControl.Show(CaptchaInfos[2]);
+            yield return new WaitUntil(() => CaptchaControl.IsAnswered);
+            yield return StartAVGSystemCoroutine(DialogID3,false,false);
+            StoryController.SetDebugText($"当前第4个验证码");
+            CaptchaControl.Show(CaptchaInfos[3]);
+            yield return new WaitUntil(() => CaptchaControl.IsAnswered);
+            yield return StartAVGSystemCoroutine(DialogID4,false,false);
+
+            yield return StartAVGSystemCoroutine(DialogID5,true);
         }
 
-        /// <summary>
-        ///     场景结束的对话
-        /// </summary>
-        public void LevelEndAvgDialog()
-        {
-            StoryController.SetDebugText("场景结束AVG对话");
-            StartCoroutine(StartAVGSystemCoroutine(LevelEndDialogIndex, true));
-        }
-
-        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
+        private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false, bool autoStory = true)
         {
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
             CurrentDialogIndex = dialogIndex;
             DialogueController.StartConversation(dialogIndex);
-
+ 
             while (CurrentDialogIndex == dialogIndex)
             {
                 yield return new WaitForEndOfFrame();
@@ -125,32 +131,11 @@ namespace _ProjectBooom_.ScenesScript
                 yield return BlackCanvasGroup.DOFade(1f, 1.0f).SetId(this).WaitForCompletion();
             }
 
-            StoryController.TryFinishCurrentStory();
-        }
-
-        /// <summary>
-        ///     开始验证码测试
-        /// </summary>
-        public void StartCaptchaTest()
-        {
-            StartCoroutine(StartCaptchaTestCoroutine());
-        }
-
-        public IEnumerator StartCaptchaTestCoroutine()
-        {
-            // 等待指定的时间
-            for (int i = 0; i < CaptchaInfos.Length; i++)
+            if (autoStory)
             {
-                StoryController.SetDebugText($"当前第{i + 1}个验证码");
-                CaptchaControl.Show(CaptchaInfos[i]);
-                while (!CaptchaControl.IsAnswered)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
+                StoryController.TryFinishCurrentStory();
             }
-
-            // 进入下个片段
-            StoryController.TryFinishCurrentStory();
         }
+
     }
 }
