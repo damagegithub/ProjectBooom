@@ -20,7 +20,6 @@ namespace PBDialogueSystem
         public int ConversationID; //对话的ID
         private int _currentDialogueID = -1; //对话中句子的ID
         public ConversationData ConversationData;
-        public List<DialogueActor> Actors = new List<DialogueActor>();
         public ConversationState State;
         public DialogueStandardUI DialogueUI;
         public PBTypeWritter TypeWriter = null;
@@ -28,6 +27,7 @@ namespace PBDialogueSystem
         private Dictionary<int, Texture2D> SpeakerAvatars = new Dictionary<int, Texture2D>();
         private Dictionary<int, Texture2D> SpeakerNameImages = new Dictionary<int, Texture2D>();
         private Dictionary<int, Texture2D> FullBodyImages = new Dictionary<int, Texture2D>();
+        private Dictionary<int, AudioClip> AudioClips = new Dictionary<int, AudioClip>();
 
         public Conversation(int newConversationID, PBTypeWritter InTypeWriter)
         {
@@ -60,6 +60,21 @@ namespace PBDialogueSystem
             DialogueActor actor = DialogueController.GetDialogueActor(data.SpeakerID);
             UpdateAvatar(data, actor);
             UpdateFullBodyImage(data);
+
+            if (data.BGMID < 0)
+            {
+                DialogueUI.GetComponent<AudioSource>().Stop();
+            }else if (data.BGMID > 0)
+            {
+                if (!AudioClips.ContainsKey(data.BGMID))
+                {
+                    //使用代码根据路径加载图片
+                    AudioClips.Add(data.BGMID,
+                                   Resources.Load<AudioClip>(DialogueController.GetDialogueAudioPath(data.BGMID)));
+                }
+                DialogueUI.GetComponent<AudioSource>().clip = AudioClips[data.BGMID] == null ? null : AudioClips[data.BGMID];
+                DialogueUI.GetComponent<AudioSource>().Play();
+            }
 
             //设置对话内容
             TypeWriter.fullText = data.DialogueText;

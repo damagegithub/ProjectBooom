@@ -20,6 +20,8 @@ namespace PBDialogueSystem
         public int FullBodySlot2_Y;
         public int FullBodySlot3_X;
         public int FullBodySlot3_Y;
+        public int BGMID;
+        public int BlackBG;
     }
 
     public class ConversationData

@@ -9,6 +9,7 @@ namespace PBDialogueSystem
     {
         private Dictionary<int, ConversationData> _conversationData = new Dictionary<int, ConversationData>();
         private Dictionary<int, DialogueActor> _dialogueActors = new Dictionary<int, DialogueActor>();
+        private Dictionary<int, DialogueAudio> _dialogueAudios = new Dictionary<int, DialogueAudio>();
         private ConversationData _currentConversationData = null;
         private Conversation _currentConversation = null;
 
@@ -90,6 +91,23 @@ namespace PBDialogueSystem
                 int actorID = dialogueActor.ActorID;
                 _dialogueActors[actorID] = dialogueActor;
             }
+            List<DialogueAudio> dialogueAudiosJsonData = CSVToJsonUtil.GetJsonData<DialogueAudio>("Tables/Audio");
+            foreach (var dialogueAudio in dialogueAudiosJsonData)
+            {
+                int actorID = dialogueAudio.AudioID;
+                _dialogueAudios[actorID] = dialogueAudio;
+            }
+        }
+
+        public String GetDialogueAudioPath(int AudioID)
+        {
+            if (!_dialogueAudios.ContainsKey(AudioID))
+            {
+                Debug.LogError("Actor ID not found in dialogue Audio! " + AudioID);
+                return null;
+            }
+
+            return _dialogueAudios[AudioID].AudioPath;
         }
 
         public void StartConversation(int conversationID)
