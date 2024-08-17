@@ -38,6 +38,7 @@ namespace Controllers
 
         private void Awake()
         {
+            PlayerPrefs.DeleteAll();
             collider2d = GetComponent<Collider2D>();
             RigidBody2D = GetComponent<Rigidbody2D>();
             skeletonAnimation = GetComponent<SkeletonAnimation>();

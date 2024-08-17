@@ -9,5 +9,7 @@
         public string ActorAvatarImagePath;
         public string ActorFullBodyImagePath;
         public string SelectSceneImagePath;
+        public string SelectFBImagePath;
+        public string SelectWord;
     }
 }
