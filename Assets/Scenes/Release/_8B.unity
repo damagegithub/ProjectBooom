@@ -658,14 +658,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f76087652df0be44fa8511fa83672ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7064443a9eba9645be2f56e62816d2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2169,8 +2169,8 @@ MonoBehaviour:
   controlEnabled: 1
   RigidBody2D: {fileID: 0}
   collider2d: {fileID: 0}
-  runAnimationName: walk
-  idleAnimationName: idle
+  runAnimationName: walk1
+  idleAnimationName: idea1
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
   IsScriptControl: 0
@@ -2234,8 +2234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 530566d7a8b9dab4c8d1ea3317879802, type: 2}
-  initialSkinName: 
+  skeletonDataAsset: {fileID: 11400000, guid: 67734350ef391984da253fa9f47b66d8, type: 2}
+  initialSkinName: leng
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
