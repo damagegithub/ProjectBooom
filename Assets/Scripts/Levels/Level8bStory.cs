@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using MetaGameUtils;
 using PBDialogueSystem;
 using UnityEngine;
@@ -7,10 +8,22 @@ using UnityEngine;
 public class Level8bStory : MonoBehaviour
 {
     public DialogueController dialogueController;
-
+    public CanvasGroup BlackCanvasGroup;
+    private void Awake()
+    {
+        BlackCanvasGroup.alpha = 1;
+    }
 
     void Start()
     {
+           
+        StartCoroutine(ScriptStart());
+    }
+
+    public IEnumerator ScriptStart()
+    {
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+
         Invoke(nameof(StartConversation), 2f);
     }
     

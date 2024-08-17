@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using PBDialogueSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,12 +10,26 @@ namespace Levels
     {
         public DialogueController dialogueController;
 
-        // Start is called before the first frame update
+        
+        
+        public CanvasGroup BlackCanvasGroup;
+        private void Awake()
+        {
+            BlackCanvasGroup.alpha = 1;
+        }
+        
         void Start()
         {
-            Invoke(nameof(StartConversation803), 2f);
-        
+            StartCoroutine(ScriptStart());
         }
+
+        public IEnumerator ScriptStart()
+        {
+            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+            
+            Invoke(nameof(StartConversation803), 2f);
+        }
+        
 
         private void StartConversation803()
         {

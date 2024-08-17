@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using MetaGameUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,9 +12,21 @@ public class GameStartController : MonoBehaviour
     public Button LevelDebug7Button;
     public Button LevelDebug3Button;
     public Button ClearPlayerPrefsButton;
-
+    public CanvasGroup BlackCanvasGroup;
+    private void Awake()
+    {
+        BlackCanvasGroup.alpha = 1;
+    }
+        
     void Start()
     {
+        StartCoroutine(ScriptStart());
+    }
+
+    public IEnumerator ScriptStart()
+    {
+        
+
         Level7Check();
         Level9Check();
         Level11Check();
@@ -50,6 +63,7 @@ public class GameStartController : MonoBehaviour
         {
             PlayerPrefs.SetInt("CurrentLevel", 3);
         });
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
 
 

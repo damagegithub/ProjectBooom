@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using MetaGameUtils;
 using PBDialogueSystem;
 using TMPro;
@@ -69,9 +70,16 @@ public class SelectCharacterController : MonoBehaviour
         return new List<int>() { 1 };
     }
 
-
-    // Start is called before the first frame update
+    public CanvasGroup BlackCanvasGroup;
+    private void Awake()
+    {
+        BlackCanvasGroup.alpha = 1;
+    }
     void Start()
+    {
+        StartCoroutine(ScriptStart());
+    }
+    public IEnumerator ScriptStart()
     {
         PosMap.Add(1, new List<Vector2>() { new Vector2(0, 0) });
         PosMap.Add(2, new List<Vector2>() { new Vector2(-500, 0), new Vector2(500, 0) });
@@ -120,10 +128,13 @@ public class SelectCharacterController : MonoBehaviour
                 }
             }
         }
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
 
-    public void JumpToGame()
+    public IEnumerator EndSelect()
     {
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+        
         var CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", -1);
         Debug.Log("CurrentLevel:" + CurrentLevel);
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 2)
@@ -157,8 +168,9 @@ public class SelectCharacterController : MonoBehaviour
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
     }
-
-
-    // Update is called once per frame
-    void Update() { }
+    public void JumpToGame()
+    {
+        StartCoroutine(EndSelect());
+    }
+    
 }

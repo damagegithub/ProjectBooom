@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using MetaGameUtils;
 using PBDialogueSystem;
 using UnityEngine;
@@ -7,10 +8,22 @@ using UnityEngine;
 public class DebugLevel7Story : MonoBehaviour
 {
     public DialogueController dialogueController;
-
-
+    public CanvasGroup BlackCanvasGroup;
+    private void Awake()
+    {
+        BlackCanvasGroup.alpha = 1;
+    }
+        
     void Start()
     {
+           
+        StartCoroutine(ScriptStart());
+    }
+
+    public IEnumerator ScriptStart()
+    {
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+
         if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == -1)
         {
             //第一次进level7 meta流程
@@ -20,8 +33,8 @@ public class DebugLevel7Story : MonoBehaviour
             //meta操作不正确
             Invoke(nameof(StartConversationRepeat), 1f);
         }
-       
     }
+    
 
     private void StartConversationRepeat()
     {
