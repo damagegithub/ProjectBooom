@@ -860,8 +860,8 @@ MonoBehaviour:
   StoryController: {fileID: 390160621}
   BlackCanvasGroup: {fileID: 681748774}
   DialogueController: {fileID: 2058142057}
-  DialogIndex0: 301
-  DialogIndex1: 302
+  DialogIndex0: 401
+  DialogIndex1: 402
   CurrentDialogIndex: -1
   PlayerController02: {fileID: 1122757868}
   TargetPosX: 4.75
