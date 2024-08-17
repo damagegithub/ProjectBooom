@@ -32,10 +32,10 @@ namespace Levels
 
         private void StartConversation()
         {
-            if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1)
+            if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1 && PlayerPrefs.GetInt("Level11MetaDeleteDoc", -1) !=1)
             {
                 dialogueController.StartConversation(1102); 
-                dialogueController.OnOneConversationEnd += (int id) => { Invoke(nameof(EndGame), 2f); };
+                dialogueController.OnOneConversationEnd += (int id) => { Invoke(nameof(MetaGame), 2f); };
             }
             else if (PlayerPrefs.GetInt("Level11MetaDeleteDoc", -1) == 1)
             {

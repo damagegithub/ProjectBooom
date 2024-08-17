@@ -28,10 +28,12 @@ public class Level9Story : MonoBehaviour
     
     private void StartConversation()
     {
-        if (PlayerPrefs.GetInt("Level9MetaCreated", -1) == 1)
+        var MetaDialog = PlayerPrefs.GetInt("levle9MetaDialog", -1);
+        if (MetaDialog != -1)
         {
-            Debug.Log("StartConversation---902");
-            dialogueController.StartConversation(902);
+            Debug.Log("StartConversation---"+MetaDialog);
+            PlayerPrefs.SetInt("levle9MetaDialog", -1);
+            dialogueController.StartConversation(MetaDialog);
         }
         else
         {

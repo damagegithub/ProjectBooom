@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release/_10A.unity
     guid: 459424e954183b94d92bb9d673234423
+  - enabled: 1
+    path: Assets/Scenes/Release/_7.培养室.unity
+    guid: 5d524755fe74128448e0c60798e538b4
   m_configObjects: {}

@@ -45,7 +45,11 @@ public class SelectCharacterController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            return new List<int>() { 1, 2, 3 };
+            return new List<int>() { 4, 1, 3 };
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
+        {
+            return new List<int>() { 4, 1, 3 };
         }
 
         return new List<int>() { 1, 2 };
@@ -79,7 +83,11 @@ public class SelectCharacterController : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            return new List<int>() { 1 };
+            return new List<int>() { 4 };
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 1)
+        {
+            return new List<int>() { 4 };
         }
         return new List<int>() { 1 };
     }
@@ -178,7 +186,7 @@ public class SelectCharacterController : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 10)
         {
-            SceneManager.LoadScene("_10A");
+            SceneManager.LoadScene("_10");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
         else if (PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
