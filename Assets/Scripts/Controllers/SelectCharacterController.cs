@@ -199,7 +199,7 @@ public class SelectCharacterController : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 5)
         {
-            SceneManager.LoadScene("_4.会议室");
+            SceneManager.LoadScene("_5.培养室");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 6)
