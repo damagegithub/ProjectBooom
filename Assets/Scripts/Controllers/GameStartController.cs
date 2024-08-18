@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class GameStartController : MonoBehaviour
 {
     public Button      GameStartButton;
+    public Button      GameContinueButton;
+    public Button      GameExitButton;
     public Button      LevelDebug7Button;
     public Button      LevelDebug3Button;
     public Button      LevelDebug11Button;
@@ -23,6 +25,7 @@ public class GameStartController : MonoBehaviour
     void Start()
     {
         // PlayerPrefs.DeleteAll();
+        Screen.SetResolution(1920, 1080, false);
         StartCoroutine(ScriptStart());
     }
 
@@ -56,7 +59,7 @@ public class GameStartController : MonoBehaviour
 
         ClearPlayerPrefsButton.onClick.AddListener(() => { PlayerPrefs.DeleteAll(); });
 
-
+        GameExitButton.onClick.AddListener(() => { Application.Quit(); });
         LevelDebug7Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 7); });
         LevelDebug11Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 11); });
 

@@ -129,7 +129,7 @@ public class SelectCharacterController : MonoBehaviour
         PosMap.Add(3, new List<Vector2>() { new Vector2(-400, 0), new Vector2(0, 0), new Vector2(400, 0) });
         SpritePosMap.Add(1, new List<Vector2>() { new Vector2(0, 0) });
         SpritePosMap.Add(2, new List<Vector2>() { new Vector2(-2, 0), new Vector2(2, 0) });
-        SpritePosMap.Add(3, new List<Vector2>() { new Vector2(-3, 0), new Vector2(0, 0), new Vector2(3, 0) });
+        SpritePosMap.Add(3, new List<Vector2>() { new Vector2(-3.5f, 0), new Vector2(0, 0), new Vector2(3.5f, 0) });
 
         List<DialogueActor> Actors = CSVToJsonUtil.GetJsonData<DialogueActor>("Tables/Actors");
         foreach (var Actor in Actors)
