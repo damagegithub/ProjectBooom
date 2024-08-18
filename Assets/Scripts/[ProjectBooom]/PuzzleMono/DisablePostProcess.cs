@@ -30,7 +30,7 @@ namespace _ProjectBooom_.PuzzleMono
             bool ifIsScene3 = (bool)FindObjectOfType<_3_Scene>(true);
             string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             
-            if ("SelectCharacter".Equals(currentSceneName))
+            if ("SelectCharacterScene".Equals(currentSceneName))
             {
                 _cameraNoiseData.SetActive(true);
                 _cameraColorDispersionData.SetActive(true);
