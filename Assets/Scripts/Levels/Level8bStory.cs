@@ -22,9 +22,8 @@ public class Level8bStory : MonoBehaviour
 
     public IEnumerator ScriptStart()
     {
+        StartConversation();
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
-
-        Invoke(nameof(StartConversation), 2f);
     }
     
     
@@ -33,7 +32,7 @@ public class Level8bStory : MonoBehaviour
         dialogueController.StartConversation(803);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
-            StartCoroutine(ExecuteMetaAfterDelay(2));
+            StartCoroutine(ExecuteMetaAfterDelay(1));
         };
     }
     
@@ -55,7 +54,7 @@ public class Level8bStory : MonoBehaviour
         MetaGameUtil.CreateFileOnDesktop("02.txt", "02本体");
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("CurrentLevel", 7);
-        Invoke(nameof(EndGame), 2f);
+        Invoke(nameof(EndGame), 1f);
     }
 
     void EndGame()

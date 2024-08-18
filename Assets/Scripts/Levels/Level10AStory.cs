@@ -25,9 +25,9 @@ public class Level10AStory : MonoBehaviour
 
     public IEnumerator ScriptStart()
     {
+        StartConversation();
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
-        Invoke(nameof(StartConversation), 2f);
     }
 
     private void StartConversation()
@@ -37,7 +37,7 @@ public class Level10AStory : MonoBehaviour
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended " + id);
-            StartCoroutine(ExecuteMetaAfterDelay(2));
+            StartCoroutine(ExecuteMetaAfterDelay(1));
         };
     }
     

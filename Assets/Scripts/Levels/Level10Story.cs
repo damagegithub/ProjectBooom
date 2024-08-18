@@ -25,9 +25,9 @@ namespace Levels
 
         public IEnumerator ScriptStart()
         {
+            StartConversation();
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
-            Invoke(nameof(StartConversation), 2f);
         }
 
         private void StartConversation()

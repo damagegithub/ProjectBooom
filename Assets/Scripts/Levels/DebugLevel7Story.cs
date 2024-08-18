@@ -22,17 +22,16 @@ public class DebugLevel7Story : MonoBehaviour
 
     public IEnumerator ScriptStart()
     {
-        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
-
         if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == -1)
         {
             //第一次进level7 meta流程
-            Invoke(nameof(StartConversation), 2f);
+            Invoke(nameof(StartConversation), 0.1f);
         }else if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
         {
             //meta操作不正确
-            Invoke(nameof(StartConversationRepeat), 1f);
+            Invoke(nameof(StartConversationRepeat), 0.1f);
         }
+        yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
     
 

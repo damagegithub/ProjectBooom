@@ -21,9 +21,9 @@ public class Level9Story : MonoBehaviour
 
     public IEnumerator ScriptStart()
     {
+        StartConversation();
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
-        Invoke(nameof(StartConversation), 2f);
     }
     
     private void StartConversation()
@@ -67,7 +67,7 @@ public class Level9Story : MonoBehaviour
         }
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("Level9MetaCreated",1);
-        Invoke(nameof(EndGame), 2f);
+        Invoke(nameof(EndGame), 1f);
     }
     
     void EndGame()
