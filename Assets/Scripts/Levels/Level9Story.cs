@@ -61,7 +61,10 @@ public class Level9Story : MonoBehaviour
         var FloderName = "PB_Meta";
         MetaGameUtil.CreateFolderOnDesktop();
         MetaGameUtil.CreateFileOnDesktop("01.txt", "01本体");
-        MetaGameUtil.CreateFileOnDesktop("lian.xxx", "lian?????");
+        if (!MetaGameUtil.CheckPlayerDesktopHasFile("lian.txt"))
+        {
+            MetaGameUtil.CreateFileOnDesktop("lian.xxx", "lian?????");
+        }
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("Level9MetaCreated",1);
         Invoke(nameof(EndGame), 2f);

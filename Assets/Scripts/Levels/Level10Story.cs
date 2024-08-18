@@ -19,8 +19,8 @@ namespace Levels
         
         void Start()
         {
-           
-            StartCoroutine(ScriptStart());
+            StartConversation();
+            // StartCoroutine(ScriptStart());
         }
 
         public IEnumerator ScriptStart()

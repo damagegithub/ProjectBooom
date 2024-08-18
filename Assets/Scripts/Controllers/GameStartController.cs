@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class GameStartController : MonoBehaviour
 {
     public Button      GameStartButton;
+    public Button      GameContinueButton;
+    public Button      GameExitButton;
     public Button      LevelDebug7Button;
     public Button      LevelDebug3Button;
     public Button      LevelDebug11Button;
@@ -23,6 +25,7 @@ public class GameStartController : MonoBehaviour
     void Start()
     {
         // PlayerPrefs.DeleteAll();
+        Screen.SetResolution(1920, 1080, false);
         StartCoroutine(ScriptStart());
     }
 
@@ -39,24 +42,27 @@ public class GameStartController : MonoBehaviour
             {
                 SceneManager.LoadScene("FinalScene");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
             if (currentLevel == 1)
             {
                 //完成关卡1之前, 没有选人界面
                 SceneManager.LoadScene("_1.培养室");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
             else
             {
                 //完成关卡1之后, 进入选人界面
                 SceneManager.LoadScene("SelectCharacterScene");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
         });
 
         ClearPlayerPrefsButton.onClick.AddListener(() => { PlayerPrefs.DeleteAll(); });
 
-
+        GameExitButton.onClick.AddListener(() => { Application.Quit(); });
         LevelDebug7Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 7); });
         LevelDebug11Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 11); });
 

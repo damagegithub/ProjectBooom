@@ -25,7 +25,7 @@ namespace PBDialogueSystem
             OnOneConversationEnd = null;
         }
 
-        void Start()
+        void Awake()
         {
             // 先尝试在场景中找到对话UI
             if (!DialogueUI)
@@ -42,6 +42,9 @@ namespace PBDialogueSystem
             DialogueUI.gameObject.SetActive(false);
             audioController = FindObjectOfType<AudioController>();
             InitConversationData();
+        }
+        void Start()
+        {
             // StartConversation(101);
         }
         
@@ -156,6 +159,10 @@ namespace PBDialogueSystem
             var PlayerControllers = GameObject.FindObjectsOfType<PlayerController>();
             foreach (var playerController in PlayerControllers)
             {
+                if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
+                {
+                    return;
+                }
                 playerController.controlEnabled = true;
             }
         }
