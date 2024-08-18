@@ -42,19 +42,11 @@ public class Level9Story : MonoBehaviour
         dialogueController.OnOneConversationEnd += (int id) =>
         {
             Debug.Log("Conversation ended " + id);
-            StartCoroutine(ExecuteMetaAfterDelay(2));
+            MetaGame();
         };
     }
 
     
-    IEnumerator ExecuteMetaAfterDelay(float delay)
-    {
-        // 等待指定的时间
-        yield return new WaitForSeconds(delay);
-        
-        MetaGame();
-    }
-
     
     void MetaGame()
     {
@@ -67,7 +59,7 @@ public class Level9Story : MonoBehaviour
         }
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("Level9MetaCreated",1);
-        Invoke(nameof(EndGame), 1f);
+        Invoke(nameof(EndGame), 0.1f);
     }
     
     void EndGame()

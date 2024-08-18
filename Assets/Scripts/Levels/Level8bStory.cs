@@ -32,20 +32,9 @@ public class Level8bStory : MonoBehaviour
         dialogueController.StartConversation(803);
         dialogueController.OnOneConversationEnd += (int id) =>
         {
-            StartCoroutine(ExecuteMetaAfterDelay(1));
+            MetaGame();
         };
     }
-    
-    
-    IEnumerator ExecuteMetaAfterDelay(float delay)
-    {
-        // 等待指定的时间
-        yield return new WaitForSeconds(delay);
-        
-        // 延迟后执行代码
-        MetaGame();
-    }
-
     
     void MetaGame()
     {
@@ -54,7 +43,7 @@ public class Level8bStory : MonoBehaviour
         MetaGameUtil.CreateFileOnDesktop("02.txt", "02本体");
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("CurrentLevel", 7);
-        Invoke(nameof(EndGame), 1f);
+        EndGame();
     }
 
     void EndGame()
