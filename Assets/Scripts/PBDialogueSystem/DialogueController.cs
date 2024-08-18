@@ -25,7 +25,7 @@ namespace PBDialogueSystem
             OnOneConversationEnd = null;
         }
 
-        void Start()
+        void Awake()
         {
             // 先尝试在场景中找到对话UI
             if (!DialogueUI)
@@ -42,6 +42,9 @@ namespace PBDialogueSystem
             DialogueUI.gameObject.SetActive(false);
             audioController = FindObjectOfType<AudioController>();
             InitConversationData();
+        }
+        void Start()
+        {
             // StartConversation(101);
         }
         
