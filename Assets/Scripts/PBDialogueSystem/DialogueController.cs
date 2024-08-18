@@ -60,7 +60,7 @@ namespace PBDialogueSystem
 
         public void FastForward()
         {
-            if (_currentConversation == null) 
+              if (_currentConversation == null) 
             {
                 return;
             }

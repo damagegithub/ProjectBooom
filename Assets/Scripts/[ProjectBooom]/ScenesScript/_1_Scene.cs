@@ -106,10 +106,10 @@ namespace _ProjectBooom_.ScenesScript
 
         private IEnumerator StartAVGSystemCoroutine(int dialogIndex, bool fadeEnd = false)
         {
-            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
-
             CurrentDialogIndex = dialogIndex;
             DialogueController.StartConversation(dialogIndex);
+            yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+
 
             while (CurrentDialogIndex == dialogIndex)
             {

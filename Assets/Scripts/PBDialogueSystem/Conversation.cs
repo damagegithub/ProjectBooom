@@ -80,22 +80,33 @@ namespace PBDialogueSystem
                 DialogueController.audioController.FadefOutBGM();
             }
 
-            if ((data.BlackBG==1) && !_isBlackBG )//当前是0,现在要是1
+           
+            if (ConversationID == 1103 && _currentDialogueID == 19)
             {
-                if (_currentDialogueID == 1)
-                {
-                    DialogueUI.gameObject.GetComponent<Image>().color=new Color(0,0,0,1);
-                }
-                else
-                {
-                    DialogueUI.gameObject.GetComponent<Image>().DOFade(1, 1);
-                }
-                _isBlackBG = true;
+                DialogueUI.gameObject.GetComponent<Image>().color=new Color(1,1,1,0);
+                DialogueUI.gameObject.GetComponent<Image>().DOFade(1, 1);
+                DialogueUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/GameCG");
             }
-            else if ((data.BlackBG==0) && _isBlackBG )
+            else if(( ConversationID == 1103&& _currentDialogueID < 19) || ConversationID != 1103)
             {
-                DialogueUI.gameObject.GetComponent<Image>().DOFade(0, 1);
-                _isBlackBG = false;
+                if ((data.BlackBG==1) && !_isBlackBG )//当前是0,现在要是1
+                {
+                    if (_currentDialogueID == 1)
+                    {
+                        DialogueUI.gameObject.GetComponent<Image>().color=new Color(0,0,0,1);
+                    }
+                    else
+                    {
+                        DialogueUI.gameObject.GetComponent<Image>().DOFade(1, 1);
+                    }
+                    _isBlackBG = true;
+                }
+                else if ((data.BlackBG==0) && _isBlackBG )
+                {
+                    DialogueUI.gameObject.GetComponent<Image>().DOFade(0, 1);
+                    _isBlackBG = false;
+                }
+
             }
 
             //设置对话内容

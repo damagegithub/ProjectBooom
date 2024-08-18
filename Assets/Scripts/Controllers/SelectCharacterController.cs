@@ -57,7 +57,7 @@ public class SelectCharacterController : MonoBehaviour
             return new List<int>() { -1, 1, -1 };
         }
 
-        return new List<int>() { 1, 2,-1 };
+        return new List<int>() { -1, 1,2 };
     }
 
     private List<int> GetUsableCharacters()
