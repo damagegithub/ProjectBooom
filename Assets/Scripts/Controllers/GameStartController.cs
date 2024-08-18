@@ -56,7 +56,7 @@ public class GameStartController : MonoBehaviour
         LevelDebug7Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 7); });
         LevelDebug11Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 11); });
 
-        LevelDebug3Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 999); });
+        LevelDebug3Button.onClick.AddListener(() => { PlayerPrefs.SetInt("CurrentLevel", 3); });
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
     }
 

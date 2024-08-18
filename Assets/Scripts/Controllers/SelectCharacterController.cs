@@ -192,6 +192,21 @@ public class SelectCharacterController : MonoBehaviour
             SceneManager.LoadScene("_3.走道_会议室");
             SceneManager.UnloadSceneAsync("SelectCharacterScene");
         }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
+        {
+            SceneManager.LoadScene("_4.会议室");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 5)
+        {
+            SceneManager.LoadScene("_4.会议室");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == 6)
+        {
+            SceneManager.LoadScene("_6.小巷");
+            SceneManager.UnloadSceneAsync("SelectCharacterScene");
+        }
 
         if (PlayerPrefs.GetInt("CurrentLevel", -1) == 7)
         {
