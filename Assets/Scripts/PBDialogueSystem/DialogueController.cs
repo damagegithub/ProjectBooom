@@ -163,7 +163,7 @@ namespace PBDialogueSystem
             var PlayerControllers = GameObject.FindObjectsOfType<PlayerController>();
             foreach (var playerController in PlayerControllers)
             {
-                if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
+                if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4 || PlayerPrefs.GetInt("CurrentLevel", -1) == 11)
                 {
                     return;
                 }
