@@ -1758,6 +1758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Player (\u535A\u58EB)"
       objectReference: {fileID: 0}
+    - target: {fileID: 1996690024325138873, guid: ff13cd052dc08b246b3f8115561ca7a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1996690024325138874, guid: ff13cd052dc08b246b3f8115561ca7a2, type: 3}
       propertyPath: controlEnabled
       value: 0

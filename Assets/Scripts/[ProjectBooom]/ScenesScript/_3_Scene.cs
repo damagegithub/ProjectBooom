@@ -157,8 +157,8 @@ namespace _ProjectBooom_.ScenesScript
             yield return new WaitForEndOfFrame();
             yield return DoctorSpeakController
                .SpeakAndWait("博士：接下来需要为会议做准备，我需要你的帮助。", true);
-            yield return DoctorSpeakController
-               .SpeakAndWait("博士：请帮我删除会议文件夹中的文件", true);
+            // yield return DoctorSpeakController
+            //    .SpeakAndWait("博士：请帮我删除会议文件夹中的文件", true);
             DoctorSpeakController.SpeakWithoutFade("博士：先去启动电脑吧。");
 
             // 等待触发
