@@ -74,8 +74,15 @@ public class GameStartController : MonoBehaviour
     private void Level7Check()
     {
         //关卡7 或者 -8关
-        if (PlayerPrefs.GetInt("CurrentLevel", -1) != 7 && PlayerPrefs.GetInt("Level7MetaCreated", -1) != -8)
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) != 7 && PlayerPrefs.GetInt("CurrentLevel", -1) != -8)
         {
+            return;
+        }
+
+        if (PlayerPrefs.GetInt("CurrentLevel", -1) == -8)
+        {
+            SceneManager.LoadScene("_8B");
+            SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
             return;
         }
 
