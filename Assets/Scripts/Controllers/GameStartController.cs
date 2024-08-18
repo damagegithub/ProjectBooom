@@ -42,18 +42,21 @@ public class GameStartController : MonoBehaviour
             {
                 SceneManager.LoadScene("FinalScene");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
             if (currentLevel == 1)
             {
                 //完成关卡1之前, 没有选人界面
                 SceneManager.LoadScene("_1.培养室");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
             else
             {
                 //完成关卡1之后, 进入选人界面
                 SceneManager.LoadScene("SelectCharacterScene");
                 SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+                return;
             }
         });
 
