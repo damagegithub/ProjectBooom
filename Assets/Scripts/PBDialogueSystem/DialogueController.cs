@@ -156,6 +156,10 @@ namespace PBDialogueSystem
             var PlayerControllers = GameObject.FindObjectsOfType<PlayerController>();
             foreach (var playerController in PlayerControllers)
             {
+                if (PlayerPrefs.GetInt("CurrentLevel", -1) == 4)
+                {
+                    return;
+                }
                 playerController.controlEnabled = true;
             }
         }
