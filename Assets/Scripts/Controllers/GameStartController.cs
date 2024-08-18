@@ -111,8 +111,8 @@ public class GameStartController : MonoBehaviour
         if (PlayerPrefs.GetInt("Level9MetaCreated", -1) == 1)
         {
             var FloderName = "PB_Meta";
-            bool HasXXX = MetaGameUtil.CheckPlayerDesktopHasFile("lian.xxx");
-            bool HasTxt = MetaGameUtil.CheckPlayerDesktopHasFile("lian.txt");
+            bool HasXXX = MetaGameUtil.CheckPlayerDesktopHasFile("莲.xxx");
+            bool HasTxt = MetaGameUtil.CheckPlayerDesktopHasFile("莲.txt");
             bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("01.txt");
             if (!HasXXX && HasTxt && Has01)
             {
@@ -160,7 +160,7 @@ public class GameStartController : MonoBehaviour
             if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1)
             {
                 var FloderName = "PB_Meta";
-                bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile("doc.txt");
+                bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile("博士.txt");
                 bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("01.txt");
                 if (!HasDoc && Has01)
                 {

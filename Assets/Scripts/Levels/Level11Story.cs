@@ -74,7 +74,7 @@ namespace Levels
             var FloderName = "PB_Meta";
             MetaGameUtil.CreateFolderOnDesktop();
             MetaGameUtil.CreateFileOnDesktop("01.txt", "01本体");
-            MetaGameUtil.CreateFileOnDesktop("doc.txt", "doc本体");
+            MetaGameUtil.CreateFileOnDesktop("博士.txt", "doc本体");
             ShowDesktop.ShowDesktopFunc();
             PlayerPrefs.SetInt("Level11MetaCreated", 1);
             Invoke(nameof(EndGame), 2f);
