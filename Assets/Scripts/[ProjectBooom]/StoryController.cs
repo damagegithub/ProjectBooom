@@ -37,8 +37,11 @@ namespace _ProjectBooom_
 
         public void SetDebugText(string debugText)
         {
-            DebugText.text = $"{GetCurrentStoryInfo().StoryName}->{debugText}";
-            Debug.Log(DebugText.text);
+            if (DebugText)
+            {
+                DebugText.text = $"{GetCurrentStoryInfo().StoryName}->{debugText}";
+            }
+            Debug.Log(debugText);
         }
 
         private void Start()
@@ -72,13 +75,19 @@ namespace _ProjectBooom_
             {
                 story.IsBegin = true;
                 story.BeginAction?.Invoke();
-                DebugText.text = $"{story.StoryName}->{story.StoryDescription}";
+                if (DebugText)
+                {
+                    DebugText.text = $"{story.StoryName}->{story.StoryDescription}";
+                }
             }
             else
             {
                 if (string.IsNullOrWhiteSpace(NextSceneName) || !IsSceneNameExist(NextSceneName))
                 {
-                    DebugText.text = $"没有下一个场景的跳转->{SceneManager.GetActiveScene().name}";
+                    if (DebugText)
+                    {
+                        DebugText.text = $"没有下一个场景的跳转->{SceneManager.GetActiveScene().name}";
+                    }
                     return;
                 }
 
