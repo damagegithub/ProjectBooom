@@ -19,10 +19,10 @@ namespace MetaGameUtils
    
         public static void ShowDesktopFunc()
         {
-            keybd_event((byte)VK_LWIN, 0, 0, UIntPtr.Zero);  // 模拟按下左Windows键
-            keybd_event((byte)VK_D, 0, 0, UIntPtr.Zero);     // 模拟按下D键
-            keybd_event((byte)VK_D, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);   // 释放D键
-            keybd_event((byte)VK_LWIN, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);  // 释放左Windows键
+            // keybd_event((byte)VK_LWIN, 0, 0, UIntPtr.Zero);  // 模拟按下左Windows键
+            // keybd_event((byte)VK_D, 0, 0, UIntPtr.Zero);     // 模拟按下D键
+            // keybd_event((byte)VK_D, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);   // 释放D键
+            // keybd_event((byte)VK_LWIN, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);  // 释放左Windows键
         }
         
     }
