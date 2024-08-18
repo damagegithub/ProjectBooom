@@ -2147,8 +2147,8 @@ MonoBehaviour:
   controlEnabled: 1
   RigidBody2D: {fileID: 0}
   collider2d: {fileID: 0}
-  runAnimationName: walk
-  idleAnimationName: idle
+  runAnimationName: walk1
+  idleAnimationName: idea1
   huiwuAnimationName: 
   runWalkDuration: 1.5
   skeletonAnimation: {fileID: 0}
