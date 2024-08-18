@@ -1012,7 +1012,7 @@ MonoBehaviour:
   maxSpeed: 2.5
   SpineIdleTimeScale: 0.5
   SpineWalkTimeScale: 1
-  controlEnabled: 1
+  controlEnabled: 0
   RigidBody2D: {fileID: 3482611386442305895}
   collider2d: {fileID: 3482611386442305894}
   runAnimationName: walk1

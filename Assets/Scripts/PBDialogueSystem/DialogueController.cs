@@ -15,6 +15,7 @@ namespace PBDialogueSystem
         private Conversation _currentConversation = null;
 
         public GameObject DialogueUIGO;
+        public AudioController audioController;
         private DialogueStandardUI DialogueUI;
         
         public event Action<int> OnOneConversationEnd;
@@ -39,6 +40,7 @@ namespace PBDialogueSystem
                 DialogueUI = instance.GetComponent<DialogueStandardUI>();
             }
             DialogueUI.gameObject.SetActive(false);
+            audioController = FindObjectOfType<AudioController>();
             InitConversationData();
             // StartConversation(101);
         }
