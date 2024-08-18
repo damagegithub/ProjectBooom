@@ -28,8 +28,14 @@ namespace _ProjectBooom_.PuzzleMono
                                         .Find(srf => srf.name.Equals(CameraColorDispersionBlit));
 
             bool ifIsScene3 = (bool)FindObjectOfType<_3_Scene>(true);
-
-            if (!ifIsScene3)
+            string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            
+            if ("SelectCharacter".Equals(currentSceneName))
+            {
+                _cameraNoiseData.SetActive(true);
+                _cameraColorDispersionData.SetActive(true);
+            }
+            else if (!ifIsScene3)
             {
                 _cameraNoiseData.SetActive(false);
                 _cameraColorDispersionData.SetActive(false);
