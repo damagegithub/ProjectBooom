@@ -40,6 +40,7 @@ namespace PBDialogueSystem
                 DialogueUI = instance.GetComponent<DialogueStandardUI>();
             }
             DialogueUI.gameObject.SetActive(false);
+            DialogueUI.DialogueController = this;
             audioController = FindObjectOfType<AudioController>();
             InitConversationData();
         }
@@ -53,21 +54,24 @@ namespace PBDialogueSystem
             // 检测空格键输入
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (_currentConversation == null) 
-                {
-                    return;
-                }
+                FastForward();
+            }
+        }
 
-                if (_currentConversation.State == ConversationState.WaitingForNext)
-                {
-                    _currentConversation.NextDialogue();
-                }
-                else if (_currentConversation.State == ConversationState.Typing)
-                {
-                    _currentConversation.TypeWriter.ShowFullText();
-                }
-                    
-               
+        public void FastForward()
+        {
+            if (_currentConversation == null) 
+            {
+                return;
+            }
+
+            if (_currentConversation.State == ConversationState.WaitingForNext)
+            {
+                _currentConversation.NextDialogue();
+            }
+            else if (_currentConversation.State == ConversationState.Typing)
+            {
+                _currentConversation.TypeWriter.ShowFullText();
             }
         }
 

@@ -9,7 +9,7 @@ namespace PBDialogueSystem
     {
 
         public PBTypeWritter TextWriter;
-        
+        public DialogueController DialogueController;
         public Image SpeakerNameImg;
         public Image SpeakerAvatar;
         public string SpeakerName { get; set; }
@@ -20,8 +20,14 @@ namespace PBDialogueSystem
         public Image FullBodyImage1;
         public Image FullBodyImage2;
         public Image FullBodyImage3;
-        
-        
+
+        public void OnCkicked()
+        {
+            if (DialogueController)
+            {
+                DialogueController.FastForward();
+            }
+        }
         
     }
 }
