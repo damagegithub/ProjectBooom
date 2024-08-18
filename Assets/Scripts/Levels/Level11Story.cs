@@ -44,10 +44,10 @@ namespace Levels
                 dialogueController.OnOneConversationEnd += (int id) =>
                 {
                     //todo 播放结局 然后
-                    CG.SetActive(true);
+                    // CG.SetActive(true);
                     PlayerPrefs.SetInt("GameFinished", 1);
                     PlayerPrefs.SetInt("CurrentLevel", 999); 
-                    Invoke(nameof(EndGame), 6f);
+                    Invoke(nameof(EndGame), 3f);
                 };
             }
             else
