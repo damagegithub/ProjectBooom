@@ -66,6 +66,7 @@ namespace PBDialogueSystem
             if (data.BGMID < 0)
             {
                 DialogueUI.GetComponent<AudioSource>().Stop();
+                DialogueController.audioController.FadefInBGM();
             }else if (data.BGMID > 0)
             {
                 if (!AudioClips.ContainsKey(data.BGMID))
@@ -76,11 +77,11 @@ namespace PBDialogueSystem
                 }
                 DialogueUI.GetComponent<AudioSource>().clip = AudioClips[data.BGMID] == null ? null : AudioClips[data.BGMID];
                 DialogueUI.GetComponent<AudioSource>().Play();
+                DialogueController.audioController.FadefOutBGM();
             }
 
             if ((data.BlackBG==1) && !_isBlackBG )//当前是0,现在要是1
             {
-                
                 if (_currentDialogueID == 1)
                 {
                     DialogueUI.gameObject.GetComponent<Image>().color=new Color(0,0,0,1);
