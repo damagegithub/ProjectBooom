@@ -1345,6 +1345,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 5.9753833
       objectReference: {fileID: 0}
+    - target: {fileID: 3482611387117831821, guid: 2f19728c96bfae046a85ae48319e24ad, type: 3}
+      propertyPath: controlEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3482611387117831822, guid: 2f19728c96bfae046a85ae48319e24ad, type: 3}
       propertyPath: m_Name
       value: "Player (\u83B201)"
