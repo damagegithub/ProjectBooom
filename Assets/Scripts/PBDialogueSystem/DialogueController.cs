@@ -118,11 +118,12 @@ namespace PBDialogueSystem
                 Debug.LogError("Conversation ID not found in conversation data! "+conversationID);
                 return;
             }
-            PlayerController PlayerController = GameObject.FindObjectOfType<PlayerController>();
-            if (PlayerController)
+            var PlayerControllers = GameObject.FindObjectsOfType<PlayerController>();
+            foreach (var playerController in PlayerControllers)
             {
-                PlayerController.DisablePlayerControl();
+                playerController.DisablePlayerControl();
             }
+
             _currentConversation = null;
             _currentConversation = new Conversation(conversationID,DialogueUI.TextWriter);
             _currentConversation.DialogueUI = DialogueUI;
@@ -150,10 +151,10 @@ namespace PBDialogueSystem
             _currentConversation = null;     
             OnOneConversationEnd?.Invoke(conversationID);
             
-            PlayerController PlayerController = GameObject.FindObjectOfType<PlayerController>();
-            if (PlayerController)
+            var PlayerControllers = GameObject.FindObjectsOfType<PlayerController>();
+            foreach (var playerController in PlayerControllers)
             {
-                PlayerController.controlEnabled = true;
+                playerController.controlEnabled = true;
             }
         }
     }
