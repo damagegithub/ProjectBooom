@@ -159,7 +159,7 @@ namespace _ProjectBooom_.ScenesScript
                .SpeakAndWait("博士：接下来需要为会议做准备，我需要你的帮助。", true);
             yield return DoctorSpeakController
                .SpeakAndWait("博士：请帮我删除会议文件夹中的文件", true);
-            DoctorSpeakController.SpeakWithoutFade("博士：请先打开计算机");
+            DoctorSpeakController.SpeakWithoutFade("博士：先去启动电脑吧。");
 
             // 等待触发
             while (Mathf.Approximately(0f, GlobalVariable.GetVarValue("打开电脑")))
@@ -182,7 +182,7 @@ namespace _ProjectBooom_.ScenesScript
                                 .WaitForCompletion();
 
             yield return DoctorSpeakController
-               .SpeakAndWait("博士：首先你需要打开文件夹 请查看一下", true);
+               .SpeakAndWait("博士：桌上的代理人数据库，冗余的文件就在其中。", true);
 
             float waitTime = 5f;
             // 等待完成
@@ -194,7 +194,7 @@ namespace _ProjectBooom_.ScenesScript
                 {
                     waitTime = 5f;
                     DoctorSpeakController
-                       .Speak("博士：请将文件拖拽到回收站里", true);
+                       .Speak("博士：这是两份完全相同的文件，选择其一拖到回收站删除即可。", true);
                 }
             }
 
