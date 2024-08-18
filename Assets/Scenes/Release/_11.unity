@@ -1781,6 +1781,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1996690024325138872, guid: ff13cd052dc08b246b3f8115561ca7a2, type: 3}
   m_PrefabInstance: {fileID: 1491319364}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1491319366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1996690024325138873, guid: ff13cd052dc08b246b3f8115561ca7a2, type: 3}
+  m_PrefabInstance: {fileID: 1491319364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519939751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,6 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueController: {fileID: 2029430270}
+  DOC: {fileID: 1491319366}
   BlackCanvasGroup: {fileID: 1818407545}
   CG: {fileID: 1605182380}
 --- !u!1 &1605182380

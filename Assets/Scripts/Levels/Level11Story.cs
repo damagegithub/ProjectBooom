@@ -9,7 +9,7 @@ namespace Levels
     public class Level11Story : MonoBehaviour
     {
         public DialogueController dialogueController;
-
+        public GameObject DOC;
         // Start is called before the first frame update
         public CanvasGroup BlackCanvasGroup;
         public GameObject CG;
@@ -20,15 +20,21 @@ namespace Levels
         
         void Start()
         {
-           
+            if (PlayerPrefs.GetInt("Level11MetaDeleteDoc", -1) == 1)
+            {
+                if (DOC)
+                {
+                    DOC.SetActive(false);
+                }
+            }
             StartCoroutine(ScriptStart());
         }
 
         public IEnumerator ScriptStart()
         {
+            StartConversation();
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
-            Invoke(nameof(StartConversation), 2f);
         }
 
         private void StartConversation()
@@ -46,8 +52,8 @@ namespace Levels
                     //todo 播放结局 然后
                     // CG.SetActive(true);
                     PlayerPrefs.SetInt("GameFinished", 1);
-                    PlayerPrefs.SetInt("CurrentLevel", 999); 
-                    Invoke(nameof(EndGame), 3f);
+                    PlayerPrefs.SetInt("CurrentLevel", 999);
+                    EndGame();
                 };
             }
             else
