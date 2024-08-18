@@ -2213,8 +2213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 530566d7a8b9dab4c8d1ea3317879802, type: 2}
-  initialSkinName: 
+  skeletonDataAsset: {fileID: 11400000, guid: 91059c87d6f18284bbf2d32823994891, type: 2}
+  initialSkinName: leng
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
   initialFlipY: 0
@@ -2241,7 +2241,7 @@ MonoBehaviour:
   physicsMovementRelativeTo: {fileID: 0}
   updateTiming: 1
   unscaledTime: 0
-  _animationName: 
+  _animationName: idea1
   loop: 1
   timeScale: 1
 --- !u!23 &1121488682
@@ -2264,7 +2264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b478f29c557e24c4695ebe9652bd6af8, type: 2}
+  - {fileID: 2100000, guid: 5e6d97deb4203f14d9d4c64b5b54ae2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3094,6 +3094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91afbf5385fb3ba42befb39c63a7d1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MouseScale: 0.8
   MouseNormal: {fileID: 2800000, guid: d4dbf4aed07150543b770d4c69cf2880, type: 3}
   MouseDrag: {fileID: 2800000, guid: cbde463128ac51c47b9a13196b5ee1ea, type: 3}
   ItemTipIcon: {fileID: 21300000, guid: fc0b8f52ab57de74c81b5a814863861d, type: 3}
