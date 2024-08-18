@@ -35,7 +35,11 @@ public class GameStartController : MonoBehaviour
         GameStartButton.onClick.AddListener(() =>
         {
             var currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-
+            if (currentLevel == 999)
+            {
+                SceneManager.LoadScene("FinalScene");
+                SceneManager.UnloadSceneAsync("_0.MainScene_开始界面");
+            }
             if (currentLevel == 1)
             {
                 //完成关卡1之前, 没有选人界面
@@ -71,8 +75,8 @@ public class GameStartController : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Level7MetaCreated", -1) == 1)
         {
-            bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "02.txt");
-            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("GameInfo", "01.txt");
+            bool Has02 = MetaGameUtil.CheckPlayerDesktopHasFile("02.txt");
+            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("01.txt");
             if (!Has02 && Has01)
             {
                 //正确 跳转到8a
@@ -101,9 +105,9 @@ public class GameStartController : MonoBehaviour
         if (PlayerPrefs.GetInt("Level9MetaCreated", -1) == 1)
         {
             var FloderName = "PB_Meta";
-            bool HasXXX = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "lian.xxx");
-            bool HasTxt = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "lian.txt");
-            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "01.txt");
+            bool HasXXX = MetaGameUtil.CheckPlayerDesktopHasFile("lian.xxx");
+            bool HasTxt = MetaGameUtil.CheckPlayerDesktopHasFile("lian.txt");
+            bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("01.txt");
             if (!HasXXX && HasTxt && Has01)
             {
                 //对应案子a, 出现lian 本体
@@ -150,8 +154,8 @@ public class GameStartController : MonoBehaviour
             if (PlayerPrefs.GetInt("Level11MetaCreated", -1) == 1)
             {
                 var FloderName = "PB_Meta";
-                bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "doc.txt");
-                bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile(FloderName, "01.txt");
+                bool HasDoc = MetaGameUtil.CheckPlayerDesktopHasFile("doc.txt");
+                bool Has01 = MetaGameUtil.CheckPlayerDesktopHasFile("01.txt");
                 if (!HasDoc && Has01)
                 {
                     PlayerPrefs.SetInt("Level11MetaDeleteDoc", 1);

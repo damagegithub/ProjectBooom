@@ -49,7 +49,6 @@ namespace Controllers
             OldState = AnimationType.Idle;
             spineAnimationState.SetAnimation(0, idleAnimationName, true);
             skeletonAnimation.timeScale = SpineIdleTimeScale;
-
             if (PlayerPrefs.GetInt("CurrentLevel", -1) == 999)
             {
                 spineAnimationState.SetAnimation(0, huiwuAnimationName, true);

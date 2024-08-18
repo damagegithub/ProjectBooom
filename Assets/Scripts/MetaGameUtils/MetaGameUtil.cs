@@ -37,22 +37,25 @@ namespace MetaGameUtils
             #endif
         }
         
-        public static void CreateFolderOnDesktop(string folderName)
+        public static void CreateFolderOnDesktop()
         {
+            var folderName = "代理人数据库";
             string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
             string folderPath = desktopPath + "/" + folderName;
             System.IO.Directory.CreateDirectory(folderPath);
         }
         
-        public static void CreateFileOnDesktop(string folderName,string fileName, string content)
+        public static void CreateFileOnDesktop(string fileName, string content)
         {
+            var folderName = "代理人数据库";
             string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
             string filePath = desktopPath+"/"+ folderName+ "/" + fileName;
             System.IO.File.WriteAllText(filePath, content);
         }
         
-        public static bool CheckPlayerDesktopHasFile(string folderName,string fileName)
+        public static bool CheckPlayerDesktopHasFile(string fileName)
         {
+            var folderName = "代理人数据库";
             string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);        
             string filePath = desktopPath +"/"+ folderName+ "/" + fileName;
            return System.IO.File.Exists(filePath);

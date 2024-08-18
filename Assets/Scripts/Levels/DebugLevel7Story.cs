@@ -98,9 +98,9 @@ public class DebugLevel7Story : MonoBehaviour
     void MetaGame()
     {
         Debug.Log("MetaGame ");
-        MetaGameUtil.CreateFolderOnDesktop("GameInfo");
-        MetaGameUtil.CreateFileOnDesktop("GameInfo", "01.txt", "01本体");
-        MetaGameUtil.CreateFileOnDesktop("GameInfo", "02.txt", "02本体");
+        MetaGameUtil.CreateFolderOnDesktop();
+        MetaGameUtil.CreateFileOnDesktop("01.txt", "01本体");
+        MetaGameUtil.CreateFileOnDesktop("02.txt", "02本体");
         ShowDesktop.ShowDesktopFunc();
         Invoke(nameof(EndGame), 2f);
     }
