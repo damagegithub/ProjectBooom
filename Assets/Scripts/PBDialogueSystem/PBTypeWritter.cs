@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -28,7 +29,9 @@ public class PBTypeWritter : MonoBehaviour
             _typewriterTween.Kill();
         }
 
-        textMeshPro.text = fullText;
+        // textMeshPro.text = fullText;
+        textMeshPro.SetText(fullText);
+        textMeshPro.maxVisibleCharacters = fullText.Length;
         OnTypingComplete();
     }
 
@@ -69,7 +72,13 @@ public class PBTypeWritter : MonoBehaviour
 
     void UpdateText()
     {
-        textMeshPro.text = fullText.Substring(0, _currentCharIndex);
+        if (!string.Equals(textMeshPro.text, fullText, StringComparison.InvariantCultureIgnoreCase))
+        {
+            textMeshPro.SetText(fullText);
+        }
+        
+        // textMeshPro.text = fullText.Substring(0, _currentCharIndex);
+        textMeshPro.maxVisibleCharacters = _currentCharIndex;
         audioSource.Play();
     }
 
