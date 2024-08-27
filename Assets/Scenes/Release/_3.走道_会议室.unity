@@ -4904,6 +4904,7 @@ MonoBehaviour:
   Renderer2DData: {fileID: 11400000, guid: 566f928ca220f9c498124e155211cf4b, type: 2}
   CameraNoiseBlit: CameraNoise
   CameraColorDispersionBlit: CameraColorDispersion
+  ShowFoldButtonUI: {fileID: 1100718610}
 --- !u!1 &2055496706
 GameObject:
   m_ObjectHideFlags: 0

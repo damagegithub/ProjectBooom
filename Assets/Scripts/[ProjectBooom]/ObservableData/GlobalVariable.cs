@@ -39,8 +39,8 @@ namespace _ProjectBooom_.ObservableData
                 }
             }
 
-            // 在游戏启动时加载全局变量
-            LoadFrom(SaveFilePath);
+            // // 在游戏启动时加载全局变量
+            // LoadFrom(SaveFilePath);
 
             base.Awake();
         }
@@ -85,7 +85,7 @@ namespace _ProjectBooom_.ObservableData
         /// </summary>
         private void OnApplicationQuit()
         {
-            SaveTo(SaveFilePath);
+            // SaveTo(SaveFilePath);
         }
 
         #endregion

@@ -72,8 +72,11 @@ namespace _ProjectBooom_.ScenesScript
         [Header("相机色散Blit")]
         public string CameraColorDispersionBlit = "CameraColorDispersion";
 
-        private  ScriptableRendererFeature _cameraNoiseData;
-        private  ScriptableRendererFeature _cameraColorDispersionData;
+        [Header("显示文件夹按钮UI")]
+        public ShowFoldButtonUI ShowFoldButtonUI;
+
+        private ScriptableRendererFeature _cameraNoiseData;
+        private ScriptableRendererFeature _cameraColorDispersionData;
 
         public void DialogFinish(int dialogIndex)
         {
@@ -102,7 +105,7 @@ namespace _ProjectBooom_.ScenesScript
             DesktopCanvasGroup.interactable = true;
             DesktopCanvasGroup.blocksRaycasts = true;
             DesktopCanvasGroup.gameObject.SetActive(true);
-            
+
 
             _cameraNoiseData = Renderer2DData
                               .rendererFeatures
@@ -181,26 +184,21 @@ namespace _ProjectBooom_.ScenesScript
                                 .SetId(this)
                                 .WaitForCompletion();
 
-            yield return DoctorSpeakController
-               .SpeakAndWait("博士：桌上的代理人数据库，冗余的文件就在其中。", true);
+            DoctorSpeakController
+               .SpeakWithoutFade("博士：桌上的代理人数据库，冗余的文件就在其中。", true);
 
-            // float waitTime = 5f;
+            // 等待打开文件夹
+            yield return new WaitUntil(() => ShowFoldButtonUI.FoldCanvasGroup.interactable);
+
             // 直接说话
             DoctorSpeakController
                .SpeakWithoutFade("博士：这是两份完全相同的文件，选择其一拖到回收站删除即可。", true);
-            
+
             // 等待完成
-            while (FoldFileReceiveUI.FileUIs.Count < DeleteFileCount)
-            {
-                yield return new WaitForEndOfFrame();
-                // waitTime -= Time.deltaTime;
-                // if (waitTime <= 0)
-                // {
-                //     waitTime = 5f;
-                //     DoctorSpeakController
-                //        .Speak("博士：这是两份完全相同的文件，选择其一拖到回收站删除即可。", true);
-                // }
-            }
+            yield return new WaitUntil(() => FoldFileReceiveUI.FileUIs.Count >= DeleteFileCount);
+
+            // 清除对话内容
+            DoctorSpeakController.Speak(string.Empty, true);
 
             // 删除完成
             DeleteComputedCanvasGroup.alpha = 1;
