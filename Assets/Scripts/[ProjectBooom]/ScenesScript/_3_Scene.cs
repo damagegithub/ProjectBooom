@@ -187,7 +187,7 @@ namespace _ProjectBooom_.ScenesScript
             // float waitTime = 5f;
             // 直接说话
             DoctorSpeakController
-               .Speak("博士：这是两份完全相同的文件，选择其一拖到回收站删除即可。", true);
+               .SpeakWithoutFade("博士：这是两份完全相同的文件，选择其一拖到回收站删除即可。", true);
             
             // 等待完成
             while (FoldFileReceiveUI.FileUIs.Count < DeleteFileCount)
