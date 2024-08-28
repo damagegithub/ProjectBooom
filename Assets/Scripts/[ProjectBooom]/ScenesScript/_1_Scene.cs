@@ -36,7 +36,7 @@ namespace _ProjectBooom_.ScenesScript
         public float StartAnimationTime = 2.0f;
 
         [Header("按键提示")]
-        public TextMeshPro TipTMP;
+        public SpriteRenderer TipTMP;
 
         [Header("开始场景对话")]
         public string DoctorText0;
@@ -81,7 +81,7 @@ namespace _ProjectBooom_.ScenesScript
             _initMoveSpeed = PlayerController.maxSpeed;
             PlayerController.maxSpeed = 0;
             BlackCanvasGroup.alpha = 1;
-            TipTMP.alpha = 0;
+            TipTMP.DOFade(0f,0f);
         }
 
         /// <summary>
