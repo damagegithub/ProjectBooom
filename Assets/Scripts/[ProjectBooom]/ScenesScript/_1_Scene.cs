@@ -4,10 +4,11 @@ using _ProjectBooom_.ObservableData;
 using _ProjectBooom_.PuzzleMono.UI;
 using Controllers;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using PBDialogueSystem;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace _ProjectBooom_.ScenesScript
 {
@@ -16,8 +17,9 @@ namespace _ProjectBooom_.ScenesScript
     /// </summary>
     public class _1_Scene : MonoBehaviour
     {
-        public  PlayerController PlayerController;
-        private float            _initMoveSpeed;
+        public PlayerController PlayerController;
+
+        private float _initMoveSpeed;
 
         public StoryController StoryController;
 
@@ -33,11 +35,8 @@ namespace _ProjectBooom_.ScenesScript
         [Header("苏醒动画时间")]
         public float StartAnimationTime = 2.0f;
 
-        // [Header("学习移动左按键")]
-        // public CanvasGroup LeftButton;
-        //
-        // [Header("学习移动右按键")]
-        // public CanvasGroup RightButton;
+        [Header("按键提示")]
+        public TextMeshPro TipTMP;
 
         [Header("开始场景对话")]
         public string DoctorText0;
@@ -79,11 +78,10 @@ namespace _ProjectBooom_.ScenesScript
             DialogueController.OnOneConversationEnd += DialogFinish;
 
             BlackCanvasGroup.alpha = 1;
-            // LeftButton.alpha = 0;
-            // RightButton.alpha = 0;
             _initMoveSpeed = PlayerController.maxSpeed;
             PlayerController.maxSpeed = 0;
             BlackCanvasGroup.alpha = 1;
+            TipTMP.alpha = 0;
         }
 
         /// <summary>
@@ -110,11 +108,7 @@ namespace _ProjectBooom_.ScenesScript
             DialogueController.StartConversation(dialogIndex);
             yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
 
-
-            while (CurrentDialogIndex == dialogIndex)
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitUntil(() => CurrentDialogIndex != dialogIndex);
 
             if (fadeEnd)
             {
@@ -122,7 +116,6 @@ namespace _ProjectBooom_.ScenesScript
             }
 
             StoryController.TryFinishCurrentStory();
-            
         }
 
         /// <summary>
@@ -137,13 +130,11 @@ namespace _ProjectBooom_.ScenesScript
         {
             StoryController.SetDebugText("博士等待对话");
             DoctorSpeakController.SpeakWithoutFade(DoctorText0, true);
+            // 高亮按键提示
+            TweenerCore<Color, Color, ColorOptions> tipDOTweeen = TipTMP.DOFade(1f, 1.0f);
             // 等待第一次移动
             PlayerController.maxSpeed = 1;
-            while (!InputWarp.LeftMoveDown() && !InputWarp.RightMoveDown())
-            {
-                // 等待左右移动
-                yield return new WaitForNextFrameUnit();
-            }
+            yield return new WaitUntil(() => InputWarp.LeftMoveDown() || InputWarp.RightMoveDown());
 
             DOTween.To(() => PlayerController.maxSpeed,
                        x => PlayerController.maxSpeed = x,
@@ -153,11 +144,10 @@ namespace _ProjectBooom_.ScenesScript
             StoryController.SetDebugText("等待触发器");
             DoctorSpeakController.SpeakWithoutFade(DoctorText1);
             // 等待某个变量被触发
-            while (0f == GlobalVariable.GetVarValue("Level1_已到达教学地点"))
-            {
-                yield return new WaitForNextFrameUnit();
-            }
+            yield return new WaitUntil(() => GlobalVariable.GetVarValue("Level1_已到达教学地点") != 0f);
 
+            tipDOTweeen.Kill();
+            TipTMP.DOFade(0f, 1.0f);
             yield return DoctorSpeakController.SpeakAndWait(DoctorText2);
 
             // 如果还在DOTween 就结束
