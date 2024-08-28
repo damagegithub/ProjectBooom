@@ -57,7 +57,6 @@ public class PBTypeWritter : MonoBehaviour
                                       {
                                           if (x > _currentCharIndex)
                                           {
-                                            Debug.Log("audioSource.Play();");
                                             if (_currentCharIndex % typingAudioDurations == 0)
                                             {
                                                 audioSource.PlayOneShot(audioSource.clip);

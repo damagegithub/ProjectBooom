@@ -2213,6 +2213,7 @@ GameObject:
   - component: {fileID: 1772445552}
   - component: {fileID: 1772445554}
   - component: {fileID: 1772445553}
+  - component: {fileID: 1772445555}
   m_Layer: 0
   m_Name: Ceiling Spot Light 2D
   m_TagString: Untagged
@@ -2265,7 +2266,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.533
   m_Color: {r: 0.95687324, g: 0.115129285, b: 0.10703559, a: 1}
   m_Intensity: 0
   m_LightVolumeIntensity: 0.01
@@ -2300,6 +2301,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1772445555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772445551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160a520c44426bb43b61ab44b0cda5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 1772445554}
+  duration: 1
+  MinIntensity: 1
+  MaxIntensity: 11
 --- !u!1 &1784474449
 GameObject:
   m_ObjectHideFlags: 0
