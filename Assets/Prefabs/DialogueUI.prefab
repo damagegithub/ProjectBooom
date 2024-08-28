@@ -980,6 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshPro: {fileID: 0}
   typingSpeed: 0.2
+  typingAudioDurations: 2
   audioSource: {fileID: 5032062745801527214}
   fullText: 
 --- !u!82 &5032062745801527214

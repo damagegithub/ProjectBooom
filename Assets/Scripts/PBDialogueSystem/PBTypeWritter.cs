@@ -10,6 +10,7 @@ public class PBTypeWritter : MonoBehaviour
 {
     public TextMeshProUGUI textMeshPro;
     public float           typingSpeed = 0.1f; // 每个字符的时间间隔
+    public int            typingAudioDurations = 3; // 每个几个字符播放一次音效
 
     private int   _currentCharIndex;
     private Tween _typewriterTween;
@@ -57,7 +58,10 @@ public class PBTypeWritter : MonoBehaviour
                                           if (x > _currentCharIndex)
                                           {
                                             Debug.Log("audioSource.Play();");
-                                            audioSource.PlayOneShot(audioSource.clip);
+                                            if (_currentCharIndex % typingAudioDurations == 0)
+                                            {
+                                                audioSource.PlayOneShot(audioSource.clip);
+                                            }
                                               // audioSource.Play();
                                           }
                                           
