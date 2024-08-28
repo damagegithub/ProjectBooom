@@ -9,8 +9,8 @@ ActorID,ActorName,ActorAvatarImagePath,ActorFullBodyImagePath,SelectSceneImagePa
 8,？？？,Texture/Avatars/tou_lian00,,,,,Art/Name/wen_hao,0
 9,莲,Texture/Avatars/tou_01,Texture/Avatars/lian01,,,,Art/Name/lian,0
 10,,,,,,,,0
-11,懂事,Texture/Avatars/tou_balck1,,,,,Art/Name/dong_shi,0
-12,警卫,Texture/Avatars/tou_balck2,,,,,Art/Name/jing_wei,0
+11,懂事,Texture/Avatars/tou_black1,,,,,Art/Name/dong_shi,0
+12,警卫,Texture/Avatars/tou_black2,,,,,Art/Name/jing_wei,0
 13,生气一,,Texture/Avatars/lian01_angry,,,,Art/Name/01,0
 14,惊讶一,,Texture/Avatars/lian01_surprise,,,,Art/Name/01,0
 15,哭泣一,,Texture/Avatars/lian01_cry,,,,Art/Name/01,0

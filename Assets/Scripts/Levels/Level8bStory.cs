@@ -39,8 +39,8 @@ public class Level8bStory : MonoBehaviour
     void MetaGame()
     {
         MetaGameUtil.CreateFolderOnDesktop();
-        MetaGameUtil.CreateFileOnDesktop("01.txt", "01本体");
-        MetaGameUtil.CreateFileOnDesktop("02.txt", "02本体");
+        MetaGameUtil.CreateFileOnDesktop("01.txt", MetaGameUtils.GlobalString._01TxtContent);
+        MetaGameUtil.CreateFileOnDesktop("02.txt", MetaGameUtils.GlobalString._02TxtContent);
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("CurrentLevel", 7);
         EndGame();
