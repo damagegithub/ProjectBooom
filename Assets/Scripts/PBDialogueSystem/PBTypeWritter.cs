@@ -20,7 +20,7 @@ public class PBTypeWritter : MonoBehaviour
     public AudioSource audioSource;
 
     public string fullText = "";
-
+    // public int testIndex = 0;
 
     public void ShowFullText()
     {
@@ -59,9 +59,10 @@ public class PBTypeWritter : MonoBehaviour
                                           {
                                             if (_currentCharIndex % typingAudioDurations == 0)
                                             {
+                                                // Debug.Log("播放音效"+ testIndex);
                                                 audioSource.PlayOneShot(audioSource.clip);
+                                                // testIndex++;
                                             }
-                                              // audioSource.Play();
                                           }
                                           
                                           _currentCharIndex = x;
@@ -82,7 +83,7 @@ public class PBTypeWritter : MonoBehaviour
         
         // textMeshPro.text = fullText.Substring(0, _currentCharIndex);
         textMeshPro.maxVisibleCharacters = _currentCharIndex;
-        audioSource.Play();
+        //audioSource.Play();
     }
 
     void OnTypingComplete()

@@ -55,7 +55,7 @@ public class Level9Story : MonoBehaviour
         MetaGameUtil.CreateFileOnDesktop("01.txt", MetaGameUtils.GlobalString._01TxtContent);
         if (!MetaGameUtil.CheckPlayerDesktopHasFile("莲.txt"))
         {
-            MetaGameUtil.CreateFileOnDesktop("莲.xxx", "lian?????");
+            MetaGameUtil.CreateFileOnDesktop("莲.xxx", MetaGameUtils.GlobalString._LianTxtContent);
         }
         ShowDesktop.ShowDesktopFunc();
         PlayerPrefs.SetInt("Level9MetaCreated",1);
