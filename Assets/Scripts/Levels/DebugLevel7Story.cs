@@ -101,13 +101,12 @@ public class DebugLevel7Story : MonoBehaviour
         MetaGameUtil.CreateFileOnDesktop("01.txt", MetaGameUtils.GlobalString._01TxtContent);
         MetaGameUtil.CreateFileOnDesktop("02.txt", MetaGameUtils.GlobalString._02TxtContent);
         ShowDesktop.ShowDesktopFunc();
-        Invoke(nameof(EndGame), 2f);
+        PlayerPrefs.SetInt("Level7MetaCreated",1);
+        Invoke(nameof(EndGame), 0.1f);
     }
 
     void EndGame()
     {
-        Debug.Log("CloseGame ");
-        PlayerPrefs.SetInt("Level7MetaCreated",1);
         MetaGameUtil.CloseGame();
     }
     // Update is called once per frame

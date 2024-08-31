@@ -22,8 +22,12 @@ public class Level8bStory : MonoBehaviour
 
     public IEnumerator ScriptStart()
     {
-        StartConversation();
         yield return BlackCanvasGroup.DOFade(0f, 1.0f).SetId(this).WaitForCompletion();
+        yield return new WaitForSeconds(1f);
+        yield return BlackCanvasGroup.DOFade(1f, 1f).SetId(this).WaitForCompletion();
+        StartConversation();
+        yield return BlackCanvasGroup.DOFade(0f, 1f).SetId(this).WaitForCompletion();
+        
     }
     
     
