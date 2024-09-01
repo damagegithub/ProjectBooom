@@ -326,7 +326,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 765090127}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9640173
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -371,8 +371,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -636.3169, y: -397.44684}
-  m_SizeDelta: {x: 1041.2725, y: 1019.3607}
+  m_AnchoredPosition: {x: -636.3169, y: -453.05502}
+  m_SizeDelta: {x: 1041.2725, y: 1081.1348}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!225 &1752573399
 CanvasGroup:
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
