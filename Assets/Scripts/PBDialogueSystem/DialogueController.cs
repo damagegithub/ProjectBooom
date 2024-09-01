@@ -12,12 +12,16 @@ namespace PBDialogueSystem
         private Dictionary<int, DialogueActor> _dialogueActors = new Dictionary<int, DialogueActor>();
         private Dictionary<int, DialogueAudio> _dialogueAudios = new Dictionary<int, DialogueAudio>();
         private ConversationData _currentConversationData = null;
-        private Conversation _currentConversation = null;
+        public Conversation _currentConversation = null;
 
         public GameObject DialogueUIGO;
         public AudioController audioController;
         private DialogueStandardUI DialogueUI;
-        
+
+        /// <summary>
+        ///     历史消息面板是否打开
+        /// </summary>
+        public static bool HasHistoryLogPanel = false;
         public event Action<int> OnOneConversationEnd;
 
         public void ClearOnOneConversationEnd()
@@ -60,7 +64,12 @@ namespace PBDialogueSystem
 
         public void FastForward()
         {
-              if (_currentConversation == null) 
+            if (HasHistoryLogPanel)
+            {
+                return;
+            }
+
+            if (_currentConversation == null)
             {
                 return;
             }

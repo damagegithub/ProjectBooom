@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace PBDialogueSystem
 
         public bool _isBlackBG = false;
 
+        public static Action<DialogueData> OnDialogueBegin;
+
         public Conversation(int newConversationID, PBTypeWritter InTypeWriter)
         {
             ConversationID = newConversationID;
@@ -58,6 +61,7 @@ namespace PBDialogueSystem
                 DialogueUI.GameObject().SetActive(false);
                 return;
             }
+            OnDialogueBegin?.Invoke(data); //对话开始事件
 
             DialogueActor actor = DialogueController.GetDialogueActor(data.SpeakerID);
             UpdateAvatar(data, actor);
@@ -211,6 +215,32 @@ namespace PBDialogueSystem
             {
                 DialogueUI.FullBodyImage3.gameObject.SetActive(false);
             }
+        }
+
+        /// <summary>
+        ///     尝试获取对话者的名字图片
+        /// </summary>
+        public bool TryGetNameImage(int speakerID, out Texture2D texture2D)
+        {
+            if (SpeakerNameImages.TryGetValue(speakerID, out texture2D))
+            {
+                return true;
+            }
+
+            DialogueActor actor = DialogueController.GetDialogueActor(speakerID);
+            if (actor == null)
+            {
+                return false;
+            }
+
+            texture2D = Resources.Load<Texture2D>(actor.NameImg);
+            if (!texture2D)
+            {
+                return false;
+            }
+
+            SpeakerNameImages.Add(speakerID, texture2D);
+            return true;
         }
 
         private void UpdateAvatar(DialogueData data, DialogueActor actor)
